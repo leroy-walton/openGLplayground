@@ -1,13 +1,12 @@
-#include<GL/glew.h>
-#include<stb_image.h>
+#include <GL/glew.h>
+#include <stb_image.h>
 
-int main() {
-
-
+int main()
+{
 
     // Load the texture image file into memory
     int width, height, channels;
-    unsigned char* image = stbi_load("texture.jpg", &width, &height, &channels, STBI_rgb_alpha);
+    unsigned char *image = stbi_load("texture.jpg", &width, &height, &channels, STBI_rgb_alpha);
 
     // Generate a texture object and bind it
     GLuint texture;
@@ -27,23 +26,23 @@ int main() {
     stbi_image_free(image);
 
     // Enable texturing in the shader
-    const char* vertexShaderSource = "#version 330 core\n"
-                                    "layout (location = 0) in vec3 aPos;\n"
-                                    "layout (location = 1) in vec2 aTexCoord;\n"
-                                    "out vec2 TexCoord;\n"
-                                    "void main()\n"
-                                    "{\n"
-                                    "   gl_Position = vec4(aPos, 1.0);\n"
-                                    "   TexCoord = aTexCoord;\n"
-                                    "}\n";
-    const char* fragmentShaderSource = "#version 330 core\n"
-                                    "in vec2 TexCoord;\n"
-                                    "out vec4 FragColor;\n"
-                                    "uniform sampler2D ourTexture;\n"
-                                    "void main()\n"
-                                    "{\n"
-                                    "   FragColor = texture(ourTexture, TexCoord);\n"
-                                    "}\n";
+    const char *vertexShaderSource = "#version 330 core\n"
+                                     "layout (location = 0) in vec3 aPos;\n"
+                                     "layout (location = 1) in vec2 aTexCoord;\n"
+                                     "out vec2 TexCoord;\n"
+                                     "void main()\n"
+                                     "{\n"
+                                     "   gl_Position = vec4(aPos, 1.0);\n"
+                                     "   TexCoord = aTexCoord;\n"
+                                     "}\n";
+    const char *fragmentShaderSource = "#version 330 core\n"
+                                       "in vec2 TexCoord;\n"
+                                       "out vec4 FragColor;\n"
+                                       "uniform sampler2D ourTexture;\n"
+                                       "void main()\n"
+                                       "{\n"
+                                       "   FragColor = texture(ourTexture, TexCoord);\n"
+                                       "}\n";
 
     // Compile and link the shaders into a program
     GLuint shaderProgram = compileAndLinkShaders(vertexShaderSource, fragmentShaderSource);
@@ -59,8 +58,8 @@ int main() {
     glBindTexture(GL_TEXTURE_2D, texture);
 
     // Set the vertex data and indices
-    float vertices[] = { ... }; // vertex positions and texture coordinates
-    unsigned int indices[] = { ... }; // indices of the vertices
+    float vertices[] = {...};       // vertex positions and texture coordinates
+    unsigned int indices[] = {...}; // indices of the vertices
 
     // Generate a vertex buffer object and bind it
     GLuint VBO;
@@ -71,8 +70,8 @@ int main() {
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
     // Set the vertex attributes
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)(3 * sizeof(float)));
     glEnableVertexAttribArray(0);
     glEnableVertexAttribArray(1);
 
@@ -92,5 +91,4 @@ int main() {
     glDeleteBuffers(1, &VBO);
     glDeleteTextures(1, &texture);
     glDeleteProgram(shaderProgram);
-
 }

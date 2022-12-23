@@ -5,9 +5,10 @@
 #include <assimp/scene.h>
 #include <stb_image.h>
 
-class Texture {
- public:
-     // initialize with name
+class Texture
+{
+public:
+    // initialize with name
     Texture(std::string name);
 
     // initialize with image path and type
@@ -22,9 +23,9 @@ class Texture {
     void allocate(GLenum format, GLuint width, GLuint height, GLenum type);
 
     static void setParams(GLenum texMinFilter = GL_NEAREST,
-        GLenum texMagFilter = GL_NEAREST,
-        GLenum wrapS = GL_REPEAT,
-        GLenum wrapT = GL_REPEAT);
+                          GLenum texMagFilter = GL_NEAREST,
+                          GLenum wrapS = GL_REPEAT,
+                          GLenum wrapT = GL_REPEAT);
 
     // bind texture id
     void bind();
@@ -34,7 +35,7 @@ class Texture {
     /*
         texture object values
     */
-    
+
     // texture id
     unsigned int id;
     // texture type
