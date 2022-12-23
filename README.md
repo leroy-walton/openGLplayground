@@ -1,5 +1,1 @@
-# my tiny openGL playground
-
- Learning Modern openGL relevant code.
-
- libraries : gl, glew, glfw, glm, ,imgui ,assimp
+single_file_solution/main.cpp is the minimal implementation using glew and stbi. No classes.
