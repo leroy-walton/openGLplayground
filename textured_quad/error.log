@@ -1,0 +1,2034 @@
+In file included from Texture.h:6,
+                 from main.cpp:11:
+./include/stb_image.h:941:37: error: macro "stbi__err" requires 2 arguments, but only 1 given
+  941 | static int stbi__err(const char *str)
+      |                                     ^
+In file included from main.cpp:6:
+./include/stb_image.h:1041: note: macro "stbi__err" defined here
+ 1041 |    #define stbi__err(x,y)  stbi__err(x)
+      | 
+./include/stb_image.h: In function ‘int stbi__zhuffman_decode_slowpath(stbi__zbuf*, stbi__zhuffman*)’:
+./include/stb_image.h:4123:10: warning: comparison of integer expressions of different signedness: ‘int’ and ‘long unsigned int’ [-Wsign-compare]
+ 4123 |    if (b >= sizeof (z->size)) return -1; // some data was corrupt somewhere!
+      |        ~~^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h: At global scope:
+./include/stb_image.h:732:12: error: redefinition of ‘int stbi__sse2_available()’
+  732 | static int stbi__sse2_available(void)
+      |            ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:732:12: note: ‘int stbi__sse2_available()’ previously defined here
+  732 | static int stbi__sse2_available(void)
+      |            ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:784:3: error: conflicting declaration ‘typedef struct stbi__context stbi__context’
+  784 | } stbi__context;
+      |   ^~~~~~~~~~~~~
+./include/stb_image.h:784:3: note: previous declaration as ‘typedef struct stbi__context stbi__context’
+  784 | } stbi__context;
+      |   ^~~~~~~~~~~~~
+./include/stb_image.h:790:13: error: redefinition of ‘void stbi__start_mem(stbi__context*, const stbi_uc*, int)’
+  790 | static void stbi__start_mem(stbi__context *s, stbi_uc const *buffer, int len)
+      |             ^~~~~~~~~~~~~~~
+./include/stb_image.h:790:13: note: ‘void stbi__start_mem(stbi__context*, const stbi_uc*, int)’ previously defined here
+  790 | static void stbi__start_mem(stbi__context *s, stbi_uc const *buffer, int len)
+      |             ^~~~~~~~~~~~~~~
+./include/stb_image.h:800:13: error: redefinition of ‘void stbi__start_callbacks(stbi__context*, stbi_io_callbacks*, void*)’
+  800 | static void stbi__start_callbacks(stbi__context *s, stbi_io_callbacks *c, void *user)
+      |             ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:800:13: note: ‘void stbi__start_callbacks(stbi__context*, stbi_io_callbacks*, void*)’ previously defined here
+  800 | static void stbi__start_callbacks(stbi__context *s, stbi_io_callbacks *c, void *user)
+      |             ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:814:12: error: redefinition of ‘int stbi__stdio_read(void*, char*, int)’
+  814 | static int stbi__stdio_read(void *user, char *data, int size)
+      |            ^~~~~~~~~~~~~~~~
+./include/stb_image.h:814:12: note: ‘int stbi__stdio_read(void*, char*, int)’ previously defined here
+  814 | static int stbi__stdio_read(void *user, char *data, int size)
+      |            ^~~~~~~~~~~~~~~~
+./include/stb_image.h:819:13: error: redefinition of ‘void stbi__stdio_skip(void*, int)’
+  819 | static void stbi__stdio_skip(void *user, int n)
+      |             ^~~~~~~~~~~~~~~~
+./include/stb_image.h:819:13: note: ‘void stbi__stdio_skip(void*, int)’ previously defined here
+  819 | static void stbi__stdio_skip(void *user, int n)
+      |             ^~~~~~~~~~~~~~~~
+./include/stb_image.h:829:12: error: redefinition of ‘int stbi__stdio_eof(void*)’
+  829 | static int stbi__stdio_eof(void *user)
+      |            ^~~~~~~~~~~~~~~
+./include/stb_image.h:829:12: note: ‘int stbi__stdio_eof(void*)’ previously defined here
+  829 | static int stbi__stdio_eof(void *user)
+      |            ^~~~~~~~~~~~~~~
+./include/stb_image.h:834:26: error: redefinition of ‘stbi_io_callbacks stbi__stdio_callbacks’
+  834 | static stbi_io_callbacks stbi__stdio_callbacks =
+      |                          ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:834:26: note: ‘stbi_io_callbacks stbi__stdio_callbacks’ previously defined here
+  834 | static stbi_io_callbacks stbi__stdio_callbacks =
+      |                          ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:841:13: error: redefinition of ‘void stbi__start_file(stbi__context*, FILE*)’
+  841 | static void stbi__start_file(stbi__context *s, FILE *f)
+      |             ^~~~~~~~~~~~~~~~
+./include/stb_image.h:841:13: note: ‘void stbi__start_file(stbi__context*, FILE*)’ previously defined here
+  841 | static void stbi__start_file(stbi__context *s, FILE *f)
+      |             ^~~~~~~~~~~~~~~~
+./include/stb_image.h:850:13: error: redefinition of ‘void stbi__rewind(stbi__context*)’
+  850 | static void stbi__rewind(stbi__context *s)
+      |             ^~~~~~~~~~~~
+./include/stb_image.h:850:13: note: ‘void stbi__rewind(stbi__context*)’ previously defined here
+  850 | static void stbi__rewind(stbi__context *s)
+      |             ^~~~~~~~~~~~
+./include/stb_image.h:861:4: error: ‘STBI_ORDER_RGB’ conflicts with a previous declaration
+  861 |    STBI_ORDER_RGB,
+      |    ^~~~~~~~~~~~~~
+./include/stb_image.h:861:4: note: previous declaration ‘<unnamed enum> STBI_ORDER_RGB’
+  861 |    STBI_ORDER_RGB,
+      |    ^~~~~~~~~~~~~~
+./include/stb_image.h:862:4: error: ‘STBI_ORDER_BGR’ conflicts with a previous declaration
+  862 |    STBI_ORDER_BGR
+      |    ^~~~~~~~~~~~~~
+./include/stb_image.h:862:4: note: previous declaration ‘<unnamed enum> STBI_ORDER_BGR’
+  862 |    STBI_ORDER_BGR
+      |    ^~~~~~~~~~~~~~
+./include/stb_image.h:870:3: error: conflicting declaration ‘typedef struct stbi__result_info stbi__result_info’
+  870 | } stbi__result_info;
+      |   ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:870:3: note: previous declaration as ‘typedef struct stbi__result_info stbi__result_info’
+  870 | } stbi__result_info;
+      |   ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:933:13: error: redefinition of ‘const char* stbi__g_failure_reason’
+  933 | const char *stbi__g_failure_reason;
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:933:13: note: ‘const char* stbi__g_failure_reason’ previously declared here
+  933 | const char *stbi__g_failure_reason;
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:935:21: error: redefinition of ‘const char* stbi_failure_reason()’
+  935 | STBIDEF const char *stbi_failure_reason(void)
+      |                     ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:935:21: note: ‘const char* stbi_failure_reason()’ previously defined here
+  935 | STBIDEF const char *stbi_failure_reason(void)
+      |                     ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:941:12: error: ‘int stbi__err’ redeclared as different kind of entity
+  941 | static int stbi__err(const char *str)
+      |            ^~~~~~~~~
+./include/stb_image.h:941:12: note: previous declaration ‘int stbi__err(const char*)’
+  941 | static int stbi__err(const char *str)
+      |            ^~~~~~~~~
+./include/stb_image.h:943:29: error: ‘str’ was not declared in this scope; did you mean ‘std’?
+  943 |    stbi__g_failure_reason = str;
+      |                             ^~~
+      |                             std
+./include/stb_image.h:943:32: error: expected ‘}’ before ‘;’ token
+  943 |    stbi__g_failure_reason = str;
+      |                                ^
+./include/stb_image.h:942:1: note: to match this ‘{’
+  942 | {
+      | ^
+./include/stb_image.h:944:4: error: expected unqualified-id before ‘return’
+  944 |    return 0;
+      |    ^~~~~~
+./include/stb_image.h:945:1: error: expected declaration before ‘}’ token
+  945 | }
+      | ^
+./include/stb_image.h:948:14: error: redefinition of ‘void* stbi__malloc(size_t)’
+  948 | static void *stbi__malloc(size_t size)
+      |              ^~~~~~~~~~~~
+./include/stb_image.h:948:14: note: ‘void* stbi__malloc(size_t)’ previously defined here
+  948 | static void *stbi__malloc(size_t size)
+      |              ^~~~~~~~~~~~
+./include/stb_image.h:965:12: error: redefinition of ‘int stbi__addsizes_valid(int, int)’
+  965 | static int stbi__addsizes_valid(int a, int b)
+      |            ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:965:12: note: ‘int stbi__addsizes_valid(int, int)’ previously defined here
+  965 | static int stbi__addsizes_valid(int a, int b)
+      |            ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:977:12: error: redefinition of ‘int stbi__mul2sizes_valid(int, int)’
+  977 | static int stbi__mul2sizes_valid(int a, int b)
+      |            ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:977:12: note: ‘int stbi__mul2sizes_valid(int, int)’ previously defined here
+  977 | static int stbi__mul2sizes_valid(int a, int b)
+      |            ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:987:12: error: redefinition of ‘int stbi__mad2sizes_valid(int, int, int)’
+  987 | static int stbi__mad2sizes_valid(int a, int b, int add)
+      |            ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:987:12: note: ‘int stbi__mad2sizes_valid(int, int, int)’ previously defined here
+  987 | static int stbi__mad2sizes_valid(int a, int b, int add)
+      |            ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:994:12: error: redefinition of ‘int stbi__mad3sizes_valid(int, int, int, int)’
+  994 | static int stbi__mad3sizes_valid(int a, int b, int c, int add)
+      |            ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:994:12: note: ‘int stbi__mad3sizes_valid(int, int, int, int)’ previously defined here
+  994 | static int stbi__mad3sizes_valid(int a, int b, int c, int add)
+      |            ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1002:12: error: redefinition of ‘int stbi__mad4sizes_valid(int, int, int, int, int)’
+ 1002 | static int stbi__mad4sizes_valid(int a, int b, int c, int d, int add)
+      |            ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1002:12: note: ‘int stbi__mad4sizes_valid(int, int, int, int, int)’ previously defined here
+ 1002 | static int stbi__mad4sizes_valid(int a, int b, int c, int d, int add)
+      |            ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1011:14: error: redefinition of ‘void* stbi__malloc_mad2(int, int, int)’
+ 1011 | static void *stbi__malloc_mad2(int a, int b, int add)
+      |              ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:1011:14: note: ‘void* stbi__malloc_mad2(int, int, int)’ previously defined here
+ 1011 | static void *stbi__malloc_mad2(int a, int b, int add)
+      |              ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:1018:14: error: redefinition of ‘void* stbi__malloc_mad3(int, int, int, int)’
+ 1018 | static void *stbi__malloc_mad3(int a, int b, int c, int add)
+      |              ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:1018:14: note: ‘void* stbi__malloc_mad3(int, int, int, int)’ previously defined here
+ 1018 | static void *stbi__malloc_mad3(int a, int b, int c, int add)
+      |              ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:1025:14: error: redefinition of ‘void* stbi__malloc_mad4(int, int, int, int, int)’
+ 1025 | static void *stbi__malloc_mad4(int a, int b, int c, int d, int add)
+      |              ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:1025:14: note: ‘void* stbi__malloc_mad4(int, int, int, int, int)’ previously defined here
+ 1025 | static void *stbi__malloc_mad4(int a, int b, int c, int d, int add)
+      |              ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:1047:14: error: redefinition of ‘void stbi_image_free(void*)’
+ 1047 | STBIDEF void stbi_image_free(void *retval_from_stbi_load)
+      |              ^~~~~~~~~~~~~~~
+./include/stb_image.h:1047:14: note: ‘void stbi_image_free(void*)’ previously defined here
+ 1047 | STBIDEF void stbi_image_free(void *retval_from_stbi_load)
+      |              ^~~~~~~~~~~~~~~
+./include/stb_image.h:1060:12: error: redefinition of ‘int stbi__vertically_flip_on_load_global’
+ 1060 | static int stbi__vertically_flip_on_load_global = 0;
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1060:12: note: ‘int stbi__vertically_flip_on_load_global’ previously defined here
+ 1060 | static int stbi__vertically_flip_on_load_global = 0;
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1062:14: error: redefinition of ‘void stbi_set_flip_vertically_on_load(int)’
+ 1062 | STBIDEF void stbi_set_flip_vertically_on_load(int flag_true_if_should_flip)
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1062:14: note: ‘void stbi_set_flip_vertically_on_load(int)’ previously defined here
+ 1062 | STBIDEF void stbi_set_flip_vertically_on_load(int flag_true_if_should_flip)
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1070:30: error: redefinition of ‘int stbi__vertically_flip_on_load_local’
+ 1070 | static STBI_THREAD_LOCAL int stbi__vertically_flip_on_load_local, stbi__vertically_flip_on_load_set;
+      |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1070:30: note: ‘int stbi__vertically_flip_on_load_local’ previously declared here
+ 1070 | static STBI_THREAD_LOCAL int stbi__vertically_flip_on_load_local, stbi__vertically_flip_on_load_set;
+      |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1070:67: error: redefinition of ‘int stbi__vertically_flip_on_load_set’
+ 1070 | static STBI_THREAD_LOCAL int stbi__vertically_flip_on_load_local, stbi__vertically_flip_on_load_set;
+      |                                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1070:67: note: ‘int stbi__vertically_flip_on_load_set’ previously declared here
+ 1070 | static STBI_THREAD_LOCAL int stbi__vertically_flip_on_load_local, stbi__vertically_flip_on_load_set;
+      |                                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1072:14: error: redefinition of ‘void stbi_set_flip_vertically_on_load_thread(int)’
+ 1072 | STBIDEF void stbi_set_flip_vertically_on_load_thread(int flag_true_if_should_flip)
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1072:14: note: ‘void stbi_set_flip_vertically_on_load_thread(int)’ previously defined here
+ 1072 | STBIDEF void stbi_set_flip_vertically_on_load_thread(int flag_true_if_should_flip)
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1083:14: error: redefinition of ‘void* stbi__load_main(stbi__context*, int*, int*, int*, int, stbi__result_info*, int)’
+ 1083 | static void *stbi__load_main(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri, int bpc)
+      |              ^~~~~~~~~~~~~~~
+./include/stb_image.h:1083:14: note: ‘void* stbi__load_main(stbi__context*, int*, int*, int*, int, stbi__result_info*, int)’ previously defined here
+ 1083 | static void *stbi__load_main(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri, int bpc)
+      |              ^~~~~~~~~~~~~~~
+./include/stb_image.h:1130:17: error: redefinition of ‘stbi_uc* stbi__convert_16_to_8(stbi__uint16*, int, int, int)’
+ 1130 | static stbi_uc *stbi__convert_16_to_8(stbi__uint16 *orig, int w, int h, int channels)
+      |                 ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1130:17: note: ‘stbi_uc* stbi__convert_16_to_8(stbi__uint16*, int, int, int)’ previously defined here
+ 1130 | static stbi_uc *stbi__convert_16_to_8(stbi__uint16 *orig, int w, int h, int channels)
+      |                 ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1146:22: error: redefinition of ‘stbi__uint16* stbi__convert_8_to_16(stbi_uc*, int, int, int)’
+ 1146 | static stbi__uint16 *stbi__convert_8_to_16(stbi_uc *orig, int w, int h, int channels)
+      |                      ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1146:22: note: ‘stbi__uint16* stbi__convert_8_to_16(stbi_uc*, int, int, int)’ previously defined here
+ 1146 | static stbi__uint16 *stbi__convert_8_to_16(stbi_uc *orig, int w, int h, int channels)
+      |                      ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1162:13: error: redefinition of ‘void stbi__vertical_flip(void*, int, int, int)’
+ 1162 | static void stbi__vertical_flip(void *image, int w, int h, int bytes_per_pixel)
+      |             ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1162:13: note: ‘void stbi__vertical_flip(void*, int, int, int)’ previously defined here
+ 1162 | static void stbi__vertical_flip(void *image, int w, int h, int bytes_per_pixel)
+      |             ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1187:13: error: redefinition of ‘void stbi__vertical_flip_slices(void*, int, int, int, int)’
+ 1187 | static void stbi__vertical_flip_slices(void *image, int w, int h, int z, int bytes_per_pixel)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1187:13: note: ‘void stbi__vertical_flip_slices(void*, int, int, int, int)’ previously defined here
+ 1187 | static void stbi__vertical_flip_slices(void *image, int w, int h, int z, int bytes_per_pixel)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1200:23: error: redefinition of ‘unsigned char* stbi__load_and_postprocess_8bit(stbi__context*, int*, int*, int*, int)’
+ 1200 | static unsigned char *stbi__load_and_postprocess_8bit(stbi__context *s, int *x, int *y, int *comp, int req_comp)
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1200:23: note: ‘unsigned char* stbi__load_and_postprocess_8bit(stbi__context*, int*, int*, int*, int)’ previously defined here
+ 1200 | static unsigned char *stbi__load_and_postprocess_8bit(stbi__context *s, int *x, int *y, int *comp, int req_comp)
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1226:22: error: redefinition of ‘stbi__uint16* stbi__load_and_postprocess_16bit(stbi__context*, int*, int*, int*, int)’
+ 1226 | static stbi__uint16 *stbi__load_and_postprocess_16bit(stbi__context *s, int *x, int *y, int *comp, int req_comp)
+      |                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1226:22: note: ‘stbi__uint16* stbi__load_and_postprocess_16bit(stbi__context*, int*, int*, int*, int)’ previously defined here
+ 1226 | static stbi__uint16 *stbi__load_and_postprocess_16bit(stbi__context *s, int *x, int *y, int *comp, int req_comp)
+      |                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1254:13: error: redefinition of ‘void stbi__float_postprocess(float*, int*, int*, int*, int)’
+ 1254 | static void stbi__float_postprocess(float *result, int *x, int *y, int *comp, int req_comp)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1254:13: note: ‘void stbi__float_postprocess(float*, int*, int*, int*, int)’ previously defined here
+ 1254 | static void stbi__float_postprocess(float *result, int *x, int *y, int *comp, int req_comp)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1277:14: error: redefinition of ‘FILE* stbi__fopen(const char*, const char*)’
+ 1277 | static FILE *stbi__fopen(char const *filename, char const *mode)
+      |              ^~~~~~~~~~~
+./include/stb_image.h:1277:14: note: ‘FILE* stbi__fopen(const char*, const char*)’ previously defined here
+ 1277 | static FILE *stbi__fopen(char const *filename, char const *mode)
+      |              ^~~~~~~~~~~
+./include/stb_image.h:1306:18: error: redefinition of ‘stbi_uc* stbi_load(const char*, int*, int*, int*, int)’
+ 1306 | STBIDEF stbi_uc *stbi_load(char const *filename, int *x, int *y, int *comp, int req_comp)
+      |                  ^~~~~~~~~
+./include/stb_image.h:1306:18: note: ‘stbi_uc* stbi_load(const char*, int*, int*, int*, int)’ previously defined here
+ 1306 | STBIDEF stbi_uc *stbi_load(char const *filename, int *x, int *y, int *comp, int req_comp)
+      |                  ^~~~~~~~~
+./include/stb_image.h:1316:18: error: redefinition of ‘stbi_uc* stbi_load_from_file(FILE*, int*, int*, int*, int)’
+ 1316 | STBIDEF stbi_uc *stbi_load_from_file(FILE *f, int *x, int *y, int *comp, int req_comp)
+      |                  ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1316:18: note: ‘stbi_uc* stbi_load_from_file(FILE*, int*, int*, int*, int)’ previously defined here
+ 1316 | STBIDEF stbi_uc *stbi_load_from_file(FILE *f, int *x, int *y, int *comp, int req_comp)
+      |                  ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1329:23: error: redefinition of ‘stbi__uint16* stbi_load_from_file_16(FILE*, int*, int*, int*, int)’
+ 1329 | STBIDEF stbi__uint16 *stbi_load_from_file_16(FILE *f, int *x, int *y, int *comp, int req_comp)
+      |                       ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1329:23: note: ‘stbi__uint16* stbi_load_from_file_16(FILE*, int*, int*, int*, int)’ previously defined here
+ 1329 | STBIDEF stbi__uint16 *stbi_load_from_file_16(FILE *f, int *x, int *y, int *comp, int req_comp)
+      |                       ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1342:18: error: redefinition of ‘stbi_us* stbi_load_16(const char*, int*, int*, int*, int)’
+ 1342 | STBIDEF stbi_us *stbi_load_16(char const *filename, int *x, int *y, int *comp, int req_comp)
+      |                  ^~~~~~~~~~~~
+./include/stb_image.h:1342:18: note: ‘stbi_us* stbi_load_16(const char*, int*, int*, int*, int)’ previously defined here
+ 1342 | STBIDEF stbi_us *stbi_load_16(char const *filename, int *x, int *y, int *comp, int req_comp)
+      |                  ^~~~~~~~~~~~
+./include/stb_image.h:1355:18: error: redefinition of ‘stbi_us* stbi_load_16_from_memory(const stbi_uc*, int, int*, int*, int*, int)’
+ 1355 | STBIDEF stbi_us *stbi_load_16_from_memory(stbi_uc const *buffer, int len, int *x, int *y, int *channels_in_file, int desired_channels)
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1355:18: note: ‘stbi_us* stbi_load_16_from_memory(const stbi_uc*, int, int*, int*, int*, int)’ previously defined here
+ 1355 | STBIDEF stbi_us *stbi_load_16_from_memory(stbi_uc const *buffer, int len, int *x, int *y, int *channels_in_file, int desired_channels)
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1362:18: error: redefinition of ‘stbi_us* stbi_load_16_from_callbacks(const stbi_io_callbacks*, void*, int*, int*, int*, int)’
+ 1362 | STBIDEF stbi_us *stbi_load_16_from_callbacks(stbi_io_callbacks const *clbk, void *user, int *x, int *y, int *channels_in_file, int desired_channels)
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1362:18: note: ‘stbi_us* stbi_load_16_from_callbacks(const stbi_io_callbacks*, void*, int*, int*, int*, int)’ previously defined here
+ 1362 | STBIDEF stbi_us *stbi_load_16_from_callbacks(stbi_io_callbacks const *clbk, void *user, int *x, int *y, int *channels_in_file, int desired_channels)
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1369:18: error: redefinition of ‘stbi_uc* stbi_load_from_memory(const stbi_uc*, int, int*, int*, int*, int)’
+ 1369 | STBIDEF stbi_uc *stbi_load_from_memory(stbi_uc const *buffer, int len, int *x, int *y, int *comp, int req_comp)
+      |                  ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1369:18: note: ‘stbi_uc* stbi_load_from_memory(const stbi_uc*, int, int*, int*, int*, int)’ previously defined here
+ 1369 | STBIDEF stbi_uc *stbi_load_from_memory(stbi_uc const *buffer, int len, int *x, int *y, int *comp, int req_comp)
+      |                  ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1376:18: error: redefinition of ‘stbi_uc* stbi_load_from_callbacks(const stbi_io_callbacks*, void*, int*, int*, int*, int)’
+ 1376 | STBIDEF stbi_uc *stbi_load_from_callbacks(stbi_io_callbacks const *clbk, void *user, int *x, int *y, int *comp, int req_comp)
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1376:18: note: ‘stbi_uc* stbi_load_from_callbacks(const stbi_io_callbacks*, void*, int*, int*, int*, int)’ previously defined here
+ 1376 | STBIDEF stbi_uc *stbi_load_from_callbacks(stbi_io_callbacks const *clbk, void *user, int *x, int *y, int *comp, int req_comp)
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1384:18: error: redefinition of ‘stbi_uc* stbi_load_gif_from_memory(const stbi_uc*, int, int**, int*, int*, int*, int*, int)’
+ 1384 | STBIDEF stbi_uc *stbi_load_gif_from_memory(stbi_uc const *buffer, int len, int **delays, int *x, int *y, int *z, int *comp, int req_comp)
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1384:18: note: ‘stbi_uc* stbi_load_gif_from_memory(const stbi_uc*, int, int**, int*, int*, int*, int*, int)’ previously defined here
+ 1384 | STBIDEF stbi_uc *stbi_load_gif_from_memory(stbi_uc const *buffer, int len, int **delays, int *x, int *y, int *z, int *comp, int req_comp)
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1400:15: error: redefinition of ‘float* stbi__loadf_main(stbi__context*, int*, int*, int*, int)’
+ 1400 | static float *stbi__loadf_main(stbi__context *s, int *x, int *y, int *comp, int req_comp)
+      |               ^~~~~~~~~~~~~~~~
+./include/stb_image.h:1400:15: note: ‘float* stbi__loadf_main(stbi__context*, int*, int*, int*, int)’ previously defined here
+ 1400 | static float *stbi__loadf_main(stbi__context *s, int *x, int *y, int *comp, int req_comp)
+      |               ^~~~~~~~~~~~~~~~
+./include/stb_image.h:1418:16: error: redefinition of ‘float* stbi_loadf_from_memory(const stbi_uc*, int, int*, int*, int*, int)’
+ 1418 | STBIDEF float *stbi_loadf_from_memory(stbi_uc const *buffer, int len, int *x, int *y, int *comp, int req_comp)
+      |                ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1418:16: note: ‘float* stbi_loadf_from_memory(const stbi_uc*, int, int*, int*, int*, int)’ previously defined here
+ 1418 | STBIDEF float *stbi_loadf_from_memory(stbi_uc const *buffer, int len, int *x, int *y, int *comp, int req_comp)
+      |                ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1425:16: error: redefinition of ‘float* stbi_loadf_from_callbacks(const stbi_io_callbacks*, void*, int*, int*, int*, int)’
+ 1425 | STBIDEF float *stbi_loadf_from_callbacks(stbi_io_callbacks const *clbk, void *user, int *x, int *y, int *comp, int req_comp)
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1425:16: note: ‘float* stbi_loadf_from_callbacks(const stbi_io_callbacks*, void*, int*, int*, int*, int)’ previously defined here
+ 1425 | STBIDEF float *stbi_loadf_from_callbacks(stbi_io_callbacks const *clbk, void *user, int *x, int *y, int *comp, int req_comp)
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1433:16: error: redefinition of ‘float* stbi_loadf(const char*, int*, int*, int*, int)’
+ 1433 | STBIDEF float *stbi_loadf(char const *filename, int *x, int *y, int *comp, int req_comp)
+      |                ^~~~~~~~~~
+./include/stb_image.h:1433:16: note: ‘float* stbi_loadf(const char*, int*, int*, int*, int)’ previously defined here
+ 1433 | STBIDEF float *stbi_loadf(char const *filename, int *x, int *y, int *comp, int req_comp)
+      |                ^~~~~~~~~~
+./include/stb_image.h:1443:16: error: redefinition of ‘float* stbi_loadf_from_file(FILE*, int*, int*, int*, int)’
+ 1443 | STBIDEF float *stbi_loadf_from_file(FILE *f, int *x, int *y, int *comp, int req_comp)
+      |                ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1443:16: note: ‘float* stbi_loadf_from_file(FILE*, int*, int*, int*, int)’ previously defined here
+ 1443 | STBIDEF float *stbi_loadf_from_file(FILE *f, int *x, int *y, int *comp, int req_comp)
+      |                ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1457:13: error: redefinition of ‘int stbi_is_hdr_from_memory(const stbi_uc*, int)’
+ 1457 | STBIDEF int stbi_is_hdr_from_memory(stbi_uc const *buffer, int len)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1457:13: note: ‘int stbi_is_hdr_from_memory(const stbi_uc*, int)’ previously defined here
+ 1457 | STBIDEF int stbi_is_hdr_from_memory(stbi_uc const *buffer, int len)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1471:18: error: redefinition of ‘int stbi_is_hdr(const char*)’
+ 1471 | STBIDEF int      stbi_is_hdr          (char const *filename)
+      |                  ^~~~~~~~~~~
+./include/stb_image.h:1471:18: note: ‘int stbi_is_hdr(const char*)’ previously defined here
+ 1471 | STBIDEF int      stbi_is_hdr          (char const *filename)
+      |                  ^~~~~~~~~~~
+./include/stb_image.h:1482:13: error: redefinition of ‘int stbi_is_hdr_from_file(FILE*)’
+ 1482 | STBIDEF int stbi_is_hdr_from_file(FILE *f)
+      |             ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1482:13: note: ‘int stbi_is_hdr_from_file(FILE*)’ previously defined here
+ 1482 | STBIDEF int stbi_is_hdr_from_file(FILE *f)
+      |             ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1499:18: error: redefinition of ‘int stbi_is_hdr_from_callbacks(const stbi_io_callbacks*, void*)’
+ 1499 | STBIDEF int      stbi_is_hdr_from_callbacks(stbi_io_callbacks const *clbk, void *user)
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1499:18: note: ‘int stbi_is_hdr_from_callbacks(const stbi_io_callbacks*, void*)’ previously defined here
+ 1499 | STBIDEF int      stbi_is_hdr_from_callbacks(stbi_io_callbacks const *clbk, void *user)
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1513:14: error: redefinition of ‘float stbi__l2h_gamma’
+ 1513 | static float stbi__l2h_gamma=2.2f, stbi__l2h_scale=1.0f;
+      |              ^~~~~~~~~~~~~~~
+./include/stb_image.h:1513:14: note: ‘float stbi__l2h_gamma’ previously defined here
+ 1513 | static float stbi__l2h_gamma=2.2f, stbi__l2h_scale=1.0f;
+      |              ^~~~~~~~~~~~~~~
+./include/stb_image.h:1513:36: error: redefinition of ‘float stbi__l2h_scale’
+ 1513 | static float stbi__l2h_gamma=2.2f, stbi__l2h_scale=1.0f;
+      |                                    ^~~~~~~~~~~~~~~
+./include/stb_image.h:1513:36: note: ‘float stbi__l2h_scale’ previously defined here
+ 1513 | static float stbi__l2h_gamma=2.2f, stbi__l2h_scale=1.0f;
+      |                                    ^~~~~~~~~~~~~~~
+./include/stb_image.h:1515:16: error: redefinition of ‘void stbi_ldr_to_hdr_gamma(float)’
+ 1515 | STBIDEF void   stbi_ldr_to_hdr_gamma(float gamma) { stbi__l2h_gamma = gamma; }
+      |                ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1515:16: note: ‘void stbi_ldr_to_hdr_gamma(float)’ previously defined here
+ 1515 | STBIDEF void   stbi_ldr_to_hdr_gamma(float gamma) { stbi__l2h_gamma = gamma; }
+      |                ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1516:16: error: redefinition of ‘void stbi_ldr_to_hdr_scale(float)’
+ 1516 | STBIDEF void   stbi_ldr_to_hdr_scale(float scale) { stbi__l2h_scale = scale; }
+      |                ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1516:16: note: ‘void stbi_ldr_to_hdr_scale(float)’ previously defined here
+ 1516 | STBIDEF void   stbi_ldr_to_hdr_scale(float scale) { stbi__l2h_scale = scale; }
+      |                ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1519:14: error: redefinition of ‘float stbi__h2l_gamma_i’
+ 1519 | static float stbi__h2l_gamma_i=1.0f/2.2f, stbi__h2l_scale_i=1.0f;
+      |              ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:1519:14: note: ‘float stbi__h2l_gamma_i’ previously defined here
+ 1519 | static float stbi__h2l_gamma_i=1.0f/2.2f, stbi__h2l_scale_i=1.0f;
+      |              ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:1519:43: error: redefinition of ‘float stbi__h2l_scale_i’
+ 1519 | static float stbi__h2l_gamma_i=1.0f/2.2f, stbi__h2l_scale_i=1.0f;
+      |                                           ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:1519:43: note: ‘float stbi__h2l_scale_i’ previously defined here
+ 1519 | static float stbi__h2l_gamma_i=1.0f/2.2f, stbi__h2l_scale_i=1.0f;
+      |                                           ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:1521:16: error: redefinition of ‘void stbi_hdr_to_ldr_gamma(float)’
+ 1521 | STBIDEF void   stbi_hdr_to_ldr_gamma(float gamma) { stbi__h2l_gamma_i = 1/gamma; }
+      |                ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1521:16: note: ‘void stbi_hdr_to_ldr_gamma(float)’ previously defined here
+ 1521 | STBIDEF void   stbi_hdr_to_ldr_gamma(float gamma) { stbi__h2l_gamma_i = 1/gamma; }
+      |                ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1522:16: error: redefinition of ‘void stbi_hdr_to_ldr_scale(float)’
+ 1522 | STBIDEF void   stbi_hdr_to_ldr_scale(float scale) { stbi__h2l_scale_i = 1/scale; }
+      |                ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1522:16: note: ‘void stbi_hdr_to_ldr_scale(float)’ previously defined here
+ 1522 | STBIDEF void   stbi_hdr_to_ldr_scale(float scale) { stbi__h2l_scale_i = 1/scale; }
+      |                ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1532:20: error: ‘STBI__SCAN_load’ conflicts with a previous declaration
+ 1532 |    STBI__SCAN_load=0,
+      |                    ^
+./include/stb_image.h:1532:4: note: previous declaration ‘<unnamed enum> STBI__SCAN_load’
+ 1532 |    STBI__SCAN_load=0,
+      |    ^~~~~~~~~~~~~~~
+./include/stb_image.h:1533:4: error: ‘STBI__SCAN_type’ conflicts with a previous declaration
+ 1533 |    STBI__SCAN_type,
+      |    ^~~~~~~~~~~~~~~
+./include/stb_image.h:1533:4: note: previous declaration ‘<unnamed enum> STBI__SCAN_type’
+ 1533 |    STBI__SCAN_type,
+      |    ^~~~~~~~~~~~~~~
+./include/stb_image.h:1534:4: error: ‘STBI__SCAN_header’ conflicts with a previous declaration
+ 1534 |    STBI__SCAN_header
+      |    ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:1534:4: note: previous declaration ‘<unnamed enum> STBI__SCAN_header’
+ 1534 |    STBI__SCAN_header
+      |    ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:1537:13: error: redefinition of ‘void stbi__refill_buffer(stbi__context*)’
+ 1537 | static void stbi__refill_buffer(stbi__context *s)
+      |             ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1537:13: note: ‘void stbi__refill_buffer(stbi__context*)’ previously defined here
+ 1537 | static void stbi__refill_buffer(stbi__context *s)
+      |             ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1554:28: error: redefinition of ‘stbi_uc stbi__get8(stbi__context*)’
+ 1554 | stbi_inline static stbi_uc stbi__get8(stbi__context *s)
+      |                            ^~~~~~~~~~
+./include/stb_image.h:1554:28: note: ‘stbi_uc stbi__get8(stbi__context*)’ previously defined here
+ 1554 | stbi_inline static stbi_uc stbi__get8(stbi__context *s)
+      |                            ^~~~~~~~~~
+./include/stb_image.h:1568:24: error: redefinition of ‘int stbi__at_eof(stbi__context*)’
+ 1568 | stbi_inline static int stbi__at_eof(stbi__context *s)
+      |                        ^~~~~~~~~~~~
+./include/stb_image.h:1568:24: note: ‘int stbi__at_eof(stbi__context*)’ previously defined here
+ 1568 | stbi_inline static int stbi__at_eof(stbi__context *s)
+      |                        ^~~~~~~~~~~~
+./include/stb_image.h:1584:13: error: redefinition of ‘void stbi__skip(stbi__context*, int)’
+ 1584 | static void stbi__skip(stbi__context *s, int n)
+      |             ^~~~~~~~~~
+./include/stb_image.h:1584:13: note: ‘void stbi__skip(stbi__context*, int)’ previously defined here
+ 1584 | static void stbi__skip(stbi__context *s, int n)
+      |             ^~~~~~~~~~
+./include/stb_image.h:1606:12: error: redefinition of ‘int stbi__getn(stbi__context*, stbi_uc*, int)’
+ 1606 | static int stbi__getn(stbi__context *s, stbi_uc *buffer, int n)
+      |            ^~~~~~~~~~
+./include/stb_image.h:1606:12: note: ‘int stbi__getn(stbi__context*, stbi_uc*, int)’ previously defined here
+ 1606 | static int stbi__getn(stbi__context *s, stbi_uc *buffer, int n)
+      |            ^~~~~~~~~~
+./include/stb_image.h:1634:12: error: redefinition of ‘int stbi__get16be(stbi__context*)’
+ 1634 | static int stbi__get16be(stbi__context *s)
+      |            ^~~~~~~~~~~~~
+./include/stb_image.h:1634:12: note: ‘int stbi__get16be(stbi__context*)’ previously defined here
+ 1634 | static int stbi__get16be(stbi__context *s)
+      |            ^~~~~~~~~~~~~
+./include/stb_image.h:1644:21: error: redefinition of ‘stbi__uint32 stbi__get32be(stbi__context*)’
+ 1644 | static stbi__uint32 stbi__get32be(stbi__context *s)
+      |                     ^~~~~~~~~~~~~
+./include/stb_image.h:1644:21: note: ‘stbi__uint32 stbi__get32be(stbi__context*)’ previously defined here
+ 1644 | static stbi__uint32 stbi__get32be(stbi__context *s)
+      |                     ^~~~~~~~~~~~~
+./include/stb_image.h:1654:12: error: redefinition of ‘int stbi__get16le(stbi__context*)’
+ 1654 | static int stbi__get16le(stbi__context *s)
+      |            ^~~~~~~~~~~~~
+./include/stb_image.h:1654:12: note: ‘int stbi__get16le(stbi__context*)’ previously defined here
+ 1654 | static int stbi__get16le(stbi__context *s)
+      |            ^~~~~~~~~~~~~
+./include/stb_image.h:1662:21: error: redefinition of ‘stbi__uint32 stbi__get32le(stbi__context*)’
+ 1662 | static stbi__uint32 stbi__get32le(stbi__context *s)
+      |                     ^~~~~~~~~~~~~
+./include/stb_image.h:1662:21: note: ‘stbi__uint32 stbi__get32le(stbi__context*)’ previously defined here
+ 1662 | static stbi__uint32 stbi__get32le(stbi__context *s)
+      |                     ^~~~~~~~~~~~~
+./include/stb_image.h:1685:16: error: redefinition of ‘stbi_uc stbi__compute_y(int, int, int)’
+ 1685 | static stbi_uc stbi__compute_y(int r, int g, int b)
+      |                ^~~~~~~~~~~~~~~
+./include/stb_image.h:1685:16: note: ‘stbi_uc stbi__compute_y(int, int, int)’ previously defined here
+ 1685 | static stbi_uc stbi__compute_y(int r, int g, int b)
+      |                ^~~~~~~~~~~~~~~
+./include/stb_image.h:1694:23: error: redefinition of ‘unsigned char* stbi__convert_format(unsigned char*, int, int, unsigned int, unsigned int)’
+ 1694 | static unsigned char *stbi__convert_format(unsigned char *data, int img_n, int req_comp, unsigned int x, unsigned int y)
+      |                       ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1694:23: note: ‘unsigned char* stbi__convert_format(unsigned char*, int, int, unsigned int, unsigned int)’ previously defined here
+ 1694 | static unsigned char *stbi__convert_format(unsigned char *data, int img_n, int req_comp, unsigned int x, unsigned int y)
+      |                       ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1742:21: error: redefinition of ‘stbi__uint16 stbi__compute_y_16(int, int, int)’
+ 1742 | static stbi__uint16 stbi__compute_y_16(int r, int g, int b)
+      |                     ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1742:21: note: ‘stbi__uint16 stbi__compute_y_16(int, int, int)’ previously defined here
+ 1742 | static stbi__uint16 stbi__compute_y_16(int r, int g, int b)
+      |                     ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1751:22: error: redefinition of ‘stbi__uint16* stbi__convert_format16(stbi__uint16*, int, int, unsigned int, unsigned int)’
+ 1751 | static stbi__uint16 *stbi__convert_format16(stbi__uint16 *data, int img_n, int req_comp, unsigned int x, unsigned int y)
+      |                      ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1751:22: note: ‘stbi__uint16* stbi__convert_format16(stbi__uint16*, int, int, unsigned int, unsigned int)’ previously defined here
+ 1751 | static stbi__uint16 *stbi__convert_format16(stbi__uint16 *data, int img_n, int req_comp, unsigned int x, unsigned int y)
+      |                      ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1797:17: error: redefinition of ‘float* stbi__ldr_to_hdr(stbi_uc*, int, int, int)’
+ 1797 | static float   *stbi__ldr_to_hdr(stbi_uc *data, int x, int y, int comp)
+      |                 ^~~~~~~~~~~~~~~~
+./include/stb_image.h:1797:17: note: ‘float* stbi__ldr_to_hdr(stbi_uc*, int, int, int)’ previously defined here
+ 1797 | static float   *stbi__ldr_to_hdr(stbi_uc *data, int x, int y, int comp)
+      |                 ^~~~~~~~~~~~~~~~
+./include/stb_image.h:1823:17: error: redefinition of ‘stbi_uc* stbi__hdr_to_ldr(float*, int, int, int)’
+ 1823 | static stbi_uc *stbi__hdr_to_ldr(float   *data, int x, int y, int comp)
+      |                 ^~~~~~~~~~~~~~~~
+./include/stb_image.h:1823:17: note: ‘stbi_uc* stbi__hdr_to_ldr(float*, int, int, int)’ previously defined here
+ 1823 | static stbi_uc *stbi__hdr_to_ldr(float   *data, int x, int y, int comp)
+      |                 ^~~~~~~~~~~~~~~~
+./include/stb_image.h:1886:3: error: conflicting declaration ‘typedef struct stbi__huffman stbi__huffman’
+ 1886 | } stbi__huffman;
+      |   ^~~~~~~~~~~~~
+./include/stb_image.h:1886:3: note: previous declaration as ‘typedef struct stbi__huffman stbi__huffman’
+ 1886 | } stbi__huffman;
+      |   ^~~~~~~~~~~~~
+./include/stb_image.h:1940:3: error: conflicting declaration ‘typedef struct stbi__jpeg stbi__jpeg’
+ 1940 | } stbi__jpeg;
+      |   ^~~~~~~~~~
+./include/stb_image.h:1940:3: note: previous declaration as ‘typedef struct stbi__jpeg stbi__jpeg’
+ 1940 | } stbi__jpeg;
+      |   ^~~~~~~~~~
+./include/stb_image.h:1942:12: error: redefinition of ‘int stbi__build_huffman(stbi__huffman*, int*)’
+ 1942 | static int stbi__build_huffman(stbi__huffman *h, int *count)
+      |            ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1942:12: note: ‘int stbi__build_huffman(stbi__huffman*, int*)’ previously defined here
+ 1942 | static int stbi__build_huffman(stbi__huffman *h, int *count)
+      |            ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1986:13: error: redefinition of ‘void stbi__build_fast_ac(stbi__int16*, stbi__huffman*)’
+ 1986 | static void stbi__build_fast_ac(stbi__int16 *fast_ac, stbi__huffman *h)
+      |             ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1986:13: note: ‘void stbi__build_fast_ac(stbi__int16*, stbi__huffman*)’ previously defined here
+ 1986 | static void stbi__build_fast_ac(stbi__int16 *fast_ac, stbi__huffman *h)
+      |             ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:2011:13: error: redefinition of ‘void stbi__grow_buffer_unsafe(stbi__jpeg*)’
+ 2011 | static void stbi__grow_buffer_unsafe(stbi__jpeg *j)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:2011:13: note: ‘void stbi__grow_buffer_unsafe(stbi__jpeg*)’ previously defined here
+ 2011 | static void stbi__grow_buffer_unsafe(stbi__jpeg *j)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:2030:27: error: redefinition of ‘const stbi__uint32 stbi__bmask [17]’
+ 2030 | static const stbi__uint32 stbi__bmask[17]={0,1,3,7,15,31,63,127,255,511,1023,2047,4095,8191,16383,32767,65535};
+      |                           ^~~~~~~~~~~
+./include/stb_image.h:2030:27: note: ‘const stbi__uint32 stbi__bmask [17]’ previously defined here
+ 2030 | static const stbi__uint32 stbi__bmask[17]={0,1,3,7,15,31,63,127,255,511,1023,2047,4095,8191,16383,32767,65535};
+      |                           ^~~~~~~~~~~
+./include/stb_image.h:2033:24: error: redefinition of ‘int stbi__jpeg_huff_decode(stbi__jpeg*, stbi__huffman*)’
+ 2033 | stbi_inline static int stbi__jpeg_huff_decode(stbi__jpeg *j, stbi__huffman *h)
+      |                        ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:2033:24: note: ‘int stbi__jpeg_huff_decode(stbi__jpeg*, stbi__huffman*)’ previously defined here
+ 2033 | stbi_inline static int stbi__jpeg_huff_decode(stbi__jpeg *j, stbi__huffman *h)
+      |                        ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:2083:18: error: redefinition of ‘const int stbi__jbias [16]’
+ 2083 | static const int stbi__jbias[16] = {0,-1,-3,-7,-15,-31,-63,-127,-255,-511,-1023,-2047,-4095,-8191,-16383,-32767};
+      |                  ^~~~~~~~~~~
+./include/stb_image.h:2083:18: note: ‘const int stbi__jbias [16]’ previously defined here
+ 2083 | static const int stbi__jbias[16] = {0,-1,-3,-7,-15,-31,-63,-127,-255,-511,-1023,-2047,-4095,-8191,-16383,-32767};
+      |                  ^~~~~~~~~~~
+./include/stb_image.h:2087:24: error: redefinition of ‘int stbi__extend_receive(stbi__jpeg*, int)’
+ 2087 | stbi_inline static int stbi__extend_receive(stbi__jpeg *j, int n)
+      |                        ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:2087:24: note: ‘int stbi__extend_receive(stbi__jpeg*, int)’ previously defined here
+ 2087 | stbi_inline static int stbi__extend_receive(stbi__jpeg *j, int n)
+      |                        ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:2103:24: error: redefinition of ‘int stbi__jpeg_get_bits(stbi__jpeg*, int)’
+ 2103 | stbi_inline static int stbi__jpeg_get_bits(stbi__jpeg *j, int n)
+      |                        ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:2103:24: note: ‘int stbi__jpeg_get_bits(stbi__jpeg*, int)’ previously defined here
+ 2103 | stbi_inline static int stbi__jpeg_get_bits(stbi__jpeg *j, int n)
+      |                        ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:2114:24: error: redefinition of ‘int stbi__jpeg_get_bit(stbi__jpeg*)’
+ 2114 | stbi_inline static int stbi__jpeg_get_bit(stbi__jpeg *j)
+      |                        ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:2114:24: note: ‘int stbi__jpeg_get_bit(stbi__jpeg*)’ previously defined here
+ 2114 | stbi_inline static int stbi__jpeg_get_bit(stbi__jpeg *j)
+      |                        ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:2126:22: error: redefinition of ‘const stbi_uc stbi__jpeg_dezigzag [79]’
+ 2126 | static const stbi_uc stbi__jpeg_dezigzag[64+15] =
+      |                      ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:2126:22: note: ‘const stbi_uc stbi__jpeg_dezigzag [79]’ previously defined here
+ 2126 | static const stbi_uc stbi__jpeg_dezigzag[64+15] =
+      |                      ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:2142:12: error: redefinition of ‘int stbi__jpeg_decode_block(stbi__jpeg*, short int*, stbi__huffman*, stbi__huffman*, stbi__int16*, int, stbi__uint16*)’
+ 2142 | static int stbi__jpeg_decode_block(stbi__jpeg *j, short data[64], stbi__huffman *hdc, stbi__huffman *hac, stbi__int16 *fac, int b, stbi__uint16 *dequant)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:2142:12: note: ‘int stbi__jpeg_decode_block(stbi__jpeg*, short int*, stbi__huffman*, stbi__huffman*, stbi__int16*, int, stbi__uint16*)’ previously defined here
+ 2142 | static int stbi__jpeg_decode_block(stbi__jpeg *j, short data[64], stbi__huffman *hdc, stbi__huffman *hac, stbi__int16 *fac, int b, stbi__uint16 *dequant)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:2194:12: error: redefinition of ‘int stbi__jpeg_decode_block_prog_dc(stbi__jpeg*, short int*, stbi__huffman*, int)’
+ 2194 | static int stbi__jpeg_decode_block_prog_dc(stbi__jpeg *j, short data[64], stbi__huffman *hdc, int b)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:2194:12: note: ‘int stbi__jpeg_decode_block_prog_dc(stbi__jpeg*, short int*, stbi__huffman*, int)’ previously defined here
+ 2194 | static int stbi__jpeg_decode_block_prog_dc(stbi__jpeg *j, short data[64], stbi__huffman *hdc, int b)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:2222:12: error: redefinition of ‘int stbi__jpeg_decode_block_prog_ac(stbi__jpeg*, short int*, stbi__huffman*, stbi__int16*)’
+ 2222 | static int stbi__jpeg_decode_block_prog_ac(stbi__jpeg *j, short data[64], stbi__huffman *hac, stbi__int16 *fac)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:2222:12: note: ‘int stbi__jpeg_decode_block_prog_ac(stbi__jpeg*, short int*, stbi__huffman*, stbi__int16*)’ previously defined here
+ 2222 | static int stbi__jpeg_decode_block_prog_ac(stbi__jpeg *j, short data[64], stbi__huffman *hac, stbi__int16 *fac)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:2342:28: error: redefinition of ‘stbi_uc stbi__clamp(int)’
+ 2342 | stbi_inline static stbi_uc stbi__clamp(int x)
+      |                            ^~~~~~~~~~~
+./include/stb_image.h:2342:28: note: ‘stbi_uc stbi__clamp(int)’ previously defined here
+ 2342 | stbi_inline static stbi_uc stbi__clamp(int x)
+      |                            ^~~~~~~~~~~
+./include/stb_image.h:2393:13: error: redefinition of ‘void stbi__idct_block(stbi_uc*, int, short int*)’
+ 2393 | static void stbi__idct_block(stbi_uc *out, int out_stride, short data[64])
+      |             ^~~~~~~~~~~~~~~~
+./include/stb_image.h:2393:13: note: ‘void stbi__idct_block(stbi_uc*, int, short int*)’ previously defined here
+ 2393 | static void stbi__idct_block(stbi_uc *out, int out_stride, short data[64])
+      |             ^~~~~~~~~~~~~~~~
+./include/stb_image.h:2456:13: error: redefinition of ‘void stbi__idct_simd(stbi_uc*, int, short int*)’
+ 2456 | static void stbi__idct_simd(stbi_uc *out, int out_stride, short data[64])
+      |             ^~~~~~~~~~~~~~~
+./include/stb_image.h:2456:13: note: ‘void stbi__idct_simd(stbi_uc*, int, short int*)’ previously defined here
+ 2456 | static void stbi__idct_simd(stbi_uc *out, int out_stride, short data[64])
+      |             ^~~~~~~~~~~~~~~
+./include/stb_image.h:2845:16: error: redefinition of ‘stbi_uc stbi__get_marker(stbi__jpeg*)’
+ 2845 | static stbi_uc stbi__get_marker(stbi__jpeg *j)
+      |                ^~~~~~~~~~~~~~~~
+./include/stb_image.h:2845:16: note: ‘stbi_uc stbi__get_marker(stbi__jpeg*)’ previously defined here
+ 2845 | static stbi_uc stbi__get_marker(stbi__jpeg *j)
+      |                ^~~~~~~~~~~~~~~~
+./include/stb_image.h:2862:13: error: redefinition of ‘void stbi__jpeg_reset(stbi__jpeg*)’
+ 2862 | static void stbi__jpeg_reset(stbi__jpeg *j)
+      |             ^~~~~~~~~~~~~~~~
+./include/stb_image.h:2862:13: note: ‘void stbi__jpeg_reset(stbi__jpeg*)’ previously defined here
+ 2862 | static void stbi__jpeg_reset(stbi__jpeg *j)
+      |             ^~~~~~~~~~~~~~~~
+./include/stb_image.h:2875:12: error: redefinition of ‘int stbi__parse_entropy_coded_data(stbi__jpeg*)’
+ 2875 | static int stbi__parse_entropy_coded_data(stbi__jpeg *z)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:2875:12: note: ‘int stbi__parse_entropy_coded_data(stbi__jpeg*)’ previously defined here
+ 2875 | static int stbi__parse_entropy_coded_data(stbi__jpeg *z)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:2999:13: error: redefinition of ‘void stbi__jpeg_dequantize(short int*, stbi__uint16*)’
+ 2999 | static void stbi__jpeg_dequantize(short *data, stbi__uint16 *dequant)
+      |             ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:2999:13: note: ‘void stbi__jpeg_dequantize(short int*, stbi__uint16*)’ previously defined here
+ 2999 | static void stbi__jpeg_dequantize(short *data, stbi__uint16 *dequant)
+      |             ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3006:13: error: redefinition of ‘void stbi__jpeg_finish(stbi__jpeg*)’
+ 3006 | static void stbi__jpeg_finish(stbi__jpeg *z)
+      |             ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:3006:13: note: ‘void stbi__jpeg_finish(stbi__jpeg*)’ previously defined here
+ 3006 | static void stbi__jpeg_finish(stbi__jpeg *z)
+      |             ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:3025:12: error: redefinition of ‘int stbi__process_marker(stbi__jpeg*, int)’
+ 3025 | static int stbi__process_marker(stbi__jpeg *z, int m)
+      |            ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3025:12: note: ‘int stbi__process_marker(stbi__jpeg*, int)’ previously defined here
+ 3025 | static int stbi__process_marker(stbi__jpeg *z, int m)
+      |            ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3128:12: error: redefinition of ‘int stbi__process_scan_header(stbi__jpeg*)’
+ 3128 | static int stbi__process_scan_header(stbi__jpeg *z)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3128:12: note: ‘int stbi__process_scan_header(stbi__jpeg*)’ previously defined here
+ 3128 | static int stbi__process_scan_header(stbi__jpeg *z)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3167:12: error: redefinition of ‘int stbi__free_jpeg_components(stbi__jpeg*, int, int)’
+ 3167 | static int stbi__free_jpeg_components(stbi__jpeg *z, int ncomp, int why)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3167:12: note: ‘int stbi__free_jpeg_components(stbi__jpeg*, int, int)’ previously defined here
+ 3167 | static int stbi__free_jpeg_components(stbi__jpeg *z, int ncomp, int why)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3189:12: error: redefinition of ‘int stbi__process_frame_header(stbi__jpeg*, int)’
+ 3189 | static int stbi__process_frame_header(stbi__jpeg *z, int scan)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3189:12: note: ‘int stbi__process_frame_header(stbi__jpeg*, int)’ previously defined here
+ 3189 | static int stbi__process_frame_header(stbi__jpeg *z, int scan)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3283:12: error: redefinition of ‘int stbi__decode_jpeg_header(stbi__jpeg*, int)’
+ 3283 | static int stbi__decode_jpeg_header(stbi__jpeg *z, int scan)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3283:12: note: ‘int stbi__decode_jpeg_header(stbi__jpeg*, int)’ previously defined here
+ 3283 | static int stbi__decode_jpeg_header(stbi__jpeg *z, int scan)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3308:12: error: redefinition of ‘int stbi__decode_jpeg_image(stbi__jpeg*)’
+ 3308 | static int stbi__decode_jpeg_image(stbi__jpeg *j)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3308:12: note: ‘int stbi__decode_jpeg_image(stbi__jpeg*)’ previously defined here
+ 3308 | static int stbi__decode_jpeg_image(stbi__jpeg *j)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3355:17: error: redefinition of ‘stbi_uc* resample_row_1(stbi_uc*, stbi_uc*, stbi_uc*, int, int)’
+ 3355 | static stbi_uc *resample_row_1(stbi_uc *out, stbi_uc *in_near, stbi_uc *in_far, int w, int hs)
+      |                 ^~~~~~~~~~~~~~
+./include/stb_image.h:3355:17: note: ‘stbi_uc* resample_row_1(stbi_uc*, stbi_uc*, stbi_uc*, int, int)’ previously defined here
+ 3355 | static stbi_uc *resample_row_1(stbi_uc *out, stbi_uc *in_near, stbi_uc *in_far, int w, int hs)
+      |                 ^~~~~~~~~~~~~~
+./include/stb_image.h:3364:17: error: redefinition of ‘stbi_uc* stbi__resample_row_v_2(stbi_uc*, stbi_uc*, stbi_uc*, int, int)’
+ 3364 | static stbi_uc* stbi__resample_row_v_2(stbi_uc *out, stbi_uc *in_near, stbi_uc *in_far, int w, int hs)
+      |                 ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3364:17: note: ‘stbi_uc* stbi__resample_row_v_2(stbi_uc*, stbi_uc*, stbi_uc*, int, int)’ previously defined here
+ 3364 | static stbi_uc* stbi__resample_row_v_2(stbi_uc *out, stbi_uc *in_near, stbi_uc *in_far, int w, int hs)
+      |                 ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3374:18: error: redefinition of ‘stbi_uc* stbi__resample_row_h_2(stbi_uc*, stbi_uc*, stbi_uc*, int, int)’
+ 3374 | static stbi_uc*  stbi__resample_row_h_2(stbi_uc *out, stbi_uc *in_near, stbi_uc *in_far, int w, int hs)
+      |                  ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3374:18: note: ‘stbi_uc* stbi__resample_row_h_2(stbi_uc*, stbi_uc*, stbi_uc*, int, int)’ previously defined here
+ 3374 | static stbi_uc*  stbi__resample_row_h_2(stbi_uc *out, stbi_uc *in_near, stbi_uc *in_far, int w, int hs)
+      |                  ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3404:17: error: redefinition of ‘stbi_uc* stbi__resample_row_hv_2(stbi_uc*, stbi_uc*, stbi_uc*, int, int)’
+ 3404 | static stbi_uc *stbi__resample_row_hv_2(stbi_uc *out, stbi_uc *in_near, stbi_uc *in_far, int w, int hs)
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3404:17: note: ‘stbi_uc* stbi__resample_row_hv_2(stbi_uc*, stbi_uc*, stbi_uc*, int, int)’ previously defined here
+ 3404 | static stbi_uc *stbi__resample_row_hv_2(stbi_uc *out, stbi_uc *in_near, stbi_uc *in_far, int w, int hs)
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3429:17: error: redefinition of ‘stbi_uc* stbi__resample_row_hv_2_simd(stbi_uc*, stbi_uc*, stbi_uc*, int, int)’
+ 3429 | static stbi_uc *stbi__resample_row_hv_2_simd(stbi_uc *out, stbi_uc *in_near, stbi_uc *in_far, int w, int hs)
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3429:17: note: ‘stbi_uc* stbi__resample_row_hv_2_simd(stbi_uc*, stbi_uc*, stbi_uc*, int, int)’ previously defined here
+ 3429 | static stbi_uc *stbi__resample_row_hv_2_simd(stbi_uc *out, stbi_uc *in_near, stbi_uc *in_far, int w, int hs)
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3545:17: error: redefinition of ‘stbi_uc* stbi__resample_row_generic(stbi_uc*, stbi_uc*, stbi_uc*, int, int)’
+ 3545 | static stbi_uc *stbi__resample_row_generic(stbi_uc *out, stbi_uc *in_near, stbi_uc *in_far, int w, int hs)
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3545:17: note: ‘stbi_uc* stbi__resample_row_generic(stbi_uc*, stbi_uc*, stbi_uc*, int, int)’ previously defined here
+ 3545 | static stbi_uc *stbi__resample_row_generic(stbi_uc *out, stbi_uc *in_near, stbi_uc *in_far, int w, int hs)
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3559:13: error: redefinition of ‘void stbi__YCbCr_to_RGB_row(stbi_uc*, const stbi_uc*, const stbi_uc*, const stbi_uc*, int, int)’
+ 3559 | static void stbi__YCbCr_to_RGB_row(stbi_uc *out, const stbi_uc *y, const stbi_uc *pcb, const stbi_uc *pcr, int count, int step)
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3559:13: note: ‘void stbi__YCbCr_to_RGB_row(stbi_uc*, const stbi_uc*, const stbi_uc*, const stbi_uc*, int, int)’ previously defined here
+ 3559 | static void stbi__YCbCr_to_RGB_row(stbi_uc *out, const stbi_uc *y, const stbi_uc *pcb, const stbi_uc *pcr, int count, int step)
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3585:13: error: redefinition of ‘void stbi__YCbCr_to_RGB_simd(stbi_uc*, const stbi_uc*, const stbi_uc*, const stbi_uc*, int, int)’
+ 3585 | static void stbi__YCbCr_to_RGB_simd(stbi_uc *out, stbi_uc const *y, stbi_uc const *pcb, stbi_uc const *pcr, int count, int step)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3585:13: note: ‘void stbi__YCbCr_to_RGB_simd(stbi_uc*, const stbi_uc*, const stbi_uc*, const stbi_uc*, int, int)’ previously defined here
+ 3585 | static void stbi__YCbCr_to_RGB_simd(stbi_uc *out, stbi_uc const *y, stbi_uc const *pcb, stbi_uc const *pcr, int count, int step)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3720:13: error: redefinition of ‘void stbi__setup_jpeg(stbi__jpeg*)’
+ 3720 | static void stbi__setup_jpeg(stbi__jpeg *j)
+      |             ^~~~~~~~~~~~~~~~
+./include/stb_image.h:3720:13: note: ‘void stbi__setup_jpeg(stbi__jpeg*)’ previously defined here
+ 3720 | static void stbi__setup_jpeg(stbi__jpeg *j)
+      |             ^~~~~~~~~~~~~~~~
+./include/stb_image.h:3742:13: error: redefinition of ‘void stbi__cleanup_jpeg(stbi__jpeg*)’
+ 3742 | static void stbi__cleanup_jpeg(stbi__jpeg *j)
+      |             ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3742:13: note: ‘void stbi__cleanup_jpeg(stbi__jpeg*)’ previously defined here
+ 3742 | static void stbi__cleanup_jpeg(stbi__jpeg *j)
+      |             ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3755:3: error: conflicting declaration ‘typedef struct stbi__resample stbi__resample’
+ 3755 | } stbi__resample;
+      |   ^~~~~~~~~~~~~~
+./include/stb_image.h:3755:3: note: previous declaration as ‘typedef struct stbi__resample stbi__resample’
+ 3755 | } stbi__resample;
+      |   ^~~~~~~~~~~~~~
+./include/stb_image.h:3758:16: error: redefinition of ‘stbi_uc stbi__blinn_8x8(stbi_uc, stbi_uc)’
+ 3758 | static stbi_uc stbi__blinn_8x8(stbi_uc x, stbi_uc y)
+      |                ^~~~~~~~~~~~~~~
+./include/stb_image.h:3758:16: note: ‘stbi_uc stbi__blinn_8x8(stbi_uc, stbi_uc)’ previously defined here
+ 3758 | static stbi_uc stbi__blinn_8x8(stbi_uc x, stbi_uc y)
+      |                ^~~~~~~~~~~~~~~
+./include/stb_image.h:3764:17: error: redefinition of ‘stbi_uc* load_jpeg_image(stbi__jpeg*, int*, int*, int*, int)’
+ 3764 | static stbi_uc *load_jpeg_image(stbi__jpeg *z, int *out_x, int *out_y, int *comp, int req_comp)
+      |                 ^~~~~~~~~~~~~~~
+./include/stb_image.h:3764:17: note: ‘stbi_uc* load_jpeg_image(stbi__jpeg*, int*, int*, int*, int)’ previously defined here
+ 3764 | static stbi_uc *load_jpeg_image(stbi__jpeg *z, int *out_x, int *out_y, int *comp, int req_comp)
+      |                 ^~~~~~~~~~~~~~~
+./include/stb_image.h:3923:14: error: redefinition of ‘void* stbi__jpeg_load(stbi__context*, int*, int*, int*, int, stbi__result_info*)’
+ 3923 | static void *stbi__jpeg_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri)
+      |              ^~~~~~~~~~~~~~~
+./include/stb_image.h:3923:14: note: ‘void* stbi__jpeg_load(stbi__context*, int*, int*, int*, int, stbi__result_info*)’ previously defined here
+ 3923 | static void *stbi__jpeg_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri)
+      |              ^~~~~~~~~~~~~~~
+./include/stb_image.h:3935:12: error: redefinition of ‘int stbi__jpeg_test(stbi__context*)’
+ 3935 | static int stbi__jpeg_test(stbi__context *s)
+      |            ^~~~~~~~~~~~~~~
+./include/stb_image.h:3935:12: note: ‘int stbi__jpeg_test(stbi__context*)’ previously defined here
+ 3935 | static int stbi__jpeg_test(stbi__context *s)
+      |            ^~~~~~~~~~~~~~~
+./include/stb_image.h:3947:12: error: redefinition of ‘int stbi__jpeg_info_raw(stbi__jpeg*, int*, int*, int*)’
+ 3947 | static int stbi__jpeg_info_raw(stbi__jpeg *j, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3947:12: note: ‘int stbi__jpeg_info_raw(stbi__jpeg*, int*, int*, int*)’ previously defined here
+ 3947 | static int stbi__jpeg_info_raw(stbi__jpeg *j, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3959:12: error: redefinition of ‘int stbi__jpeg_info(stbi__context*, int*, int*, int*)’
+ 3959 | static int stbi__jpeg_info(stbi__context *s, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~~
+./include/stb_image.h:3959:12: note: ‘int stbi__jpeg_info(stbi__context*, int*, int*, int*)’ previously defined here
+ 3959 | static int stbi__jpeg_info(stbi__context *s, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~~
+./include/stb_image.h:3993:3: error: conflicting declaration ‘typedef struct stbi__zhuffman stbi__zhuffman’
+ 3993 | } stbi__zhuffman;
+      |   ^~~~~~~~~~~~~~
+./include/stb_image.h:3993:3: note: previous declaration as ‘typedef struct stbi__zhuffman stbi__zhuffman’
+ 3993 | } stbi__zhuffman;
+      |   ^~~~~~~~~~~~~~
+./include/stb_image.h:3995:24: error: redefinition of ‘int stbi__bitreverse16(int)’
+ 3995 | stbi_inline static int stbi__bitreverse16(int n)
+      |                        ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3995:24: note: ‘int stbi__bitreverse16(int)’ previously defined here
+ 3995 | stbi_inline static int stbi__bitreverse16(int n)
+      |                        ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4004:24: error: redefinition of ‘int stbi__bit_reverse(int, int)’
+ 4004 | stbi_inline static int stbi__bit_reverse(int v, int bits)
+      |                        ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:4004:24: note: ‘int stbi__bit_reverse(int, int)’ previously defined here
+ 4004 | stbi_inline static int stbi__bit_reverse(int v, int bits)
+      |                        ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:4012:12: error: redefinition of ‘int stbi__zbuild_huffman(stbi__zhuffman*, const stbi_uc*, int)’
+ 4012 | static int stbi__zbuild_huffman(stbi__zhuffman *z, const stbi_uc *sizelist, int num)
+      |            ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4012:12: note: ‘int stbi__zbuild_huffman(stbi__zhuffman*, const stbi_uc*, int)’ previously defined here
+ 4012 | static int stbi__zbuild_huffman(stbi__zhuffman *z, const stbi_uc *sizelist, int num)
+      |            ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4077:3: error: conflicting declaration ‘typedef struct stbi__zbuf stbi__zbuf’
+ 4077 | } stbi__zbuf;
+      |   ^~~~~~~~~~
+./include/stb_image.h:4077:3: note: previous declaration as ‘typedef struct stbi__zbuf stbi__zbuf’
+ 4077 | } stbi__zbuf;
+      |   ^~~~~~~~~~
+./include/stb_image.h:4079:24: error: redefinition of ‘int stbi__zeof(stbi__zbuf*)’
+ 4079 | stbi_inline static int stbi__zeof(stbi__zbuf *z)
+      |                        ^~~~~~~~~~
+./include/stb_image.h:4079:24: note: ‘int stbi__zeof(stbi__zbuf*)’ previously defined here
+ 4079 | stbi_inline static int stbi__zeof(stbi__zbuf *z)
+      |                        ^~~~~~~~~~
+./include/stb_image.h:4084:28: error: redefinition of ‘stbi_uc stbi__zget8(stbi__zbuf*)’
+ 4084 | stbi_inline static stbi_uc stbi__zget8(stbi__zbuf *z)
+      |                            ^~~~~~~~~~~
+./include/stb_image.h:4084:28: note: ‘stbi_uc stbi__zget8(stbi__zbuf*)’ previously defined here
+ 4084 | stbi_inline static stbi_uc stbi__zget8(stbi__zbuf *z)
+      |                            ^~~~~~~~~~~
+./include/stb_image.h:4089:13: error: redefinition of ‘void stbi__fill_bits(stbi__zbuf*)’
+ 4089 | static void stbi__fill_bits(stbi__zbuf *z)
+      |             ^~~~~~~~~~~~~~~
+./include/stb_image.h:4089:13: note: ‘void stbi__fill_bits(stbi__zbuf*)’ previously defined here
+ 4089 | static void stbi__fill_bits(stbi__zbuf *z)
+      |             ^~~~~~~~~~~~~~~
+./include/stb_image.h:4101:33: error: redefinition of ‘unsigned int stbi__zreceive(stbi__zbuf*, int)’
+ 4101 | stbi_inline static unsigned int stbi__zreceive(stbi__zbuf *z, int n)
+      |                                 ^~~~~~~~~~~~~~
+./include/stb_image.h:4101:33: note: ‘unsigned int stbi__zreceive(stbi__zbuf*, int)’ previously defined here
+ 4101 | stbi_inline static unsigned int stbi__zreceive(stbi__zbuf *z, int n)
+      |                                 ^~~~~~~~~~~~~~
+./include/stb_image.h:4111:12: error: redefinition of ‘int stbi__zhuffman_decode_slowpath(stbi__zbuf*, stbi__zhuffman*)’
+ 4111 | static int stbi__zhuffman_decode_slowpath(stbi__zbuf *a, stbi__zhuffman *z)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4111:12: note: ‘int stbi__zhuffman_decode_slowpath(stbi__zbuf*, stbi__zhuffman*)’ previously defined here
+ 4111 | static int stbi__zhuffman_decode_slowpath(stbi__zbuf *a, stbi__zhuffman *z)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h: In function ‘int stbi__zhuffman_decode_slowpath(stbi__zbuf*, stbi__zhuffman*)’:
+./include/stb_image.h:4123:10: warning: comparison of integer expressions of different signedness: ‘int’ and ‘long unsigned int’ [-Wsign-compare]
+ 4123 |    if (b >= sizeof (z->size)) return -1; // some data was corrupt somewhere!
+      |        ~~^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h: At global scope:
+./include/stb_image.h:4130:24: error: redefinition of ‘int stbi__zhuffman_decode(stbi__zbuf*, stbi__zhuffman*)’
+ 4130 | stbi_inline static int stbi__zhuffman_decode(stbi__zbuf *a, stbi__zhuffman *z)
+      |                        ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4130:24: note: ‘int stbi__zhuffman_decode(stbi__zbuf*, stbi__zhuffman*)’ previously defined here
+ 4130 | stbi_inline static int stbi__zhuffman_decode(stbi__zbuf *a, stbi__zhuffman *z)
+      |                        ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4149:12: error: redefinition of ‘int stbi__zexpand(stbi__zbuf*, char*, int)’
+ 4149 | static int stbi__zexpand(stbi__zbuf *z, char *zout, int n)  // need to make room for n bytes
+      |            ^~~~~~~~~~~~~
+./include/stb_image.h:4149:12: note: ‘int stbi__zexpand(stbi__zbuf*, char*, int)’ previously defined here
+ 4149 | static int stbi__zexpand(stbi__zbuf *z, char *zout, int n)  // need to make room for n bytes
+      |            ^~~~~~~~~~~~~
+./include/stb_image.h:4171:18: error: redefinition of ‘const int stbi__zlength_base [31]’
+ 4171 | static const int stbi__zlength_base[31] = {
+      |                  ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4171:18: note: ‘const int stbi__zlength_base [31]’ previously defined here
+ 4171 | static const int stbi__zlength_base[31] = {
+      |                  ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4176:18: error: redefinition of ‘const int stbi__zlength_extra [31]’
+ 4176 | static const int stbi__zlength_extra[31]=
+      |                  ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4176:18: note: ‘const int stbi__zlength_extra [31]’ previously defined here
+ 4176 | static const int stbi__zlength_extra[31]=
+      |                  ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4179:18: error: redefinition of ‘const int stbi__zdist_base [32]’
+ 4179 | static const int stbi__zdist_base[32] = { 1,2,3,4,5,7,9,13,17,25,33,49,65,97,129,193,
+      |                  ^~~~~~~~~~~~~~~~
+./include/stb_image.h:4179:18: note: ‘const int stbi__zdist_base [32]’ previously defined here
+ 4179 | static const int stbi__zdist_base[32] = { 1,2,3,4,5,7,9,13,17,25,33,49,65,97,129,193,
+      |                  ^~~~~~~~~~~~~~~~
+./include/stb_image.h:4182:18: error: redefinition of ‘const int stbi__zdist_extra [32]’
+ 4182 | static const int stbi__zdist_extra[32] =
+      |                  ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:4182:18: note: ‘const int stbi__zdist_extra [32]’ previously defined here
+ 4182 | static const int stbi__zdist_extra[32] =
+      |                  ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:4185:12: error: redefinition of ‘int stbi__parse_huffman_block(stbi__zbuf*)’
+ 4185 | static int stbi__parse_huffman_block(stbi__zbuf *a)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4185:12: note: ‘int stbi__parse_huffman_block(stbi__zbuf*)’ previously defined here
+ 4185 | static int stbi__parse_huffman_block(stbi__zbuf *a)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4227:12: error: redefinition of ‘int stbi__compute_huffman_codes(stbi__zbuf*)’
+ 4227 | static int stbi__compute_huffman_codes(stbi__zbuf *a)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4227:12: note: ‘int stbi__compute_huffman_codes(stbi__zbuf*)’ previously defined here
+ 4227 | static int stbi__compute_huffman_codes(stbi__zbuf *a)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4277:12: error: redefinition of ‘int stbi__parse_uncompressed_block(stbi__zbuf*)’
+ 4277 | static int stbi__parse_uncompressed_block(stbi__zbuf *a)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4277:12: note: ‘int stbi__parse_uncompressed_block(stbi__zbuf*)’ previously defined here
+ 4277 | static int stbi__parse_uncompressed_block(stbi__zbuf *a)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4306:12: error: redefinition of ‘int stbi__parse_zlib_header(stbi__zbuf*)’
+ 4306 | static int stbi__parse_zlib_header(stbi__zbuf *a)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4306:12: note: ‘int stbi__parse_zlib_header(stbi__zbuf*)’ previously defined here
+ 4306 | static int stbi__parse_zlib_header(stbi__zbuf *a)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4320:22: error: redefinition of ‘const stbi_uc stbi__zdefault_length [288]’
+ 4320 | static const stbi_uc stbi__zdefault_length[288] =
+      |                      ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4320:22: note: ‘const stbi_uc stbi__zdefault_length [288]’ previously defined here
+ 4320 | static const stbi_uc stbi__zdefault_length[288] =
+      |                      ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4332:22: error: redefinition of ‘const stbi_uc stbi__zdefault_distance [32]’
+ 4332 | static const stbi_uc stbi__zdefault_distance[32] =
+      |                      ^~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4332:22: note: ‘const stbi_uc stbi__zdefault_distance [32]’ previously defined here
+ 4332 | static const stbi_uc stbi__zdefault_distance[32] =
+      |                      ^~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4349:12: error: redefinition of ‘int stbi__parse_zlib(stbi__zbuf*, int)’
+ 4349 | static int stbi__parse_zlib(stbi__zbuf *a, int parse_header)
+      |            ^~~~~~~~~~~~~~~~
+./include/stb_image.h:4349:12: note: ‘int stbi__parse_zlib(stbi__zbuf*, int)’ previously defined here
+ 4349 | static int stbi__parse_zlib(stbi__zbuf *a, int parse_header)
+      |            ^~~~~~~~~~~~~~~~
+./include/stb_image.h:4377:12: error: redefinition of ‘int stbi__do_zlib(stbi__zbuf*, char*, int, int, int)’
+ 4377 | static int stbi__do_zlib(stbi__zbuf *a, char *obuf, int olen, int exp, int parse_header)
+      |            ^~~~~~~~~~~~~
+./include/stb_image.h:4377:12: note: ‘int stbi__do_zlib(stbi__zbuf*, char*, int, int, int)’ previously defined here
+ 4377 | static int stbi__do_zlib(stbi__zbuf *a, char *obuf, int olen, int exp, int parse_header)
+      |            ^~~~~~~~~~~~~
+./include/stb_image.h:4387:15: error: redefinition of ‘char* stbi_zlib_decode_malloc_guesssize(const char*, int, int, int*)’
+ 4387 | STBIDEF char *stbi_zlib_decode_malloc_guesssize(const char *buffer, int len, int initial_size, int *outlen)
+      |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4387:15: note: ‘char* stbi_zlib_decode_malloc_guesssize(const char*, int, int, int*)’ previously defined here
+ 4387 | STBIDEF char *stbi_zlib_decode_malloc_guesssize(const char *buffer, int len, int initial_size, int *outlen)
+      |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4403:15: error: redefinition of ‘char* stbi_zlib_decode_malloc(const char*, int, int*)’
+ 4403 | STBIDEF char *stbi_zlib_decode_malloc(char const *buffer, int len, int *outlen)
+      |               ^~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4403:15: note: ‘char* stbi_zlib_decode_malloc(const char*, int, int*)’ previously defined here
+ 4403 | STBIDEF char *stbi_zlib_decode_malloc(char const *buffer, int len, int *outlen)
+      |               ^~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4408:15: error: redefinition of ‘char* stbi_zlib_decode_malloc_guesssize_headerflag(const char*, int, int, int*, int)’
+ 4408 | STBIDEF char *stbi_zlib_decode_malloc_guesssize_headerflag(const char *buffer, int len, int initial_size, int *outlen, int parse_header)
+      |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4408:15: note: ‘char* stbi_zlib_decode_malloc_guesssize_headerflag(const char*, int, int, int*, int)’ previously defined here
+ 4408 | STBIDEF char *stbi_zlib_decode_malloc_guesssize_headerflag(const char *buffer, int len, int initial_size, int *outlen, int parse_header)
+      |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4424:13: error: redefinition of ‘int stbi_zlib_decode_buffer(char*, int, const char*, int)’
+ 4424 | STBIDEF int stbi_zlib_decode_buffer(char *obuffer, int olen, char const *ibuffer, int ilen)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4424:13: note: ‘int stbi_zlib_decode_buffer(char*, int, const char*, int)’ previously defined here
+ 4424 | STBIDEF int stbi_zlib_decode_buffer(char *obuffer, int olen, char const *ibuffer, int ilen)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4435:15: error: redefinition of ‘char* stbi_zlib_decode_noheader_malloc(const char*, int, int*)’
+ 4435 | STBIDEF char *stbi_zlib_decode_noheader_malloc(char const *buffer, int len, int *outlen)
+      |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4435:15: note: ‘char* stbi_zlib_decode_noheader_malloc(const char*, int, int*)’ previously defined here
+ 4435 | STBIDEF char *stbi_zlib_decode_noheader_malloc(char const *buffer, int len, int *outlen)
+      |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4451:13: error: redefinition of ‘int stbi_zlib_decode_noheader_buffer(char*, int, const char*, int)’
+ 4451 | STBIDEF int stbi_zlib_decode_noheader_buffer(char *obuffer, int olen, const char *ibuffer, int ilen)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4451:13: note: ‘int stbi_zlib_decode_noheader_buffer(char*, int, const char*, int)’ previously defined here
+ 4451 | STBIDEF int stbi_zlib_decode_noheader_buffer(char *obuffer, int olen, const char *ibuffer, int ilen)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4478:3: error: conflicting declaration ‘typedef struct stbi__pngchunk stbi__pngchunk’
+ 4478 | } stbi__pngchunk;
+      |   ^~~~~~~~~~~~~~
+./include/stb_image.h:4478:3: note: previous declaration as ‘typedef struct stbi__pngchunk stbi__pngchunk’
+ 4478 | } stbi__pngchunk;
+      |   ^~~~~~~~~~~~~~
+./include/stb_image.h:4480:23: error: redefinition of ‘stbi__pngchunk stbi__get_chunk_header(stbi__context*)’
+ 4480 | static stbi__pngchunk stbi__get_chunk_header(stbi__context *s)
+      |                       ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4480:23: note: ‘stbi__pngchunk stbi__get_chunk_header(stbi__context*)’ previously defined here
+ 4480 | static stbi__pngchunk stbi__get_chunk_header(stbi__context *s)
+      |                       ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4488:12: error: redefinition of ‘int stbi__check_png_header(stbi__context*)’
+ 4488 | static int stbi__check_png_header(stbi__context *s)
+      |            ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4488:12: note: ‘int stbi__check_png_header(stbi__context*)’ previously defined here
+ 4488 | static int stbi__check_png_header(stbi__context *s)
+      |            ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4502:3: error: conflicting declaration ‘typedef struct stbi__png stbi__png’
+ 4502 | } stbi__png;
+      |   ^~~~~~~~~
+./include/stb_image.h:4502:3: note: previous declaration as ‘typedef struct stbi__png stbi__png’
+ 4502 | } stbi__png;
+      |   ^~~~~~~~~
+./include/stb_image.h:4506:17: error: ‘STBI__F_none’ conflicts with a previous declaration
+ 4506 |    STBI__F_none=0,
+      |                 ^
+./include/stb_image.h:4506:4: note: previous declaration ‘<unnamed enum> STBI__F_none’
+ 4506 |    STBI__F_none=0,
+      |    ^~~~~~~~~~~~
+./include/stb_image.h:4507:16: error: ‘STBI__F_sub’ conflicts with a previous declaration
+ 4507 |    STBI__F_sub=1,
+      |                ^
+./include/stb_image.h:4507:4: note: previous declaration ‘<unnamed enum> STBI__F_sub’
+ 4507 |    STBI__F_sub=1,
+      |    ^~~~~~~~~~~
+./include/stb_image.h:4508:15: error: ‘STBI__F_up’ conflicts with a previous declaration
+ 4508 |    STBI__F_up=2,
+      |               ^
+./include/stb_image.h:4508:4: note: previous declaration ‘<unnamed enum> STBI__F_up’
+ 4508 |    STBI__F_up=2,
+      |    ^~~~~~~~~~
+./include/stb_image.h:4509:16: error: ‘STBI__F_avg’ conflicts with a previous declaration
+ 4509 |    STBI__F_avg=3,
+      |                ^
+./include/stb_image.h:4509:4: note: previous declaration ‘<unnamed enum> STBI__F_avg’
+ 4509 |    STBI__F_avg=3,
+      |    ^~~~~~~~~~~
+./include/stb_image.h:4510:18: error: ‘STBI__F_paeth’ conflicts with a previous declaration
+ 4510 |    STBI__F_paeth=4,
+      |                  ^
+./include/stb_image.h:4510:4: note: previous declaration ‘<unnamed enum> STBI__F_paeth’
+ 4510 |    STBI__F_paeth=4,
+      |    ^~~~~~~~~~~~~
+./include/stb_image.h:4512:4: error: ‘STBI__F_avg_first’ conflicts with a previous declaration
+ 4512 |    STBI__F_avg_first,
+      |    ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:4512:4: note: previous declaration ‘<unnamed enum> STBI__F_avg_first’
+ 4512 |    STBI__F_avg_first,
+      |    ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:4513:4: error: ‘STBI__F_paeth_first’ conflicts with a previous declaration
+ 4513 |    STBI__F_paeth_first
+      |    ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4513:4: note: previous declaration ‘<unnamed enum> STBI__F_paeth_first’
+ 4513 |    STBI__F_paeth_first
+      |    ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4516:16: error: redefinition of ‘stbi_uc first_row_filter [5]’
+ 4516 | static stbi_uc first_row_filter[5] =
+      |                ^~~~~~~~~~~~~~~~
+./include/stb_image.h:4516:16: note: ‘stbi_uc first_row_filter [5]’ previously defined here
+ 4516 | static stbi_uc first_row_filter[5] =
+      |                ^~~~~~~~~~~~~~~~
+./include/stb_image.h:4525:12: error: redefinition of ‘int stbi__paeth(int, int, int)’
+ 4525 | static int stbi__paeth(int a, int b, int c)
+      |            ^~~~~~~~~~~
+./include/stb_image.h:4525:12: note: ‘int stbi__paeth(int, int, int)’ previously defined here
+ 4525 | static int stbi__paeth(int a, int b, int c)
+      |            ^~~~~~~~~~~
+./include/stb_image.h:4536:22: error: redefinition of ‘const stbi_uc stbi__depth_scale_table [9]’
+ 4536 | static const stbi_uc stbi__depth_scale_table[9] = { 0, 0xff, 0x55, 0, 0x11, 0,0,0, 0x01 };
+      |                      ^~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4536:22: note: ‘const stbi_uc stbi__depth_scale_table [9]’ previously defined here
+ 4536 | static const stbi_uc stbi__depth_scale_table[9] = { 0, 0xff, 0x55, 0, 0x11, 0,0,0, 0x01 };
+      |                      ^~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4539:12: error: redefinition of ‘int stbi__create_png_image_raw(stbi__png*, stbi_uc*, stbi__uint32, int, stbi__uint32, stbi__uint32, int, int)’
+ 4539 | static int stbi__create_png_image_raw(stbi__png *a, stbi_uc *raw, stbi__uint32 raw_len, int out_n, stbi__uint32 x, stbi__uint32 y, int depth, int color)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4539:12: note: ‘int stbi__create_png_image_raw(stbi__png*, stbi_uc*, stbi__uint32, int, stbi__uint32, stbi__uint32, int, int)’ previously defined here
+ 4539 | static int stbi__create_png_image_raw(stbi__png *a, stbi_uc *raw, stbi__uint32 raw_len, int out_n, stbi__uint32 x, stbi__uint32 y, int depth, int color)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4751:12: error: redefinition of ‘int stbi__create_png_image(stbi__png*, stbi_uc*, stbi__uint32, int, int, int, int)’
+ 4751 | static int stbi__create_png_image(stbi__png *a, stbi_uc *image_data, stbi__uint32 image_data_len, int out_n, int depth, int color, int interlaced)
+      |            ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4751:12: note: ‘int stbi__create_png_image(stbi__png*, stbi_uc*, stbi__uint32, int, int, int, int)’ previously defined here
+ 4751 | static int stbi__create_png_image(stbi__png *a, stbi_uc *image_data, stbi__uint32 image_data_len, int out_n, int depth, int color, int interlaced)
+      |            ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4795:12: error: redefinition of ‘int stbi__compute_transparency(stbi__png*, stbi_uc*, int)’
+ 4795 | static int stbi__compute_transparency(stbi__png *z, stbi_uc tc[3], int out_n)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4795:12: note: ‘int stbi__compute_transparency(stbi__png*, stbi_uc*, int)’ previously defined here
+ 4795 | static int stbi__compute_transparency(stbi__png *z, stbi_uc tc[3], int out_n)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4820:12: error: redefinition of ‘int stbi__compute_transparency16(stbi__png*, stbi__uint16*, int)’
+ 4820 | static int stbi__compute_transparency16(stbi__png *z, stbi__uint16 tc[3], int out_n)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4820:12: note: ‘int stbi__compute_transparency16(stbi__png*, stbi__uint16*, int)’ previously defined here
+ 4820 | static int stbi__compute_transparency16(stbi__png *z, stbi__uint16 tc[3], int out_n)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4845:12: error: redefinition of ‘int stbi__expand_png_palette(stbi__png*, stbi_uc*, int, int)’
+ 4845 | static int stbi__expand_png_palette(stbi__png *a, stbi_uc *palette, int len, int pal_img_n)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4845:12: note: ‘int stbi__expand_png_palette(stbi__png*, stbi_uc*, int, int)’ previously defined here
+ 4845 | static int stbi__expand_png_palette(stbi__png *a, stbi_uc *palette, int len, int pal_img_n)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4882:12: error: redefinition of ‘int stbi__unpremultiply_on_load’
+ 4882 | static int stbi__unpremultiply_on_load = 0;
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4882:12: note: ‘int stbi__unpremultiply_on_load’ previously defined here
+ 4882 | static int stbi__unpremultiply_on_load = 0;
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4883:12: error: redefinition of ‘int stbi__de_iphone_flag’
+ 4883 | static int stbi__de_iphone_flag = 0;
+      |            ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4883:12: note: ‘int stbi__de_iphone_flag’ previously defined here
+ 4883 | static int stbi__de_iphone_flag = 0;
+      |            ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4885:14: error: redefinition of ‘void stbi_set_unpremultiply_on_load(int)’
+ 4885 | STBIDEF void stbi_set_unpremultiply_on_load(int flag_true_if_should_unpremultiply)
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4885:14: note: ‘void stbi_set_unpremultiply_on_load(int)’ previously defined here
+ 4885 | STBIDEF void stbi_set_unpremultiply_on_load(int flag_true_if_should_unpremultiply)
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4890:14: error: redefinition of ‘void stbi_convert_iphone_png_to_rgb(int)’
+ 4890 | STBIDEF void stbi_convert_iphone_png_to_rgb(int flag_true_if_should_convert)
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4890:14: note: ‘void stbi_convert_iphone_png_to_rgb(int)’ previously defined here
+ 4890 | STBIDEF void stbi_convert_iphone_png_to_rgb(int flag_true_if_should_convert)
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4895:13: error: redefinition of ‘void stbi__de_iphone(stbi__png*)’
+ 4895 | static void stbi__de_iphone(stbi__png *z)
+      |             ^~~~~~~~~~~~~~~
+./include/stb_image.h:4895:13: note: ‘void stbi__de_iphone(stbi__png*)’ previously defined here
+ 4895 | static void stbi__de_iphone(stbi__png *z)
+      |             ^~~~~~~~~~~~~~~
+./include/stb_image.h:4940:12: error: redefinition of ‘int stbi__parse_png_file(stbi__png*, int, int)’
+ 4940 | static int stbi__parse_png_file(stbi__png *z, int scan, int req_comp)
+      |            ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4940:12: note: ‘int stbi__parse_png_file(stbi__png*, int, int)’ previously defined here
+ 4940 | static int stbi__parse_png_file(stbi__png *z, int scan, int req_comp)
+      |            ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:5116:14: error: redefinition of ‘void* stbi__do_png(stbi__png*, int*, int*, int*, int, stbi__result_info*)’
+ 5116 | static void *stbi__do_png(stbi__png *p, int *x, int *y, int *n, int req_comp, stbi__result_info *ri)
+      |              ^~~~~~~~~~~~
+./include/stb_image.h:5116:14: note: ‘void* stbi__do_png(stbi__png*, int*, int*, int*, int, stbi__result_info*)’ previously defined here
+ 5116 | static void *stbi__do_png(stbi__png *p, int *x, int *y, int *n, int req_comp, stbi__result_info *ri)
+      |              ^~~~~~~~~~~~
+./include/stb_image.h:5148:14: error: redefinition of ‘void* stbi__png_load(stbi__context*, int*, int*, int*, int, stbi__result_info*)’
+ 5148 | static void *stbi__png_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri)
+      |              ^~~~~~~~~~~~~~
+./include/stb_image.h:5148:14: note: ‘void* stbi__png_load(stbi__context*, int*, int*, int*, int, stbi__result_info*)’ previously defined here
+ 5148 | static void *stbi__png_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri)
+      |              ^~~~~~~~~~~~~~
+./include/stb_image.h:5155:12: error: redefinition of ‘int stbi__png_test(stbi__context*)’
+ 5155 | static int stbi__png_test(stbi__context *s)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:5155:12: note: ‘int stbi__png_test(stbi__context*)’ previously defined here
+ 5155 | static int stbi__png_test(stbi__context *s)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:5163:12: error: redefinition of ‘int stbi__png_info_raw(stbi__png*, int*, int*, int*)’
+ 5163 | static int stbi__png_info_raw(stbi__png *p, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:5163:12: note: ‘int stbi__png_info_raw(stbi__png*, int*, int*, int*)’ previously defined here
+ 5163 | static int stbi__png_info_raw(stbi__png *p, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:5175:12: error: redefinition of ‘int stbi__png_info(stbi__context*, int*, int*, int*)’
+ 5175 | static int stbi__png_info(stbi__context *s, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:5175:12: note: ‘int stbi__png_info(stbi__context*, int*, int*, int*)’ previously defined here
+ 5175 | static int stbi__png_info(stbi__context *s, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:5182:12: error: redefinition of ‘int stbi__png_is16(stbi__context*)’
+ 5182 | static int stbi__png_is16(stbi__context *s)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:5182:12: note: ‘int stbi__png_is16(stbi__context*)’ previously defined here
+ 5182 | static int stbi__png_is16(stbi__context *s)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:5199:12: error: redefinition of ‘int stbi__bmp_test_raw(stbi__context*)’
+ 5199 | static int stbi__bmp_test_raw(stbi__context *s)
+      |            ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:5199:12: note: ‘int stbi__bmp_test_raw(stbi__context*)’ previously defined here
+ 5199 | static int stbi__bmp_test_raw(stbi__context *s)
+      |            ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:5214:12: error: redefinition of ‘int stbi__bmp_test(stbi__context*)’
+ 5214 | static int stbi__bmp_test(stbi__context *s)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:5214:12: note: ‘int stbi__bmp_test(stbi__context*)’ previously defined here
+ 5214 | static int stbi__bmp_test(stbi__context *s)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:5223:12: error: redefinition of ‘int stbi__high_bit(unsigned int)’
+ 5223 | static int stbi__high_bit(unsigned int z)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:5223:12: note: ‘int stbi__high_bit(unsigned int)’ previously defined here
+ 5223 | static int stbi__high_bit(unsigned int z)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:5235:12: error: redefinition of ‘int stbi__bitcount(unsigned int)’
+ 5235 | static int stbi__bitcount(unsigned int a)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:5235:12: note: ‘int stbi__bitcount(unsigned int)’ previously defined here
+ 5235 | static int stbi__bitcount(unsigned int a)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:5248:12: error: redefinition of ‘int stbi__shiftsigned(unsigned int, int, int)’
+ 5248 | static int stbi__shiftsigned(unsigned int v, int shift, int bits)
+      |            ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:5248:12: note: ‘int stbi__shiftsigned(unsigned int, int, int)’ previously defined here
+ 5248 | static int stbi__shiftsigned(unsigned int v, int shift, int bits)
+      |            ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:5273:3: error: conflicting declaration ‘typedef struct stbi__bmp_data stbi__bmp_data’
+ 5273 | } stbi__bmp_data;
+      |   ^~~~~~~~~~~~~~
+./include/stb_image.h:5273:3: note: previous declaration as ‘typedef struct stbi__bmp_data stbi__bmp_data’
+ 5273 | } stbi__bmp_data;
+      |   ^~~~~~~~~~~~~~
+./include/stb_image.h:5275:14: error: redefinition of ‘void* stbi__bmp_parse_header(stbi__context*, stbi__bmp_data*)’
+ 5275 | static void *stbi__bmp_parse_header(stbi__context *s, stbi__bmp_data *info)
+      |              ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:5275:14: note: ‘void* stbi__bmp_parse_header(stbi__context*, stbi__bmp_data*)’ previously defined here
+ 5275 | static void *stbi__bmp_parse_header(stbi__context *s, stbi__bmp_data *info)
+      |              ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:5363:14: error: redefinition of ‘void* stbi__bmp_load(stbi__context*, int*, int*, int*, int, stbi__result_info*)’
+ 5363 | static void *stbi__bmp_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri)
+      |              ^~~~~~~~~~~~~~
+./include/stb_image.h:5363:14: note: ‘void* stbi__bmp_load(stbi__context*, int*, int*, int*, int, stbi__result_info*)’ previously defined here
+ 5363 | static void *stbi__bmp_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri)
+      |              ^~~~~~~~~~~~~~
+./include/stb_image.h:5558:12: error: redefinition of ‘int stbi__tga_get_comp(int, int, int*)’
+ 5558 | static int stbi__tga_get_comp(int bits_per_pixel, int is_grey, int* is_rgb16)
+      |            ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:5558:12: note: ‘int stbi__tga_get_comp(int, int, int*)’ previously defined here
+ 5558 | static int stbi__tga_get_comp(int bits_per_pixel, int is_grey, int* is_rgb16)
+      |            ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:5574:12: error: redefinition of ‘int stbi__tga_info(stbi__context*, int*, int*, int*)’
+ 5574 | static int stbi__tga_info(stbi__context *s, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:5574:12: note: ‘int stbi__tga_info(stbi__context*, int*, int*, int*)’ previously defined here
+ 5574 | static int stbi__tga_info(stbi__context *s, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:5639:12: error: redefinition of ‘int stbi__tga_test(stbi__context*)’
+ 5639 | static int stbi__tga_test(stbi__context *s)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:5639:12: note: ‘int stbi__tga_test(stbi__context*)’ previously defined here
+ 5639 | static int stbi__tga_test(stbi__context *s)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:5671:13: error: redefinition of ‘void stbi__tga_read_rgb16(stbi__context*, stbi_uc*)’
+ 5671 | static void stbi__tga_read_rgb16(stbi__context *s, stbi_uc* out)
+      |             ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:5671:13: note: ‘void stbi__tga_read_rgb16(stbi__context*, stbi_uc*)’ previously defined here
+ 5671 | static void stbi__tga_read_rgb16(stbi__context *s, stbi_uc* out)
+      |             ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:5690:14: error: redefinition of ‘void* stbi__tga_load(stbi__context*, int*, int*, int*, int, stbi__result_info*)’
+ 5690 | static void *stbi__tga_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri)
+      |              ^~~~~~~~~~~~~~
+./include/stb_image.h:5690:14: note: ‘void* stbi__tga_load(stbi__context*, int*, int*, int*, int, stbi__result_info*)’ previously defined here
+ 5690 | static void *stbi__tga_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri)
+      |              ^~~~~~~~~~~~~~
+./include/stb_image.h:5900:12: error: redefinition of ‘int stbi__psd_test(stbi__context*)’
+ 5900 | static int stbi__psd_test(stbi__context *s)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:5900:12: note: ‘int stbi__psd_test(stbi__context*)’ previously defined here
+ 5900 | static int stbi__psd_test(stbi__context *s)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:5907:12: error: redefinition of ‘int stbi__psd_decode_rle(stbi__context*, stbi_uc*, int)’
+ 5907 | static int stbi__psd_decode_rle(stbi__context *s, stbi_uc *p, int pixelCount)
+      |            ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:5907:12: note: ‘int stbi__psd_decode_rle(stbi__context*, stbi_uc*, int)’ previously defined here
+ 5907 | static int stbi__psd_decode_rle(stbi__context *s, stbi_uc *p, int pixelCount)
+      |            ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:5945:14: error: redefinition of ‘void* stbi__psd_load(stbi__context*, int*, int*, int*, int, stbi__result_info*, int)’
+ 5945 | static void *stbi__psd_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri, int bpc)
+      |              ^~~~~~~~~~~~~~
+./include/stb_image.h:5945:14: note: ‘void* stbi__psd_load(stbi__context*, int*, int*, int*, int, stbi__result_info*, int)’ previously defined here
+ 5945 | static void *stbi__psd_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri, int bpc)
+      |              ^~~~~~~~~~~~~~
+./include/stb_image.h:6155:12: error: redefinition of ‘int stbi__pic_is4(stbi__context*, const char*)’
+ 6155 | static int stbi__pic_is4(stbi__context *s,const char *str)
+      |            ^~~~~~~~~~~~~
+./include/stb_image.h:6155:12: note: ‘int stbi__pic_is4(stbi__context*, const char*)’ previously defined here
+ 6155 | static int stbi__pic_is4(stbi__context *s,const char *str)
+      |            ^~~~~~~~~~~~~
+./include/stb_image.h:6165:12: error: redefinition of ‘int stbi__pic_test_core(stbi__context*)’
+ 6165 | static int stbi__pic_test_core(stbi__context *s)
+      |            ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6165:12: note: ‘int stbi__pic_test_core(stbi__context*)’ previously defined here
+ 6165 | static int stbi__pic_test_core(stbi__context *s)
+      |            ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6184:3: error: conflicting declaration ‘typedef struct stbi__pic_packet stbi__pic_packet’
+ 6184 | } stbi__pic_packet;
+      |   ^~~~~~~~~~~~~~~~
+./include/stb_image.h:6184:3: note: previous declaration as ‘typedef struct stbi__pic_packet stbi__pic_packet’
+ 6184 | } stbi__pic_packet;
+      |   ^~~~~~~~~~~~~~~~
+./include/stb_image.h:6186:17: error: redefinition of ‘stbi_uc* stbi__readval(stbi__context*, int, stbi_uc*)’
+ 6186 | static stbi_uc *stbi__readval(stbi__context *s, int channel, stbi_uc *dest)
+      |                 ^~~~~~~~~~~~~
+./include/stb_image.h:6186:17: note: ‘stbi_uc* stbi__readval(stbi__context*, int, stbi_uc*)’ previously defined here
+ 6186 | static stbi_uc *stbi__readval(stbi__context *s, int channel, stbi_uc *dest)
+      |                 ^~~~~~~~~~~~~
+./include/stb_image.h:6200:13: error: redefinition of ‘void stbi__copyval(int, stbi_uc*, const stbi_uc*)’
+ 6200 | static void stbi__copyval(int channel,stbi_uc *dest,const stbi_uc *src)
+      |             ^~~~~~~~~~~~~
+./include/stb_image.h:6200:13: note: ‘void stbi__copyval(int, stbi_uc*, const stbi_uc*)’ previously defined here
+ 6200 | static void stbi__copyval(int channel,stbi_uc *dest,const stbi_uc *src)
+      |             ^~~~~~~~~~~~~
+./include/stb_image.h:6209:17: error: redefinition of ‘stbi_uc* stbi__pic_load_core(stbi__context*, int, int, int*, stbi_uc*)’
+ 6209 | static stbi_uc *stbi__pic_load_core(stbi__context *s,int width,int height,int *comp, stbi_uc *result)
+      |                 ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6209:17: note: ‘stbi_uc* stbi__pic_load_core(stbi__context*, int, int, int*, stbi_uc*)’ previously defined here
+ 6209 | static stbi_uc *stbi__pic_load_core(stbi__context *s,int width,int height,int *comp, stbi_uc *result)
+      |                 ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6319:14: error: redefinition of ‘void* stbi__pic_load(stbi__context*, int*, int*, int*, int, stbi__result_info*)’
+ 6319 | static void *stbi__pic_load(stbi__context *s,int *px,int *py,int *comp,int req_comp, stbi__result_info *ri)
+      |              ^~~~~~~~~~~~~~
+./include/stb_image.h:6319:14: note: ‘void* stbi__pic_load(stbi__context*, int*, int*, int*, int, stbi__result_info*)’ previously defined here
+ 6319 | static void *stbi__pic_load(stbi__context *s,int *px,int *py,int *comp,int req_comp, stbi__result_info *ri)
+      |              ^~~~~~~~~~~~~~
+./include/stb_image.h:6359:12: error: redefinition of ‘int stbi__pic_test(stbi__context*)’
+ 6359 | static int stbi__pic_test(stbi__context *s)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:6359:12: note: ‘int stbi__pic_test(stbi__context*)’ previously defined here
+ 6359 | static int stbi__pic_test(stbi__context *s)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:6376:3: error: conflicting declaration ‘typedef struct stbi__gif_lzw stbi__gif_lzw’
+ 6376 | } stbi__gif_lzw;
+      |   ^~~~~~~~~~~~~
+./include/stb_image.h:6376:3: note: previous declaration as ‘typedef struct stbi__gif_lzw stbi__gif_lzw’
+ 6376 | } stbi__gif_lzw;
+      |   ^~~~~~~~~~~~~
+./include/stb_image.h:6396:3: error: conflicting declaration ‘typedef struct stbi__gif stbi__gif’
+ 6396 | } stbi__gif;
+      |   ^~~~~~~~~
+./include/stb_image.h:6396:3: note: previous declaration as ‘typedef struct stbi__gif stbi__gif’
+ 6396 | } stbi__gif;
+      |   ^~~~~~~~~
+./include/stb_image.h:6398:12: error: redefinition of ‘int stbi__gif_test_raw(stbi__context*)’
+ 6398 | static int stbi__gif_test_raw(stbi__context *s)
+      |            ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6398:12: note: ‘int stbi__gif_test_raw(stbi__context*)’ previously defined here
+ 6398 | static int stbi__gif_test_raw(stbi__context *s)
+      |            ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6408:12: error: redefinition of ‘int stbi__gif_test(stbi__context*)’
+ 6408 | static int stbi__gif_test(stbi__context *s)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:6408:12: note: ‘int stbi__gif_test(stbi__context*)’ previously defined here
+ 6408 | static int stbi__gif_test(stbi__context *s)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:6415:13: error: redefinition of ‘void stbi__gif_parse_colortable(stbi__context*, stbi_uc (*)[4], int, int)’
+ 6415 | static void stbi__gif_parse_colortable(stbi__context *s, stbi_uc pal[256][4], int num_entries, int transp)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6415:13: note: ‘void stbi__gif_parse_colortable(stbi__context*, stbi_uc (*)[4], int, int)’ previously defined here
+ 6415 | static void stbi__gif_parse_colortable(stbi__context *s, stbi_uc pal[256][4], int num_entries, int transp)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6426:12: error: redefinition of ‘int stbi__gif_header(stbi__context*, stbi__gif*, int*, int)’
+ 6426 | static int stbi__gif_header(stbi__context *s, stbi__gif *g, int *comp, int is_info)
+      |            ^~~~~~~~~~~~~~~~
+./include/stb_image.h:6426:12: note: ‘int stbi__gif_header(stbi__context*, stbi__gif*, int*, int)’ previously defined here
+ 6426 | static int stbi__gif_header(stbi__context *s, stbi__gif *g, int *comp, int is_info)
+      |            ^~~~~~~~~~~~~~~~
+./include/stb_image.h:6457:12: error: redefinition of ‘int stbi__gif_info_raw(stbi__context*, int*, int*, int*)’
+ 6457 | static int stbi__gif_info_raw(stbi__context *s, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6457:12: note: ‘int stbi__gif_info_raw(stbi__context*, int*, int*, int*)’ previously defined here
+ 6457 | static int stbi__gif_info_raw(stbi__context *s, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6471:13: error: redefinition of ‘void stbi__out_gif_code(stbi__gif*, stbi__uint16)’
+ 6471 | static void stbi__out_gif_code(stbi__gif *g, stbi__uint16 code)
+      |             ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6471:13: note: ‘void stbi__out_gif_code(stbi__gif*, stbi__uint16)’ previously defined here
+ 6471 | static void stbi__out_gif_code(stbi__gif *g, stbi__uint16 code)
+      |             ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6508:17: error: redefinition of ‘stbi_uc* stbi__process_gif_raster(stbi__context*, stbi__gif*)’
+ 6508 | static stbi_uc *stbi__process_gif_raster(stbi__context *s, stbi__gif *g)
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6508:17: note: ‘stbi_uc* stbi__process_gif_raster(stbi__context*, stbi__gif*)’ previously defined here
+ 6508 | static stbi_uc *stbi__process_gif_raster(stbi__context *s, stbi__gif *g)
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6595:17: error: redefinition of ‘stbi_uc* stbi__gif_load_next(stbi__context*, stbi__gif*, int*, int, stbi_uc*)’
+ 6595 | static stbi_uc *stbi__gif_load_next(stbi__context *s, stbi__gif *g, int *comp, int req_comp, stbi_uc *two_back)
+      |                 ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6595:17: note: ‘stbi_uc* stbi__gif_load_next(stbi__context*, stbi__gif*, int*, int, stbi_uc*)’ previously defined here
+ 6595 | static stbi_uc *stbi__gif_load_next(stbi__context *s, stbi__gif *g, int *comp, int req_comp, stbi_uc *two_back)
+      |                 ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6769:14: error: redefinition of ‘void* stbi__load_gif_main(stbi__context*, int**, int*, int*, int*, int*, int)’
+ 6769 | static void *stbi__load_gif_main(stbi__context *s, int **delays, int *x, int *y, int *z, int *comp, int req_comp)
+      |              ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6769:14: note: ‘void* stbi__load_gif_main(stbi__context*, int**, int*, int*, int*, int*, int)’ previously defined here
+ 6769 | static void *stbi__load_gif_main(stbi__context *s, int **delays, int *x, int *y, int *z, int *comp, int req_comp)
+      |              ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6847:14: error: redefinition of ‘void* stbi__gif_load(stbi__context*, int*, int*, int*, int, stbi__result_info*)’
+ 6847 | static void *stbi__gif_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri)
+      |              ^~~~~~~~~~~~~~
+./include/stb_image.h:6847:14: note: ‘void* stbi__gif_load(stbi__context*, int*, int*, int*, int, stbi__result_info*)’ previously defined here
+ 6847 | static void *stbi__gif_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri)
+      |              ^~~~~~~~~~~~~~
+./include/stb_image.h:6876:12: error: redefinition of ‘int stbi__gif_info(stbi__context*, int*, int*, int*)’
+ 6876 | static int stbi__gif_info(stbi__context *s, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:6876:12: note: ‘int stbi__gif_info(stbi__context*, int*, int*, int*)’ previously defined here
+ 6876 | static int stbi__gif_info(stbi__context *s, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:6886:12: error: redefinition of ‘int stbi__hdr_test_core(stbi__context*, const char*)’
+ 6886 | static int stbi__hdr_test_core(stbi__context *s, const char *signature)
+      |            ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6886:12: note: ‘int stbi__hdr_test_core(stbi__context*, const char*)’ previously defined here
+ 6886 | static int stbi__hdr_test_core(stbi__context *s, const char *signature)
+      |            ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6896:12: error: redefinition of ‘int stbi__hdr_test(stbi__context*)’
+ 6896 | static int stbi__hdr_test(stbi__context* s)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:6896:12: note: ‘int stbi__hdr_test(stbi__context*)’ previously defined here
+ 6896 | static int stbi__hdr_test(stbi__context* s)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:6908:14: error: redefinition of ‘char* stbi__hdr_gettoken(stbi__context*, char*)’
+ 6908 | static char *stbi__hdr_gettoken(stbi__context *z, char *buffer)
+      |              ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6908:14: note: ‘char* stbi__hdr_gettoken(stbi__context*, char*)’ previously defined here
+ 6908 | static char *stbi__hdr_gettoken(stbi__context *z, char *buffer)
+      |              ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6930:13: error: redefinition of ‘void stbi__hdr_convert(float*, stbi_uc*, int)’
+ 6930 | static void stbi__hdr_convert(float *output, stbi_uc *input, int req_comp)
+      |             ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:6930:13: note: ‘void stbi__hdr_convert(float*, stbi_uc*, int)’ previously defined here
+ 6930 | static void stbi__hdr_convert(float *output, stbi_uc *input, int req_comp)
+      |             ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:6957:15: error: redefinition of ‘float* stbi__hdr_load(stbi__context*, int*, int*, int*, int, stbi__result_info*)’
+ 6957 | static float *stbi__hdr_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri)
+      |               ^~~~~~~~~~~~~~
+./include/stb_image.h:6957:15: note: ‘float* stbi__hdr_load(stbi__context*, int*, int*, int*, int, stbi__result_info*)’ previously defined here
+ 6957 | static float *stbi__hdr_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri)
+      |               ^~~~~~~~~~~~~~
+./include/stb_image.h:7088:12: error: redefinition of ‘int stbi__hdr_info(stbi__context*, int*, int*, int*)’
+ 7088 | static int stbi__hdr_info(stbi__context *s, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:7088:12: note: ‘int stbi__hdr_info(stbi__context*, int*, int*, int*)’ previously defined here
+ 7088 | static int stbi__hdr_info(stbi__context *s, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:7134:12: error: redefinition of ‘int stbi__bmp_info(stbi__context*, int*, int*, int*)’
+ 7134 | static int stbi__bmp_info(stbi__context *s, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:7134:12: note: ‘int stbi__bmp_info(stbi__context*, int*, int*, int*)’ previously defined here
+ 7134 | static int stbi__bmp_info(stbi__context *s, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:7157:12: error: redefinition of ‘int stbi__psd_info(stbi__context*, int*, int*, int*)’
+ 7157 | static int stbi__psd_info(stbi__context *s, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:7157:12: note: ‘int stbi__psd_info(stbi__context*, int*, int*, int*)’ previously defined here
+ 7157 | static int stbi__psd_info(stbi__context *s, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:7192:12: error: redefinition of ‘int stbi__psd_is16(stbi__context*)’
+ 7192 | static int stbi__psd_is16(stbi__context *s)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:7192:12: note: ‘int stbi__psd_is16(stbi__context*)’ previously defined here
+ 7192 | static int stbi__psd_is16(stbi__context *s)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:7221:12: error: redefinition of ‘int stbi__pic_info(stbi__context*, int*, int*, int*)’
+ 7221 | static int stbi__pic_info(stbi__context *s, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:7221:12: note: ‘int stbi__pic_info(stbi__context*, int*, int*, int*)’ previously defined here
+ 7221 | static int stbi__pic_info(stbi__context *s, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:7293:17: error: redefinition of ‘int stbi__pnm_test(stbi__context*)’
+ 7293 | static int      stbi__pnm_test(stbi__context *s)
+      |                 ^~~~~~~~~~~~~~
+./include/stb_image.h:7293:17: note: ‘int stbi__pnm_test(stbi__context*)’ previously defined here
+ 7293 | static int      stbi__pnm_test(stbi__context *s)
+      |                 ^~~~~~~~~~~~~~
+./include/stb_image.h:7305:14: error: redefinition of ‘void* stbi__pnm_load(stbi__context*, int*, int*, int*, int, stbi__result_info*)’
+ 7305 | static void *stbi__pnm_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri)
+      |              ^~~~~~~~~~~~~~
+./include/stb_image.h:7305:14: note: ‘void* stbi__pnm_load(stbi__context*, int*, int*, int*, int, stbi__result_info*)’ previously defined here
+ 7305 | static void *stbi__pnm_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri)
+      |              ^~~~~~~~~~~~~~
+./include/stb_image.h:7334:17: error: redefinition of ‘int stbi__pnm_isspace(char)’
+ 7334 | static int      stbi__pnm_isspace(char c)
+      |                 ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:7334:17: note: ‘int stbi__pnm_isspace(char)’ previously defined here
+ 7334 | static int      stbi__pnm_isspace(char c)
+      |                 ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:7339:17: error: redefinition of ‘void stbi__pnm_skip_whitespace(stbi__context*, char*)’
+ 7339 | static void     stbi__pnm_skip_whitespace(stbi__context *s, char *c)
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:7339:17: note: ‘void stbi__pnm_skip_whitespace(stbi__context*, char*)’ previously defined here
+ 7339 | static void     stbi__pnm_skip_whitespace(stbi__context *s, char *c)
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:7353:17: error: redefinition of ‘int stbi__pnm_isdigit(char)’
+ 7353 | static int      stbi__pnm_isdigit(char c)
+      |                 ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:7353:17: note: ‘int stbi__pnm_isdigit(char)’ previously defined here
+ 7353 | static int      stbi__pnm_isdigit(char c)
+      |                 ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:7358:17: error: redefinition of ‘int stbi__pnm_getinteger(stbi__context*, char*)’
+ 7358 | static int      stbi__pnm_getinteger(stbi__context *s, char *c)
+      |                 ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:7358:17: note: ‘int stbi__pnm_getinteger(stbi__context*, char*)’ previously defined here
+ 7358 | static int      stbi__pnm_getinteger(stbi__context *s, char *c)
+      |                 ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:7370:17: error: redefinition of ‘int stbi__pnm_info(stbi__context*, int*, int*, int*)’
+ 7370 | static int      stbi__pnm_info(stbi__context *s, int *x, int *y, int *comp)
+      |                 ^~~~~~~~~~~~~~
+./include/stb_image.h:7370:17: note: ‘int stbi__pnm_info(stbi__context*, int*, int*, int*)’ previously defined here
+ 7370 | static int      stbi__pnm_info(stbi__context *s, int *x, int *y, int *comp)
+      |                 ^~~~~~~~~~~~~~
+./include/stb_image.h:7409:12: error: redefinition of ‘int stbi__info_main(stbi__context*, int*, int*, int*)’
+ 7409 | static int stbi__info_main(stbi__context *s, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~~
+./include/stb_image.h:7409:12: note: ‘int stbi__info_main(stbi__context*, int*, int*, int*)’ previously defined here
+ 7409 | static int stbi__info_main(stbi__context *s, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~~
+./include/stb_image.h:7451:12: error: redefinition of ‘int stbi__is_16_main(stbi__context*)’
+ 7451 | static int stbi__is_16_main(stbi__context *s)
+      |            ^~~~~~~~~~~~~~~~
+./include/stb_image.h:7451:12: note: ‘int stbi__is_16_main(stbi__context*)’ previously defined here
+ 7451 | static int stbi__is_16_main(stbi__context *s)
+      |            ^~~~~~~~~~~~~~~~
+./include/stb_image.h:7465:13: error: redefinition of ‘int stbi_info(const char*, int*, int*, int*)’
+ 7465 | STBIDEF int stbi_info(char const *filename, int *x, int *y, int *comp)
+      |             ^~~~~~~~~
+./include/stb_image.h:7465:13: note: ‘int stbi_info(const char*, int*, int*, int*)’ previously defined here
+ 7465 | STBIDEF int stbi_info(char const *filename, int *x, int *y, int *comp)
+      |             ^~~~~~~~~
+./include/stb_image.h:7475:13: error: redefinition of ‘int stbi_info_from_file(FILE*, int*, int*, int*)’
+ 7475 | STBIDEF int stbi_info_from_file(FILE *f, int *x, int *y, int *comp)
+      |             ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:7475:13: note: ‘int stbi_info_from_file(FILE*, int*, int*, int*)’ previously defined here
+ 7475 | STBIDEF int stbi_info_from_file(FILE *f, int *x, int *y, int *comp)
+      |             ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:7486:13: error: redefinition of ‘int stbi_is_16_bit(const char*)’
+ 7486 | STBIDEF int stbi_is_16_bit(char const *filename)
+      |             ^~~~~~~~~~~~~~
+./include/stb_image.h:7486:13: note: ‘int stbi_is_16_bit(const char*)’ previously defined here
+ 7486 | STBIDEF int stbi_is_16_bit(char const *filename)
+      |             ^~~~~~~~~~~~~~
+./include/stb_image.h:7496:13: error: redefinition of ‘int stbi_is_16_bit_from_file(FILE*)’
+ 7496 | STBIDEF int stbi_is_16_bit_from_file(FILE *f)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:7496:13: note: ‘int stbi_is_16_bit_from_file(FILE*)’ previously defined here
+ 7496 | STBIDEF int stbi_is_16_bit_from_file(FILE *f)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:7508:13: error: redefinition of ‘int stbi_info_from_memory(const stbi_uc*, int, int*, int*, int*)’
+ 7508 | STBIDEF int stbi_info_from_memory(stbi_uc const *buffer, int len, int *x, int *y, int *comp)
+      |             ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:7508:13: note: ‘int stbi_info_from_memory(const stbi_uc*, int, int*, int*, int*)’ previously defined here
+ 7508 | STBIDEF int stbi_info_from_memory(stbi_uc const *buffer, int len, int *x, int *y, int *comp)
+      |             ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:7515:13: error: redefinition of ‘int stbi_info_from_callbacks(const stbi_io_callbacks*, void*, int*, int*, int*)’
+ 7515 | STBIDEF int stbi_info_from_callbacks(stbi_io_callbacks const *c, void *user, int *x, int *y, int *comp)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:7515:13: note: ‘int stbi_info_from_callbacks(const stbi_io_callbacks*, void*, int*, int*, int*)’ previously defined here
+ 7515 | STBIDEF int stbi_info_from_callbacks(stbi_io_callbacks const *c, void *user, int *x, int *y, int *comp)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:7522:13: error: redefinition of ‘int stbi_is_16_bit_from_memory(const stbi_uc*, int)’
+ 7522 | STBIDEF int stbi_is_16_bit_from_memory(stbi_uc const *buffer, int len)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:7522:13: note: ‘int stbi_is_16_bit_from_memory(const stbi_uc*, int)’ previously defined here
+ 7522 | STBIDEF int stbi_is_16_bit_from_memory(stbi_uc const *buffer, int len)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:7529:13: error: redefinition of ‘int stbi_is_16_bit_from_callbacks(const stbi_io_callbacks*, void*)’
+ 7529 | STBIDEF int stbi_is_16_bit_from_callbacks(stbi_io_callbacks const *c, void *user)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:7529:13: note: ‘int stbi_is_16_bit_from_callbacks(const stbi_io_callbacks*, void*)’ previously defined here
+ 7529 | STBIDEF int stbi_is_16_bit_from_callbacks(stbi_io_callbacks const *c, void *user)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:7451:12: warning: ‘int stbi__is_16_main(stbi__context*)’ defined but not used [-Wunused-function]
+ 7451 | static int stbi__is_16_main(stbi__context *s)
+      |            ^~~~~~~~~~~~~~~~
+./include/stb_image.h:7409:12: warning: ‘int stbi__info_main(stbi__context*, int*, int*, int*)’ defined but not used [-Wunused-function]
+ 7409 | static int stbi__info_main(stbi__context *s, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~~
+./include/stb_image.h:7370:17: warning: ‘int stbi__pnm_info(stbi__context*, int*, int*, int*)’ defined but not used [-Wunused-function]
+ 7370 | static int      stbi__pnm_info(stbi__context *s, int *x, int *y, int *comp)
+      |                 ^~~~~~~~~~~~~~
+./include/stb_image.h:7358:17: warning: ‘int stbi__pnm_getinteger(stbi__context*, char*)’ defined but not used [-Wunused-function]
+ 7358 | static int      stbi__pnm_getinteger(stbi__context *s, char *c)
+      |                 ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:7353:17: warning: ‘int stbi__pnm_isdigit(char)’ defined but not used [-Wunused-function]
+ 7353 | static int      stbi__pnm_isdigit(char c)
+      |                 ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:7339:17: warning: ‘void stbi__pnm_skip_whitespace(stbi__context*, char*)’ defined but not used [-Wunused-function]
+ 7339 | static void     stbi__pnm_skip_whitespace(stbi__context *s, char *c)
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:7334:17: warning: ‘int stbi__pnm_isspace(char)’ defined but not used [-Wunused-function]
+ 7334 | static int      stbi__pnm_isspace(char c)
+      |                 ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:7305:14: warning: ‘void* stbi__pnm_load(stbi__context*, int*, int*, int*, int, stbi__result_info*)’ defined but not used [-Wunused-function]
+ 7305 | static void *stbi__pnm_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri)
+      |              ^~~~~~~~~~~~~~
+./include/stb_image.h:7293:17: warning: ‘int stbi__pnm_test(stbi__context*)’ defined but not used [-Wunused-function]
+ 7293 | static int      stbi__pnm_test(stbi__context *s)
+      |                 ^~~~~~~~~~~~~~
+./include/stb_image.h:7221:12: warning: ‘int stbi__pic_info(stbi__context*, int*, int*, int*)’ defined but not used [-Wunused-function]
+ 7221 | static int stbi__pic_info(stbi__context *s, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:7192:12: warning: ‘int stbi__psd_is16(stbi__context*)’ defined but not used [-Wunused-function]
+ 7192 | static int stbi__psd_is16(stbi__context *s)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:7157:12: warning: ‘int stbi__psd_info(stbi__context*, int*, int*, int*)’ defined but not used [-Wunused-function]
+ 7157 | static int stbi__psd_info(stbi__context *s, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:7134:12: warning: ‘int stbi__bmp_info(stbi__context*, int*, int*, int*)’ defined but not used [-Wunused-function]
+ 7134 | static int stbi__bmp_info(stbi__context *s, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:7088:12: warning: ‘int stbi__hdr_info(stbi__context*, int*, int*, int*)’ defined but not used [-Wunused-function]
+ 7088 | static int stbi__hdr_info(stbi__context *s, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:6957:15: warning: ‘float* stbi__hdr_load(stbi__context*, int*, int*, int*, int, stbi__result_info*)’ defined but not used [-Wunused-function]
+ 6957 | static float *stbi__hdr_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri)
+      |               ^~~~~~~~~~~~~~
+./include/stb_image.h:6930:13: warning: ‘void stbi__hdr_convert(float*, stbi_uc*, int)’ defined but not used [-Wunused-function]
+ 6930 | static void stbi__hdr_convert(float *output, stbi_uc *input, int req_comp)
+      |             ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:6908:14: warning: ‘char* stbi__hdr_gettoken(stbi__context*, char*)’ defined but not used [-Wunused-function]
+ 6908 | static char *stbi__hdr_gettoken(stbi__context *z, char *buffer)
+      |              ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6896:12: warning: ‘int stbi__hdr_test(stbi__context*)’ defined but not used [-Wunused-function]
+ 6896 | static int stbi__hdr_test(stbi__context* s)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:6886:12: warning: ‘int stbi__hdr_test_core(stbi__context*, const char*)’ defined but not used [-Wunused-function]
+ 6886 | static int stbi__hdr_test_core(stbi__context *s, const char *signature)
+      |            ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6876:12: warning: ‘int stbi__gif_info(stbi__context*, int*, int*, int*)’ defined but not used [-Wunused-function]
+ 6876 | static int stbi__gif_info(stbi__context *s, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:6847:14: warning: ‘void* stbi__gif_load(stbi__context*, int*, int*, int*, int, stbi__result_info*)’ defined but not used [-Wunused-function]
+ 6847 | static void *stbi__gif_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri)
+      |              ^~~~~~~~~~~~~~
+./include/stb_image.h:6769:14: warning: ‘void* stbi__load_gif_main(stbi__context*, int**, int*, int*, int*, int*, int)’ defined but not used [-Wunused-function]
+ 6769 | static void *stbi__load_gif_main(stbi__context *s, int **delays, int *x, int *y, int *z, int *comp, int req_comp)
+      |              ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6595:17: warning: ‘stbi_uc* stbi__gif_load_next(stbi__context*, stbi__gif*, int*, int, stbi_uc*)’ defined but not used [-Wunused-function]
+ 6595 | static stbi_uc *stbi__gif_load_next(stbi__context *s, stbi__gif *g, int *comp, int req_comp, stbi_uc *two_back)
+      |                 ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6508:17: warning: ‘stbi_uc* stbi__process_gif_raster(stbi__context*, stbi__gif*)’ defined but not used [-Wunused-function]
+ 6508 | static stbi_uc *stbi__process_gif_raster(stbi__context *s, stbi__gif *g)
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6471:13: warning: ‘void stbi__out_gif_code(stbi__gif*, stbi__uint16)’ defined but not used [-Wunused-function]
+ 6471 | static void stbi__out_gif_code(stbi__gif *g, stbi__uint16 code)
+      |             ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6457:12: warning: ‘int stbi__gif_info_raw(stbi__context*, int*, int*, int*)’ defined but not used [-Wunused-function]
+ 6457 | static int stbi__gif_info_raw(stbi__context *s, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6426:12: warning: ‘int stbi__gif_header(stbi__context*, stbi__gif*, int*, int)’ defined but not used [-Wunused-function]
+ 6426 | static int stbi__gif_header(stbi__context *s, stbi__gif *g, int *comp, int is_info)
+      |            ^~~~~~~~~~~~~~~~
+./include/stb_image.h:6415:13: warning: ‘void stbi__gif_parse_colortable(stbi__context*, stbi_uc (*)[4], int, int)’ defined but not used [-Wunused-function]
+ 6415 | static void stbi__gif_parse_colortable(stbi__context *s, stbi_uc pal[256][4], int num_entries, int transp)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6408:12: warning: ‘int stbi__gif_test(stbi__context*)’ defined but not used [-Wunused-function]
+ 6408 | static int stbi__gif_test(stbi__context *s)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:6398:12: warning: ‘int stbi__gif_test_raw(stbi__context*)’ defined but not used [-Wunused-function]
+ 6398 | static int stbi__gif_test_raw(stbi__context *s)
+      |            ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6359:12: warning: ‘int stbi__pic_test(stbi__context*)’ defined but not used [-Wunused-function]
+ 6359 | static int stbi__pic_test(stbi__context *s)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:6319:14: warning: ‘void* stbi__pic_load(stbi__context*, int*, int*, int*, int, stbi__result_info*)’ defined but not used [-Wunused-function]
+ 6319 | static void *stbi__pic_load(stbi__context *s,int *px,int *py,int *comp,int req_comp, stbi__result_info *ri)
+      |              ^~~~~~~~~~~~~~
+./include/stb_image.h:6209:17: warning: ‘stbi_uc* stbi__pic_load_core(stbi__context*, int, int, int*, stbi_uc*)’ defined but not used [-Wunused-function]
+ 6209 | static stbi_uc *stbi__pic_load_core(stbi__context *s,int width,int height,int *comp, stbi_uc *result)
+      |                 ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6200:13: warning: ‘void stbi__copyval(int, stbi_uc*, const stbi_uc*)’ defined but not used [-Wunused-function]
+ 6200 | static void stbi__copyval(int channel,stbi_uc *dest,const stbi_uc *src)
+      |             ^~~~~~~~~~~~~
+./include/stb_image.h:6186:17: warning: ‘stbi_uc* stbi__readval(stbi__context*, int, stbi_uc*)’ defined but not used [-Wunused-function]
+ 6186 | static stbi_uc *stbi__readval(stbi__context *s, int channel, stbi_uc *dest)
+      |                 ^~~~~~~~~~~~~
+./include/stb_image.h:6165:12: warning: ‘int stbi__pic_test_core(stbi__context*)’ defined but not used [-Wunused-function]
+ 6165 | static int stbi__pic_test_core(stbi__context *s)
+      |            ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:6155:12: warning: ‘int stbi__pic_is4(stbi__context*, const char*)’ defined but not used [-Wunused-function]
+ 6155 | static int stbi__pic_is4(stbi__context *s,const char *str)
+      |            ^~~~~~~~~~~~~
+./include/stb_image.h:5945:14: warning: ‘void* stbi__psd_load(stbi__context*, int*, int*, int*, int, stbi__result_info*, int)’ defined but not used [-Wunused-function]
+ 5945 | static void *stbi__psd_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri, int bpc)
+      |              ^~~~~~~~~~~~~~
+./include/stb_image.h:5907:12: warning: ‘int stbi__psd_decode_rle(stbi__context*, stbi_uc*, int)’ defined but not used [-Wunused-function]
+ 5907 | static int stbi__psd_decode_rle(stbi__context *s, stbi_uc *p, int pixelCount)
+      |            ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:5900:12: warning: ‘int stbi__psd_test(stbi__context*)’ defined but not used [-Wunused-function]
+ 5900 | static int stbi__psd_test(stbi__context *s)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:5690:14: warning: ‘void* stbi__tga_load(stbi__context*, int*, int*, int*, int, stbi__result_info*)’ defined but not used [-Wunused-function]
+ 5690 | static void *stbi__tga_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri)
+      |              ^~~~~~~~~~~~~~
+./include/stb_image.h:5671:13: warning: ‘void stbi__tga_read_rgb16(stbi__context*, stbi_uc*)’ defined but not used [-Wunused-function]
+ 5671 | static void stbi__tga_read_rgb16(stbi__context *s, stbi_uc* out)
+      |             ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:5639:12: warning: ‘int stbi__tga_test(stbi__context*)’ defined but not used [-Wunused-function]
+ 5639 | static int stbi__tga_test(stbi__context *s)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:5574:12: warning: ‘int stbi__tga_info(stbi__context*, int*, int*, int*)’ defined but not used [-Wunused-function]
+ 5574 | static int stbi__tga_info(stbi__context *s, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:5558:12: warning: ‘int stbi__tga_get_comp(int, int, int*)’ defined but not used [-Wunused-function]
+ 5558 | static int stbi__tga_get_comp(int bits_per_pixel, int is_grey, int* is_rgb16)
+      |            ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:5363:14: warning: ‘void* stbi__bmp_load(stbi__context*, int*, int*, int*, int, stbi__result_info*)’ defined but not used [-Wunused-function]
+ 5363 | static void *stbi__bmp_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri)
+      |              ^~~~~~~~~~~~~~
+./include/stb_image.h:5275:14: warning: ‘void* stbi__bmp_parse_header(stbi__context*, stbi__bmp_data*)’ defined but not used [-Wunused-function]
+ 5275 | static void *stbi__bmp_parse_header(stbi__context *s, stbi__bmp_data *info)
+      |              ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:5248:12: warning: ‘int stbi__shiftsigned(unsigned int, int, int)’ defined but not used [-Wunused-function]
+ 5248 | static int stbi__shiftsigned(unsigned int v, int shift, int bits)
+      |            ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:5235:12: warning: ‘int stbi__bitcount(unsigned int)’ defined but not used [-Wunused-function]
+ 5235 | static int stbi__bitcount(unsigned int a)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:5223:12: warning: ‘int stbi__high_bit(unsigned int)’ defined but not used [-Wunused-function]
+ 5223 | static int stbi__high_bit(unsigned int z)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:5214:12: warning: ‘int stbi__bmp_test(stbi__context*)’ defined but not used [-Wunused-function]
+ 5214 | static int stbi__bmp_test(stbi__context *s)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:5199:12: warning: ‘int stbi__bmp_test_raw(stbi__context*)’ defined but not used [-Wunused-function]
+ 5199 | static int stbi__bmp_test_raw(stbi__context *s)
+      |            ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:5182:12: warning: ‘int stbi__png_is16(stbi__context*)’ defined but not used [-Wunused-function]
+ 5182 | static int stbi__png_is16(stbi__context *s)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:5175:12: warning: ‘int stbi__png_info(stbi__context*, int*, int*, int*)’ defined but not used [-Wunused-function]
+ 5175 | static int stbi__png_info(stbi__context *s, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:5163:12: warning: ‘int stbi__png_info_raw(stbi__png*, int*, int*, int*)’ defined but not used [-Wunused-function]
+ 5163 | static int stbi__png_info_raw(stbi__png *p, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:5155:12: warning: ‘int stbi__png_test(stbi__context*)’ defined but not used [-Wunused-function]
+ 5155 | static int stbi__png_test(stbi__context *s)
+      |            ^~~~~~~~~~~~~~
+./include/stb_image.h:5148:14: warning: ‘void* stbi__png_load(stbi__context*, int*, int*, int*, int, stbi__result_info*)’ defined but not used [-Wunused-function]
+ 5148 | static void *stbi__png_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri)
+      |              ^~~~~~~~~~~~~~
+./include/stb_image.h:5116:14: warning: ‘void* stbi__do_png(stbi__png*, int*, int*, int*, int, stbi__result_info*)’ defined but not used [-Wunused-function]
+ 5116 | static void *stbi__do_png(stbi__png *p, int *x, int *y, int *n, int req_comp, stbi__result_info *ri)
+      |              ^~~~~~~~~~~~
+./include/stb_image.h:4940:12: warning: ‘int stbi__parse_png_file(stbi__png*, int, int)’ defined but not used [-Wunused-function]
+ 4940 | static int stbi__parse_png_file(stbi__png *z, int scan, int req_comp)
+      |            ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4895:13: warning: ‘void stbi__de_iphone(stbi__png*)’ defined but not used [-Wunused-function]
+ 4895 | static void stbi__de_iphone(stbi__png *z)
+      |             ^~~~~~~~~~~~~~~
+./include/stb_image.h:4845:12: warning: ‘int stbi__expand_png_palette(stbi__png*, stbi_uc*, int, int)’ defined but not used [-Wunused-function]
+ 4845 | static int stbi__expand_png_palette(stbi__png *a, stbi_uc *palette, int len, int pal_img_n)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4820:12: warning: ‘int stbi__compute_transparency16(stbi__png*, stbi__uint16*, int)’ defined but not used [-Wunused-function]
+ 4820 | static int stbi__compute_transparency16(stbi__png *z, stbi__uint16 tc[3], int out_n)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4795:12: warning: ‘int stbi__compute_transparency(stbi__png*, stbi_uc*, int)’ defined but not used [-Wunused-function]
+ 4795 | static int stbi__compute_transparency(stbi__png *z, stbi_uc tc[3], int out_n)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4751:12: warning: ‘int stbi__create_png_image(stbi__png*, stbi_uc*, stbi__uint32, int, int, int, int)’ defined but not used [-Wunused-function]
+ 4751 | static int stbi__create_png_image(stbi__png *a, stbi_uc *image_data, stbi__uint32 image_data_len, int out_n, int depth, int color, int interlaced)
+      |            ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4539:12: warning: ‘int stbi__create_png_image_raw(stbi__png*, stbi_uc*, stbi__uint32, int, stbi__uint32, stbi__uint32, int, int)’ defined but not used [-Wunused-function]
+ 4539 | static int stbi__create_png_image_raw(stbi__png *a, stbi_uc *raw, stbi__uint32 raw_len, int out_n, stbi__uint32 x, stbi__uint32 y, int depth, int color)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4525:12: warning: ‘int stbi__paeth(int, int, int)’ defined but not used [-Wunused-function]
+ 4525 | static int stbi__paeth(int a, int b, int c)
+      |            ^~~~~~~~~~~
+./include/stb_image.h:4488:12: warning: ‘int stbi__check_png_header(stbi__context*)’ defined but not used [-Wunused-function]
+ 4488 | static int stbi__check_png_header(stbi__context *s)
+      |            ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4480:23: warning: ‘stbi__pngchunk stbi__get_chunk_header(stbi__context*)’ defined but not used [-Wunused-function]
+ 4480 | static stbi__pngchunk stbi__get_chunk_header(stbi__context *s)
+      |                       ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4377:12: warning: ‘int stbi__do_zlib(stbi__zbuf*, char*, int, int, int)’ defined but not used [-Wunused-function]
+ 4377 | static int stbi__do_zlib(stbi__zbuf *a, char *obuf, int olen, int exp, int parse_header)
+      |            ^~~~~~~~~~~~~
+./include/stb_image.h:4349:12: warning: ‘int stbi__parse_zlib(stbi__zbuf*, int)’ defined but not used [-Wunused-function]
+ 4349 | static int stbi__parse_zlib(stbi__zbuf *a, int parse_header)
+      |            ^~~~~~~~~~~~~~~~
+./include/stb_image.h:4306:12: warning: ‘int stbi__parse_zlib_header(stbi__zbuf*)’ defined but not used [-Wunused-function]
+ 4306 | static int stbi__parse_zlib_header(stbi__zbuf *a)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4277:12: warning: ‘int stbi__parse_uncompressed_block(stbi__zbuf*)’ defined but not used [-Wunused-function]
+ 4277 | static int stbi__parse_uncompressed_block(stbi__zbuf *a)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4227:12: warning: ‘int stbi__compute_huffman_codes(stbi__zbuf*)’ defined but not used [-Wunused-function]
+ 4227 | static int stbi__compute_huffman_codes(stbi__zbuf *a)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4185:12: warning: ‘int stbi__parse_huffman_block(stbi__zbuf*)’ defined but not used [-Wunused-function]
+ 4185 | static int stbi__parse_huffman_block(stbi__zbuf *a)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4149:12: warning: ‘int stbi__zexpand(stbi__zbuf*, char*, int)’ defined but not used [-Wunused-function]
+ 4149 | static int stbi__zexpand(stbi__zbuf *z, char *zout, int n)  // need to make room for n bytes
+      |            ^~~~~~~~~~~~~
+./include/stb_image.h:4111:12: warning: ‘int stbi__zhuffman_decode_slowpath(stbi__zbuf*, stbi__zhuffman*)’ defined but not used [-Wunused-function]
+ 4111 | static int stbi__zhuffman_decode_slowpath(stbi__zbuf *a, stbi__zhuffman *z)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:4089:13: warning: ‘void stbi__fill_bits(stbi__zbuf*)’ defined but not used [-Wunused-function]
+ 4089 | static void stbi__fill_bits(stbi__zbuf *z)
+      |             ^~~~~~~~~~~~~~~
+./include/stb_image.h:4012:12: warning: ‘int stbi__zbuild_huffman(stbi__zhuffman*, const stbi_uc*, int)’ defined but not used [-Wunused-function]
+ 4012 | static int stbi__zbuild_huffman(stbi__zhuffman *z, const stbi_uc *sizelist, int num)
+      |            ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3959:12: warning: ‘int stbi__jpeg_info(stbi__context*, int*, int*, int*)’ defined but not used [-Wunused-function]
+ 3959 | static int stbi__jpeg_info(stbi__context *s, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~~
+./include/stb_image.h:3947:12: warning: ‘int stbi__jpeg_info_raw(stbi__jpeg*, int*, int*, int*)’ defined but not used [-Wunused-function]
+ 3947 | static int stbi__jpeg_info_raw(stbi__jpeg *j, int *x, int *y, int *comp)
+      |            ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3935:12: warning: ‘int stbi__jpeg_test(stbi__context*)’ defined but not used [-Wunused-function]
+ 3935 | static int stbi__jpeg_test(stbi__context *s)
+      |            ^~~~~~~~~~~~~~~
+./include/stb_image.h:3923:14: warning: ‘void* stbi__jpeg_load(stbi__context*, int*, int*, int*, int, stbi__result_info*)’ defined but not used [-Wunused-function]
+ 3923 | static void *stbi__jpeg_load(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri)
+      |              ^~~~~~~~~~~~~~~
+./include/stb_image.h:3764:17: warning: ‘stbi_uc* load_jpeg_image(stbi__jpeg*, int*, int*, int*, int)’ defined but not used [-Wunused-function]
+ 3764 | static stbi_uc *load_jpeg_image(stbi__jpeg *z, int *out_x, int *out_y, int *comp, int req_comp)
+      |                 ^~~~~~~~~~~~~~~
+./include/stb_image.h:3758:16: warning: ‘stbi_uc stbi__blinn_8x8(stbi_uc, stbi_uc)’ defined but not used [-Wunused-function]
+ 3758 | static stbi_uc stbi__blinn_8x8(stbi_uc x, stbi_uc y)
+      |                ^~~~~~~~~~~~~~~
+./include/stb_image.h:3742:13: warning: ‘void stbi__cleanup_jpeg(stbi__jpeg*)’ defined but not used [-Wunused-function]
+ 3742 | static void stbi__cleanup_jpeg(stbi__jpeg *j)
+      |             ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3720:13: warning: ‘void stbi__setup_jpeg(stbi__jpeg*)’ defined but not used [-Wunused-function]
+ 3720 | static void stbi__setup_jpeg(stbi__jpeg *j)
+      |             ^~~~~~~~~~~~~~~~
+./include/stb_image.h:3585:13: warning: ‘void stbi__YCbCr_to_RGB_simd(stbi_uc*, const stbi_uc*, const stbi_uc*, const stbi_uc*, int, int)’ defined but not used [-Wunused-function]
+ 3585 | static void stbi__YCbCr_to_RGB_simd(stbi_uc *out, stbi_uc const *y, stbi_uc const *pcb, stbi_uc const *pcr, int count, int step)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3559:13: warning: ‘void stbi__YCbCr_to_RGB_row(stbi_uc*, const stbi_uc*, const stbi_uc*, const stbi_uc*, int, int)’ defined but not used [-Wunused-function]
+ 3559 | static void stbi__YCbCr_to_RGB_row(stbi_uc *out, const stbi_uc *y, const stbi_uc *pcb, const stbi_uc *pcr, int count, int step)
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3545:17: warning: ‘stbi_uc* stbi__resample_row_generic(stbi_uc*, stbi_uc*, stbi_uc*, int, int)’ defined but not used [-Wunused-function]
+ 3545 | static stbi_uc *stbi__resample_row_generic(stbi_uc *out, stbi_uc *in_near, stbi_uc *in_far, int w, int hs)
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3429:17: warning: ‘stbi_uc* stbi__resample_row_hv_2_simd(stbi_uc*, stbi_uc*, stbi_uc*, int, int)’ defined but not used [-Wunused-function]
+ 3429 | static stbi_uc *stbi__resample_row_hv_2_simd(stbi_uc *out, stbi_uc *in_near, stbi_uc *in_far, int w, int hs)
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3404:17: warning: ‘stbi_uc* stbi__resample_row_hv_2(stbi_uc*, stbi_uc*, stbi_uc*, int, int)’ defined but not used [-Wunused-function]
+ 3404 | static stbi_uc *stbi__resample_row_hv_2(stbi_uc *out, stbi_uc *in_near, stbi_uc *in_far, int w, int hs)
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3374:18: warning: ‘stbi_uc* stbi__resample_row_h_2(stbi_uc*, stbi_uc*, stbi_uc*, int, int)’ defined but not used [-Wunused-function]
+ 3374 | static stbi_uc*  stbi__resample_row_h_2(stbi_uc *out, stbi_uc *in_near, stbi_uc *in_far, int w, int hs)
+      |                  ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3364:17: warning: ‘stbi_uc* stbi__resample_row_v_2(stbi_uc*, stbi_uc*, stbi_uc*, int, int)’ defined but not used [-Wunused-function]
+ 3364 | static stbi_uc* stbi__resample_row_v_2(stbi_uc *out, stbi_uc *in_near, stbi_uc *in_far, int w, int hs)
+      |                 ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3355:17: warning: ‘stbi_uc* resample_row_1(stbi_uc*, stbi_uc*, stbi_uc*, int, int)’ defined but not used [-Wunused-function]
+ 3355 | static stbi_uc *resample_row_1(stbi_uc *out, stbi_uc *in_near, stbi_uc *in_far, int w, int hs)
+      |                 ^~~~~~~~~~~~~~
+./include/stb_image.h:3308:12: warning: ‘int stbi__decode_jpeg_image(stbi__jpeg*)’ defined but not used [-Wunused-function]
+ 3308 | static int stbi__decode_jpeg_image(stbi__jpeg *j)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3283:12: warning: ‘int stbi__decode_jpeg_header(stbi__jpeg*, int)’ defined but not used [-Wunused-function]
+ 3283 | static int stbi__decode_jpeg_header(stbi__jpeg *z, int scan)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3189:12: warning: ‘int stbi__process_frame_header(stbi__jpeg*, int)’ defined but not used [-Wunused-function]
+ 3189 | static int stbi__process_frame_header(stbi__jpeg *z, int scan)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3167:12: warning: ‘int stbi__free_jpeg_components(stbi__jpeg*, int, int)’ defined but not used [-Wunused-function]
+ 3167 | static int stbi__free_jpeg_components(stbi__jpeg *z, int ncomp, int why)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3128:12: warning: ‘int stbi__process_scan_header(stbi__jpeg*)’ defined but not used [-Wunused-function]
+ 3128 | static int stbi__process_scan_header(stbi__jpeg *z)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3025:12: warning: ‘int stbi__process_marker(stbi__jpeg*, int)’ defined but not used [-Wunused-function]
+ 3025 | static int stbi__process_marker(stbi__jpeg *z, int m)
+      |            ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:3006:13: warning: ‘void stbi__jpeg_finish(stbi__jpeg*)’ defined but not used [-Wunused-function]
+ 3006 | static void stbi__jpeg_finish(stbi__jpeg *z)
+      |             ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:2999:13: warning: ‘void stbi__jpeg_dequantize(short int*, stbi__uint16*)’ defined but not used [-Wunused-function]
+ 2999 | static void stbi__jpeg_dequantize(short *data, stbi__uint16 *dequant)
+      |             ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:2875:12: warning: ‘int stbi__parse_entropy_coded_data(stbi__jpeg*)’ defined but not used [-Wunused-function]
+ 2875 | static int stbi__parse_entropy_coded_data(stbi__jpeg *z)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:2862:13: warning: ‘void stbi__jpeg_reset(stbi__jpeg*)’ defined but not used [-Wunused-function]
+ 2862 | static void stbi__jpeg_reset(stbi__jpeg *j)
+      |             ^~~~~~~~~~~~~~~~
+./include/stb_image.h:2845:16: warning: ‘stbi_uc stbi__get_marker(stbi__jpeg*)’ defined but not used [-Wunused-function]
+ 2845 | static stbi_uc stbi__get_marker(stbi__jpeg *j)
+      |                ^~~~~~~~~~~~~~~~
+./include/stb_image.h:2456:13: warning: ‘void stbi__idct_simd(stbi_uc*, int, short int*)’ defined but not used [-Wunused-function]
+ 2456 | static void stbi__idct_simd(stbi_uc *out, int out_stride, short data[64])
+      |             ^~~~~~~~~~~~~~~
+./include/stb_image.h:2393:13: warning: ‘void stbi__idct_block(stbi_uc*, int, short int*)’ defined but not used [-Wunused-function]
+ 2393 | static void stbi__idct_block(stbi_uc *out, int out_stride, short data[64])
+      |             ^~~~~~~~~~~~~~~~
+./include/stb_image.h:2222:12: warning: ‘int stbi__jpeg_decode_block_prog_ac(stbi__jpeg*, short int*, stbi__huffman*, stbi__int16*)’ defined but not used [-Wunused-function]
+ 2222 | static int stbi__jpeg_decode_block_prog_ac(stbi__jpeg *j, short data[64], stbi__huffman *hac, stbi__int16 *fac)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:2194:12: warning: ‘int stbi__jpeg_decode_block_prog_dc(stbi__jpeg*, short int*, stbi__huffman*, int)’ defined but not used [-Wunused-function]
+ 2194 | static int stbi__jpeg_decode_block_prog_dc(stbi__jpeg *j, short data[64], stbi__huffman *hdc, int b)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:2142:12: warning: ‘int stbi__jpeg_decode_block(stbi__jpeg*, short int*, stbi__huffman*, stbi__huffman*, stbi__int16*, int, stbi__uint16*)’ defined but not used [-Wunused-function]
+ 2142 | static int stbi__jpeg_decode_block(stbi__jpeg *j, short data[64], stbi__huffman *hdc, stbi__huffman *hac, stbi__int16 *fac, int b, stbi__uint16 *dequant)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:2011:13: warning: ‘void stbi__grow_buffer_unsafe(stbi__jpeg*)’ defined but not used [-Wunused-function]
+ 2011 | static void stbi__grow_buffer_unsafe(stbi__jpeg *j)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1986:13: warning: ‘void stbi__build_fast_ac(stbi__int16*, stbi__huffman*)’ defined but not used [-Wunused-function]
+ 1986 | static void stbi__build_fast_ac(stbi__int16 *fast_ac, stbi__huffman *h)
+      |             ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1942:12: warning: ‘int stbi__build_huffman(stbi__huffman*, int*)’ defined but not used [-Wunused-function]
+ 1942 | static int stbi__build_huffman(stbi__huffman *h, int *count)
+      |            ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1823:17: warning: ‘stbi_uc* stbi__hdr_to_ldr(float*, int, int, int)’ defined but not used [-Wunused-function]
+ 1823 | static stbi_uc *stbi__hdr_to_ldr(float   *data, int x, int y, int comp)
+      |                 ^~~~~~~~~~~~~~~~
+./include/stb_image.h:1797:17: warning: ‘float* stbi__ldr_to_hdr(stbi_uc*, int, int, int)’ defined but not used [-Wunused-function]
+ 1797 | static float   *stbi__ldr_to_hdr(stbi_uc *data, int x, int y, int comp)
+      |                 ^~~~~~~~~~~~~~~~
+./include/stb_image.h:1751:22: warning: ‘stbi__uint16* stbi__convert_format16(stbi__uint16*, int, int, unsigned int, unsigned int)’ defined but not used [-Wunused-function]
+ 1751 | static stbi__uint16 *stbi__convert_format16(stbi__uint16 *data, int img_n, int req_comp, unsigned int x, unsigned int y)
+      |                      ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1742:21: warning: ‘stbi__uint16 stbi__compute_y_16(int, int, int)’ defined but not used [-Wunused-function]
+ 1742 | static stbi__uint16 stbi__compute_y_16(int r, int g, int b)
+      |                     ^~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1694:23: warning: ‘unsigned char* stbi__convert_format(unsigned char*, int, int, unsigned int, unsigned int)’ defined but not used [-Wunused-function]
+ 1694 | static unsigned char *stbi__convert_format(unsigned char *data, int img_n, int req_comp, unsigned int x, unsigned int y)
+      |                       ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1685:16: warning: ‘stbi_uc stbi__compute_y(int, int, int)’ defined but not used [-Wunused-function]
+ 1685 | static stbi_uc stbi__compute_y(int r, int g, int b)
+      |                ^~~~~~~~~~~~~~~
+./include/stb_image.h:1662:21: warning: ‘stbi__uint32 stbi__get32le(stbi__context*)’ defined but not used [-Wunused-function]
+ 1662 | static stbi__uint32 stbi__get32le(stbi__context *s)
+      |                     ^~~~~~~~~~~~~
+./include/stb_image.h:1654:12: warning: ‘int stbi__get16le(stbi__context*)’ defined but not used [-Wunused-function]
+ 1654 | static int stbi__get16le(stbi__context *s)
+      |            ^~~~~~~~~~~~~
+./include/stb_image.h:1644:21: warning: ‘stbi__uint32 stbi__get32be(stbi__context*)’ defined but not used [-Wunused-function]
+ 1644 | static stbi__uint32 stbi__get32be(stbi__context *s)
+      |                     ^~~~~~~~~~~~~
+./include/stb_image.h:1634:12: warning: ‘int stbi__get16be(stbi__context*)’ defined but not used [-Wunused-function]
+ 1634 | static int stbi__get16be(stbi__context *s)
+      |            ^~~~~~~~~~~~~
+./include/stb_image.h:1606:12: warning: ‘int stbi__getn(stbi__context*, stbi_uc*, int)’ defined but not used [-Wunused-function]
+ 1606 | static int stbi__getn(stbi__context *s, stbi_uc *buffer, int n)
+      |            ^~~~~~~~~~
+./include/stb_image.h:1584:13: warning: ‘void stbi__skip(stbi__context*, int)’ defined but not used [-Wunused-function]
+ 1584 | static void stbi__skip(stbi__context *s, int n)
+      |             ^~~~~~~~~~
+./include/stb_image.h:1537:13: warning: ‘void stbi__refill_buffer(stbi__context*)’ defined but not used [-Wunused-function]
+ 1537 | static void stbi__refill_buffer(stbi__context *s)
+      |             ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1400:15: warning: ‘float* stbi__loadf_main(stbi__context*, int*, int*, int*, int)’ defined but not used [-Wunused-function]
+ 1400 | static float *stbi__loadf_main(stbi__context *s, int *x, int *y, int *comp, int req_comp)
+      |               ^~~~~~~~~~~~~~~~
+./include/stb_image.h:1277:14: warning: ‘FILE* stbi__fopen(const char*, const char*)’ defined but not used [-Wunused-function]
+ 1277 | static FILE *stbi__fopen(char const *filename, char const *mode)
+      |              ^~~~~~~~~~~
+./include/stb_image.h:1254:13: warning: ‘void stbi__float_postprocess(float*, int*, int*, int*, int)’ defined but not used [-Wunused-function]
+ 1254 | static void stbi__float_postprocess(float *result, int *x, int *y, int *comp, int req_comp)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1226:22: warning: ‘stbi__uint16* stbi__load_and_postprocess_16bit(stbi__context*, int*, int*, int*, int)’ defined but not used [-Wunused-function]
+ 1226 | static stbi__uint16 *stbi__load_and_postprocess_16bit(stbi__context *s, int *x, int *y, int *comp, int req_comp)
+      |                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1200:23: warning: ‘unsigned char* stbi__load_and_postprocess_8bit(stbi__context*, int*, int*, int*, int)’ defined but not used [-Wunused-function]
+ 1200 | static unsigned char *stbi__load_and_postprocess_8bit(stbi__context *s, int *x, int *y, int *comp, int req_comp)
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1187:13: warning: ‘void stbi__vertical_flip_slices(void*, int, int, int, int)’ defined but not used [-Wunused-function]
+ 1187 | static void stbi__vertical_flip_slices(void *image, int w, int h, int z, int bytes_per_pixel)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1162:13: warning: ‘void stbi__vertical_flip(void*, int, int, int)’ defined but not used [-Wunused-function]
+ 1162 | static void stbi__vertical_flip(void *image, int w, int h, int bytes_per_pixel)
+      |             ^~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1146:22: warning: ‘stbi__uint16* stbi__convert_8_to_16(stbi_uc*, int, int, int)’ defined but not used [-Wunused-function]
+ 1146 | static stbi__uint16 *stbi__convert_8_to_16(stbi_uc *orig, int w, int h, int channels)
+      |                      ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1130:17: warning: ‘stbi_uc* stbi__convert_16_to_8(stbi__uint16*, int, int, int)’ defined but not used [-Wunused-function]
+ 1130 | static stbi_uc *stbi__convert_16_to_8(stbi__uint16 *orig, int w, int h, int channels)
+      |                 ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1083:14: warning: ‘void* stbi__load_main(stbi__context*, int*, int*, int*, int, stbi__result_info*, int)’ defined but not used [-Wunused-function]
+ 1083 | static void *stbi__load_main(stbi__context *s, int *x, int *y, int *comp, int req_comp, stbi__result_info *ri, int bpc)
+      |              ^~~~~~~~~~~~~~~
+./include/stb_image.h:1070:67: warning: ‘stbi__vertically_flip_on_load_set’ defined but not used [-Wunused-variable]
+ 1070 | static STBI_THREAD_LOCAL int stbi__vertically_flip_on_load_local, stbi__vertically_flip_on_load_set;
+      |                                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1070:30: warning: ‘stbi__vertically_flip_on_load_local’ defined but not used [-Wunused-variable]
+ 1070 | static STBI_THREAD_LOCAL int stbi__vertically_flip_on_load_local, stbi__vertically_flip_on_load_set;
+      |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:1025:14: warning: ‘void* stbi__malloc_mad4(int, int, int, int, int)’ defined but not used [-Wunused-function]
+ 1025 | static void *stbi__malloc_mad4(int a, int b, int c, int d, int add)
+      |              ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:1018:14: warning: ‘void* stbi__malloc_mad3(int, int, int, int)’ defined but not used [-Wunused-function]
+ 1018 | static void *stbi__malloc_mad3(int a, int b, int c, int add)
+      |              ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:1011:14: warning: ‘void* stbi__malloc_mad2(int, int, int)’ defined but not used [-Wunused-function]
+ 1011 | static void *stbi__malloc_mad2(int a, int b, int add)
+      |              ^~~~~~~~~~~~~~~~~
+./include/stb_image.h:1002:12: warning: ‘int stbi__mad4sizes_valid(int, int, int, int, int)’ defined but not used [-Wunused-function]
+ 1002 | static int stbi__mad4sizes_valid(int a, int b, int c, int d, int add)
+      |            ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:994:12: warning: ‘int stbi__mad3sizes_valid(int, int, int, int)’ defined but not used [-Wunused-function]
+  994 | static int stbi__mad3sizes_valid(int a, int b, int c, int add)
+      |            ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:987:12: warning: ‘int stbi__mad2sizes_valid(int, int, int)’ defined but not used [-Wunused-function]
+  987 | static int stbi__mad2sizes_valid(int a, int b, int add)
+      |            ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:977:12: warning: ‘int stbi__mul2sizes_valid(int, int)’ defined but not used [-Wunused-function]
+  977 | static int stbi__mul2sizes_valid(int a, int b)
+      |            ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:965:12: warning: ‘int stbi__addsizes_valid(int, int)’ defined but not used [-Wunused-function]
+  965 | static int stbi__addsizes_valid(int a, int b)
+      |            ^~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:948:14: warning: ‘void* stbi__malloc(size_t)’ defined but not used [-Wunused-function]
+  948 | static void *stbi__malloc(size_t size)
+      |              ^~~~~~~~~~~~
+./include/stb_image.h:933:13: warning: ‘stbi__g_failure_reason’ defined but not used [-Wunused-variable]
+  933 | const char *stbi__g_failure_reason;
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:850:13: warning: ‘void stbi__rewind(stbi__context*)’ defined but not used [-Wunused-function]
+  850 | static void stbi__rewind(stbi__context *s)
+      |             ^~~~~~~~~~~~
+./include/stb_image.h:841:13: warning: ‘void stbi__start_file(stbi__context*, FILE*)’ defined but not used [-Wunused-function]
+  841 | static void stbi__start_file(stbi__context *s, FILE *f)
+      |             ^~~~~~~~~~~~~~~~
+./include/stb_image.h:829:12: warning: ‘int stbi__stdio_eof(void*)’ defined but not used [-Wunused-function]
+  829 | static int stbi__stdio_eof(void *user)
+      |            ^~~~~~~~~~~~~~~
+./include/stb_image.h:819:13: warning: ‘void stbi__stdio_skip(void*, int)’ defined but not used [-Wunused-function]
+  819 | static void stbi__stdio_skip(void *user, int n)
+      |             ^~~~~~~~~~~~~~~~
+./include/stb_image.h:814:12: warning: ‘int stbi__stdio_read(void*, char*, int)’ defined but not used [-Wunused-function]
+  814 | static int stbi__stdio_read(void *user, char *data, int size)
+      |            ^~~~~~~~~~~~~~~~
+./include/stb_image.h:800:13: warning: ‘void stbi__start_callbacks(stbi__context*, stbi_io_callbacks*, void*)’ defined but not used [-Wunused-function]
+  800 | static void stbi__start_callbacks(stbi__context *s, stbi_io_callbacks *c, void *user)
+      |             ^~~~~~~~~~~~~~~~~~~~~
+./include/stb_image.h:790:13: warning: ‘void stbi__start_mem(stbi__context*, const stbi_uc*, int)’ defined but not used [-Wunused-function]
+  790 | static void stbi__start_mem(stbi__context *s, stbi_uc const *buffer, int len)
+      |             ^~~~~~~~~~~~~~~
+./include/stb_image.h:732:12: warning: ‘int stbi__sse2_available()’ defined but not used [-Wunused-function]
+  732 | static int stbi__sse2_available(void)
+      |            ^~~~~~~~~~~~~~~~~~~~
+make: *** [Makefile:36: main.o] Error 1

@@ -1,0 +1,7 @@
+bin=base
+
+all:
+	g++ Main.cpp Camera.cpp EBO.cpp Mesh.cpp Model.cpp shaderClass.cpp stb.cpp Texture.cpp VAO.cpp VBO.cpp -fpermissive -I. -I./include -lglfw -lGLEW -lGL -o $(bin)
+
+clean:
+	rm $(bin)
