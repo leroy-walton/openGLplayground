@@ -1,4 +1,4 @@
-#include"FpsCounter.h"
+#include "FpsCounter.h"
 
 FpsCounter::FpsCounter()
 {
@@ -11,8 +11,8 @@ FpsCounter::FpsCounter()
 double FpsCounter::getFps()
 {
     crntTime = glfwGetTime();
-	timeDiff = crntTime - prevTime;
-	counter++;
+    timeDiff = crntTime - prevTime;
+    counter++;
     double fps = counter / timeDiff;
     prevTime = crntTime;
     counter = 0;

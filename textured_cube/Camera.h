@@ -1,15 +1,15 @@
 #ifndef CAMERA_CLASS_H
 #define CAMERA_CLASS_H
 
-#include<GL/glew.h>
-#include<GLFW/glfw3.h>
-#include<glm/glm.hpp>
-#include<glm/gtc/matrix_transform.hpp>
-#include<glm/gtc/type_ptr.hpp>
-#include<glm/gtx/rotate_vector.hpp>
-#include<glm/gtx/vector_angle.hpp>
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtx/rotate_vector.hpp>
+#include <glm/gtx/vector_angle.hpp>
 
-#include"Shader.h"
+#include "Shader.h"
 
 class Camera
 {
@@ -37,9 +37,9 @@ public:
 	// Updates the camera matrix to the Vertex Shader
 	void updateMatrix(float FOVdeg, float nearPlane, float farPlane);
 	// Exports the camera matrix to a shader
-	void Matrix(Shader& shader, const char* uniform);
-	void Matrix(float FOVdeg, float nearPlane, float farPlane, Shader& shader, const char* uniform);
+	void Matrix(Shader &shader, const char *uniform);
+	void Matrix(float FOVdeg, float nearPlane, float farPlane, Shader &shader, const char *uniform);
 	// Handles camera inputs
-	void Inputs(GLFWwindow* window);
+	void Inputs(GLFWwindow *window);
 };
 #endif

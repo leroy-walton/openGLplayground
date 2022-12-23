@@ -1,19 +1,19 @@
 #include "ModelLoader.h"
 
-void ModelLoader::load(std::string path, Model* model)
+void ModelLoader::load(std::string path, Model *model)
 {
     Assimp::Importer import;
     const aiScene *scene = import.ReadFile(path,
-                                            aiProcess_JoinIdenticalVertices |
-                                            aiProcess_Triangulate |
-                                            aiProcess_FlipUVs |
-                                            aiProcess_CalcTangentSpace);
+                                           aiProcess_JoinIdenticalVertices |
+                                               aiProcess_Triangulate |
+                                               aiProcess_FlipUVs |
+                                               aiProcess_CalcTangentSpace);
 
     if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
     {
         std::cout << "Could not load model at " << path << std::endl
                   << import.GetErrorString() << std::endl;
-        //return nullptr;
+        // return nullptr;
     }
 
     // parse directory from path
@@ -25,17 +25,17 @@ void ModelLoader::load(std::string path, Model* model)
     std::cout << "   mNumTextures : " << scene->mNumTextures << "\n";
     std::cout << "           name : " << scene->mName.C_Str() << "\n";
 
-    //Model model;
+    // Model model;
     processNode(scene->mRootNode, scene, model);
     std::cout << "all mesh processed : " << model->meshes.size() << "\n";
-//    std::cout << " vertices.size : " << model.meshes[0]->vertices.size() << "\n";
-//    std::cout << "  indices.size : " << model.meshes[0]->indices.size() << "\n";
-//    std::cout << " textures.size : " << model.meshes[0]->textures.size() << "\n";
+    //    std::cout << " vertices.size : " << model.meshes[0]->vertices.size() << "\n";
+    //    std::cout << "  indices.size : " << model.meshes[0]->indices.size() << "\n";
+    //    std::cout << " textures.size : " << model.meshes[0]->textures.size() << "\n";
 
-    //return model;
+    // return model;
 }
 
-void ModelLoader::processNode(aiNode *node, const aiScene *scene, Model* model)
+void ModelLoader::processNode(aiNode *node, const aiScene *scene, Model *model)
 {
     // process all meshes
     for (unsigned int i = 0; i < node->mNumMeshes; i++)
@@ -57,7 +57,6 @@ void ModelLoader::processNode(aiNode *node, const aiScene *scene, Model* model)
     }
 
     std::cout << "all meshes processed : " << model->meshes.size() << "\n";
-
 }
 
 Mesh ModelLoader::processMesh(aiMesh *mesh, const aiScene *scene)
@@ -67,7 +66,7 @@ Mesh ModelLoader::processMesh(aiMesh *mesh, const aiScene *scene)
     std::vector<Texture> textures;
 
     std::cout << "processing vertices : " << mesh->mNumVertices << "\n";
-    // vertices    
+    // vertices
     for (unsigned int i = 0; i < mesh->mNumVertices; i++)
     {
         // position
@@ -76,8 +75,8 @@ Mesh ModelLoader::processMesh(aiMesh *mesh, const aiScene *scene)
             mesh->mVertices[i].y,
             mesh->mVertices[i].z);
 
-        std::cout << "position      " << vertices[i].pos.x << "  " << vertices[i].pos.y << "  " << vertices[i].pos.z << "\n"; 
-        
+        std::cout << "position      " << vertices[i].pos.x << "  " << vertices[i].pos.y << "  " << vertices[i].pos.z << "\n";
+
         // determine if outside of current min and max
         /*
         for (int j = 0; j < 3; j++)
@@ -96,7 +95,7 @@ Mesh ModelLoader::processMesh(aiMesh *mesh, const aiScene *scene)
             mesh->mNormals[i].y,
             mesh->mNormals[i].z);
 
-        std::cout << "normal    " << vertices[i].normal.x << "  " << vertices[i].normal.y << "  " << vertices[i].normal.z << "\n"; 
+        std::cout << "normal    " << vertices[i].normal.x << "  " << vertices[i].normal.y << "  " << vertices[i].normal.z << "\n";
 
         // textures
         if (mesh->mTextureCoords[0])
@@ -111,7 +110,7 @@ Mesh ModelLoader::processMesh(aiMesh *mesh, const aiScene *scene)
         }
 
         // tangent vector
-        
+
         // vertices[i].tangent = {
         //     mesh->mTangents[i].x,
         //     mesh->mTangents[i].y,
@@ -129,7 +128,8 @@ Mesh ModelLoader::processMesh(aiMesh *mesh, const aiScene *scene)
     }
 
     std::cout << "indices.size() : " << indices.size() << "\n";
-    for ( unsigned int i = 0; i < indices.size(); i++ ) {
+    for (unsigned int i = 0; i < indices.size(); i++)
+    {
         std::cout << indices[i] << "\n";
     }
 
@@ -165,7 +165,7 @@ Mesh ModelLoader::processMesh(aiMesh *mesh, const aiScene *scene)
         std::vector<Texture> normalMaps = loadTextures(material, aiTextureType_NORMALS);
         textures.insert(textures.end(), normalMaps.begin(), normalMaps.end());
 
-        //ret = Mesh(br, textures);
+        // ret = Mesh(br, textures);
     }
     Mesh res;
     res.indices = indices;
@@ -175,34 +175,35 @@ Mesh ModelLoader::processMesh(aiMesh *mesh, const aiScene *scene)
     return res;
 }
 
-std::vector<Texture> ModelLoader::loadTextures(aiMaterial* mat, aiTextureType type) {
+std::vector<Texture> ModelLoader::loadTextures(aiMaterial *mat, aiTextureType type)
+{
     std::vector<Texture> textures;
 
-    for (unsigned int i = 0; i < mat->GetTextureCount(type); i++) {
+    for (unsigned int i = 0; i < mat->GetTextureCount(type); i++)
+    {
         aiString str;
         mat->GetTexture(type, i, &str);
 
-/*
-        // prevent duplicate loading
-        bool skip = false;
-        for (unsigned int j = 0; j < textures_loaded.size(); j++) {
-            if (std::strcmp(textures_loaded[j].path.data(), str.C_Str()) == 0) {
-                textures.push_back(textures_loaded[j]);
-                skip = true;
-                break;
-            }
-        }
+        /*
+                // prevent duplicate loading
+                bool skip = false;
+                for (unsigned int j = 0; j < textures_loaded.size(); j++) {
+                    if (std::strcmp(textures_loaded[j].path.data(), str.C_Str()) == 0) {
+                        textures.push_back(textures_loaded[j]);
+                        skip = true;
+                        break;
+                    }
+                }
 
-        if (!skip) {
-            // not loaded yet
-            Texture tex(directory, str.C_Str(), type);
-            tex.load(false);
-            textures.push_back(tex);
-            textures_loaded.push_back(tex);
-        }
+                if (!skip) {
+                    // not loaded yet
+                    Texture tex(directory, str.C_Str(), type);
+                    tex.load(false);
+                    textures.push_back(tex);
+                    textures_loaded.push_back(tex);
+                }
 
-*/
-
+        */
     }
     return textures;
 }
