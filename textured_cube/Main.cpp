@@ -65,38 +65,58 @@ void initOpenGl()
 
 }
 
-GLfloat cube_vertices[] = { // position / color / texCoord
-    // front
-    -1.0, -1.0,  1.0,	0.9f, 0.0f, 0.0f,  	0.0f, 0.0f,
-     1.0, -1.0,  1.0,	0.0f, 0.9f, 0.0f,   1.0f, 0.0f,
-     1.0,  1.0,  1.0,	0.0f, 0.0f, 0.9f,	1.0f, 1.0f,
-    -1.0,  1.0,  1.0,	0.9f, 0.9f, 0.9f,	0.0f, 1.0f,
-    // back
-    -1.0, -1.0, -1.0,	0.9f, 0.0f, 0.0f,	1.0f, 0.0f,
-     1.0, -1.0, -1.0,	0.0f, 0.9f, 0.0f,	0.0f, 1.0f,
-     1.0,  1.0, -1.0,	0.0f, 0.0f, 0.9f,	0.0f, 0.0f,
-    -1.0,  1.0, -1.0,	0.9f, 0.9f, 0.9f,	1.0f, 1.0f
+GLfloat textured_cube_vertices[] = {
+			// front face
+			-0.5, -0.5,  0.5,  1.0, 0.0, 0.0,  1.0, 1.0,
+             0.5, -0.5,  0.5,  0.0, 1.0, 0.0,  1.0, 0.0,
+             0.5,  0.5,  0.5,  0.0, 0.0, 1.0,  0.0, 0.0,
+            -0.5,  0.5,  0.5,  1.0, 1.0, 1.0,  0.0, 1.0,
+			// back face
+             0.5,  0.5, -0.5,  0.0, 0.0, 1.0,  1.0, 1.0,
+			 0.5, -0.5, -0.5,  0.0, 1.0, 0.0,  1.0, 0.0,
+            -0.5, -0.5, -0.5,  1.0, 0.0, 0.0,  0.0, 0.0,
+			-0.5,  0.5, -0.5,  1.0, 1.0, 1.0,  0.0, 1.0,
+            
+             0.5, -0.5, -0.5,  1.0, 0.0, 0.0,  0.0, 0.0,
+             0.5,  0.5, -0.5,  0.0, 1.0, 0.0,  1.0, 0.0,
+             0.5,  0.5,  0.5,  0.0, 0.0, 1.0,  1.0, 1.0,
+             0.5, -0.5,  0.5,  1.0, 1.0, 1.0,  0.0, 1.0,
+
+            -0.5,  0.5, -0.5,  1.0, 0.0, 0.0,  0.0, 0.0,
+            -0.5, -0.5, -0.5,  0.0, 1.0, 0.0,  1.0, 0.0,
+            -0.5, -0.5,  0.5,  0.0, 0.0, 1.0,  1.0, 1.0,
+            -0.5,  0.5,  0.5,  1.0, 1.0, 1.0,  0.0, 1.0,
+
+            -0.5, -0.5, -0.5,  1.0, 0.0, 0.0,  0.0, 0.0,
+             0.5, -0.5, -0.5,  0.0, 1.0, 0.0,  1.0, 0.0,
+             0.5, -0.5,  0.5,  0.0, 0.0, 1.0,  1.0, 1.0,
+            -0.5, -0.5,  0.5,  1.0, 1.0, 1.0,  0.0, 1.0,
+
+             0.5,  0.5, -0.5,  1.0, 0.0, 0.0,  0.0, 0.0,
+            -0.5,  0.5, -0.5,  0.0, 1.0, 0.0,  1.0, 0.0,
+            -0.5,  0.5,  0.5,  0.0, 0.0, 1.0,  1.0, 1.0,
+             0.5,  0.5,  0.5,  1.0, 1.0, 1.0,  0.0, 1.0
 };
 
-GLuint cube_elements[] = {  // face indices
-		// front
-		0, 1, 2,
-		2, 3, 0,
-		// right
-		1, 5, 6,
-		6, 2, 1,
-		// back
-		7, 6, 5,
-		5, 4, 7,
-		// left
-		4, 0, 3,
-		3, 7, 4,
-		// bottom
-		4, 5, 1,
-		1, 0, 4,
-		// top
-		3, 2, 6,
-		6, 7, 3
+GLuint textured_cube_elements[] = {
+			// Front face
+		   0,  1,  2,
+		   2,  3,  0,
+		   	// Left face
+		   4,  5,  6,
+		   6,  7,  4,
+		   	// Right Face
+		   8,  9, 10,
+		  10, 11,  8,
+		  	// Back face
+          12, 13, 14,
+		  14, 15, 12,
+		  	// Top face
+          16, 17, 18,
+	      18, 19, 16,
+		  	// Bottom face
+          20, 21, 22,
+	      22, 23, 20
 };
 
 int main()
@@ -106,8 +126,8 @@ int main()
 
 	VAO VAO1;
 	VAO1.Bind();
-	VBO VBO1(cube_vertices, sizeof(cube_vertices));
-	EBO EBO1(cube_elements, sizeof(cube_elements));
+	VBO VBO1(textured_cube_vertices, sizeof(textured_cube_vertices));
+	EBO EBO1(textured_cube_elements, sizeof(textured_cube_elements));
 	// Links VBO attributes such as coordinates and colors to VAO
 	VAO1.LinkAttrib(VBO1, 0, 3, GL_FLOAT, 8 * sizeof(float), (void*)0); // position ?
 	VAO1.LinkAttrib(VBO1, 1, 3, GL_FLOAT, 8 * sizeof(float), (void*)(3 * sizeof(float))); // colors ?
@@ -139,7 +159,7 @@ int main()
 		glActiveTexture(GL_TEXTURE0);
 		VAO1.Bind();
 
-		glDrawElements(GL_TRIANGLES, sizeof(cube_elements) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, sizeof(textured_cube_elements) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
 
 		glfwSwapBuffers(window);
 		if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
