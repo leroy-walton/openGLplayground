@@ -1,7 +1,7 @@
 
 #CXX = g++
 
-EXE = basic_textured_quad
+EXE = textured_quad
 
 SOURCES = main.cpp
 SOURCES += VAO.cpp VBO.cpp EBO.cpp Shader.cpp Texture.cpp
