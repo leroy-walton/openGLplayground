@@ -143,7 +143,10 @@ int main()
 	GLint textureUniformLocation = glGetUniformLocation(stupidShader.ID, "tex0");
 	glUniform1i(textureUniformLocation, 0); // 0 corresponds to GL_TEXTURE0 ?
 	glBindTexture(GL_TEXTURE_2D, tex.id);	// Bind the texture before drawing
-
+	
+	CubeMap cubeMap;
+	FpsCounter fpsCounter;
+	GUI gui(window);
 	// Main loop
 	while (!glfwWindowShouldClose(window))
 	{
@@ -157,7 +160,8 @@ int main()
 		VAO1.Bind();
 
 		glDrawElements(GL_TRIANGLES, sizeof(textured_cube_elements) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
-
+		gui.draw(fpsCounter.getFps());
+		
 		glfwSwapBuffers(window);
 		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 			glfwSetWindowShouldClose(window, true);

@@ -14,7 +14,7 @@ class GUI
 {
 public:
 	GUI(GLFWwindow *window);
-	void draw(double fps, std::map<std::string, bool> &switches);
+	void draw(double fps);
 	// void draw(double fps, std::map<std::string, SceneItem*> *pItems);
 private:
 };

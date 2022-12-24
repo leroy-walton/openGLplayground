@@ -13,19 +13,14 @@ GUI::GUI(GLFWwindow *window)
 	ImGui_ImplOpenGL3_Init(glsl_version);
 };
 
-void GUI::draw(double fps, std::map<std::string, bool> &switches)
+void GUI::draw(double fps)
 {
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplGlfw_NewFrame();
 	{
 		ImGui::NewFrame();
-		ImGui::Begin("Bored v0.0.1-03");
+		ImGui::Begin("Texture Cube v0.0.1");
 		ImGui::Text("fps %f", fps);
-		ImGui::Text("show/hide objects");
-		for (std::map<std::string, bool>::iterator itr = switches.begin(); itr != switches.end(); ++itr)
-		{
-			ImGui::Checkbox(itr->first.c_str(), &itr->second);
-		}
 		ImGui::End();
 		ImGui::Render();
 	}
