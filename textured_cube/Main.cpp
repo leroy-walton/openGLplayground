@@ -121,45 +121,52 @@ int main()
 	GLFWwindow *window = initGlfwWindow();
 	initOpenGl();
 
-	VAO VAO1;
-	VAO1.Bind();
-	VBO VBO1(textured_cube_vertices, sizeof(textured_cube_vertices));
-	EBO EBO1(textured_cube_elements, sizeof(textured_cube_elements));
+	VAO cubeVAO;
+	cubeVAO.Bind();
+	VBO cubeVBO(textured_cube_vertices, sizeof(textured_cube_vertices));
+	EBO cubeEBO(textured_cube_elements, sizeof(textured_cube_elements));
 	// Links VBO attributes such as coordinates and colors to VAO
-	VAO1.LinkAttrib(VBO1, 0, 3, GL_FLOAT, 8 * sizeof(float), (void *)0);				   // position
-	VAO1.LinkAttrib(VBO1, 1, 3, GL_FLOAT, 8 * sizeof(float), (void *)(3 * sizeof(float))); // colors
-	VAO1.LinkAttrib(VBO1, 2, 2, GL_FLOAT, 8 * sizeof(float), (void *)(6 * sizeof(float))); // texCoord
+	cubeVAO.LinkAttrib(cubeVBO, 0, 3, GL_FLOAT, 8 * sizeof(float), (void *)0);				   // position
+	cubeVAO.LinkAttrib(cubeVBO, 1, 3, GL_FLOAT, 8 * sizeof(float), (void *)(3 * sizeof(float))); // colors
+	cubeVAO.LinkAttrib(cubeVBO, 2, 2, GL_FLOAT, 8 * sizeof(float), (void *)(6 * sizeof(float))); // texCoord
 	// Unbind all to prevent accidentally modifying them
-	VAO1.Unbind();
-	VBO1.Unbind();
-	EBO1.Unbind();
+	cubeVAO.Unbind();
+	cubeVBO.Unbind();
+	cubeEBO.Unbind();
 
 	Camera camera(width, height, glm::vec3(0.0f, 0.0f, 2.0f)); // init camera
-	Shader stupidShader("stupid.vert", "stupid.frag");		   // compile shader
 
-	// texture mapping
+//	CubeMap cubeMap;
+//	Shader skyboxShader("skybox.vert", "skybox.frag");
+//	skyboxShader.Activate();
+//	glUniform1i(glGetUniformLocation(skyboxShader.ID, "skybox"), 0);
+
+	Shader stupidShader("stupid.vert", "stupid.frag");		   // compile shader
+	stupidShader.Activate();
+	
+	// cube texture mapping
 	Texture tex(".", "resources/textures/3dfx-chip.png", aiTextureType_NONE);
 	tex.load(1);
 	GLint textureUniformLocation = glGetUniformLocation(stupidShader.ID, "tex0");
 	glUniform1i(textureUniformLocation, 0); // 0 corresponds to GL_TEXTURE0 ?
 	glBindTexture(GL_TEXTURE_2D, tex.id);	// Bind the texture before drawing
 	
-	CubeMap cubeMap;
 	FpsCounter fpsCounter;
 	GUI gui(window);
 	// Main loop
 	while (!glfwWindowShouldClose(window))
 	{
-		stupidShader.Activate();
+		glClearColor(0.10f, 0.05f, 0.06f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		//cubeMap.draw(skyboxShader, camera);
 		camera.Inputs(window);
 		camera.Matrix(stupidShader, "camMatrix");
 
-		glClearColor(0.10f, 0.05f, 0.06f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glActiveTexture(GL_TEXTURE0);
-		VAO1.Bind();
-
+		cubeVAO.Bind();
 		glDrawElements(GL_TRIANGLES, sizeof(textured_cube_elements) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
+		cubeVAO.Unbind();
+
 		gui.draw(fpsCounter.getFps());
 		
 		glfwSwapBuffers(window);
