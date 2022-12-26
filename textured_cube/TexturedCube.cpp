@@ -2,7 +2,7 @@
 
 TexturedCube::TexturedCube()
 {
-    textured_cube_vertices = {
+    std::vector<GLfloat> textured_cube_vertices = {
         // pos , col, uv
         // front face
         -0.5, -0.5, 0.5, 1.0, 0.0, 0.0, 1.0, 1.0,
@@ -35,7 +35,9 @@ TexturedCube::TexturedCube()
         -0.5, 0.5, 0.5, 0.0, 0.0, 1.0, 1.0, 1.0,
         0.5, 0.5, 0.5, 1.0, 1.0, 1.0, 0.0, 1.0};
 
-    textured_cube_elements = {
+    m_textured_cube_vertices = textured_cube_vertices;
+
+    std::vector<GLuint> textured_cube_elements = {
         0, 1, 2,
         2, 3, 0,
         // Left face
@@ -53,11 +55,12 @@ TexturedCube::TexturedCube()
         // Bottom face
         20, 21, 22,
         22, 23, 20};
+    m_textured_cube_elements = textured_cube_elements;
 
     cubeVAO = new VAO();
     cubeVAO->Bind();
-    cubeVBO = new VBO(textured_cube_vertices.data(), textured_cube_vertices.size());
-    cubeEBO = new EBO(textured_cube_elements);
+    cubeVBO = new VBO(m_textured_cube_vertices);
+    cubeEBO = new EBO(m_textured_cube_elements);
 
     cubeVAO->LinkAttrib(*cubeVBO, 0, 3, GL_FLOAT, 8 * sizeof(float), (void *)0);                   // position
     cubeVAO->LinkAttrib(*cubeVBO, 1, 3, GL_FLOAT, 8 * sizeof(float), (void *)(3 * sizeof(float))); // colors
@@ -66,18 +69,19 @@ TexturedCube::TexturedCube()
     cubeVAO->Unbind();
     cubeVBO->Unbind();
     cubeEBO->Unbind();
-    
+
     Texture tex(".", "resources/textures/3dfx-chip.png", aiTextureType_NONE);
-	tex.load(1);
+    tex.load(1);
     texture = tex.id;
 };
 
 void TexturedCube::draw(Shader &shader, Camera &camera)
 {
     GLint textureUniformLocation = glGetUniformLocation(shader.ID, "tex0");
-	glUniform1i(textureUniformLocation, 0); // 0 corresponds to GL_TEXTURE0 ?
-	glBindTexture(GL_TEXTURE_2D, texture);	// Bind the texture before drawing
+    glUniform1i(textureUniformLocation, 0); // 0 corresponds to GL_TEXTURE0 ?
+    glBindTexture(GL_TEXTURE_2D, texture); // Bind the texture before drawing
     cubeVAO->Bind();
-    glDrawElements(GL_TRIANGLES, textured_cube_elements.size() / sizeof(GLuint), GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, m_textured_cube_elements.size(), GL_UNSIGNED_INT, 0);
     cubeVAO->Unbind();
 }
+

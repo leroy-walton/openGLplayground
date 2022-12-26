@@ -124,20 +124,6 @@ int main()
 
 	TexturedCube texturedCube;
 
-	VAO cubeVAO;
-	cubeVAO.Bind();
-	VBO cubeVBO(vector_textured_cube_vertices);
-	EBO cubeEBO(vector_textured_cube_elements);
-
-	// Links VBO attributes such as coordinates and colors to VAO
-	cubeVAO.LinkAttrib(cubeVBO, 0, 3, GL_FLOAT, 8 * sizeof(float), (void *)0);					 // position
-	cubeVAO.LinkAttrib(cubeVBO, 1, 3, GL_FLOAT, 8 * sizeof(float), (void *)(3 * sizeof(float))); // colors
-	cubeVAO.LinkAttrib(cubeVBO, 2, 2, GL_FLOAT, 8 * sizeof(float), (void *)(6 * sizeof(float))); // texCoord
-	// Unbind all to prevent accidentally modifying them
-	cubeVAO.Unbind();
-	cubeVBO.Unbind();
-	cubeEBO.Unbind();
-
 	Camera camera(width, height, glm::vec3(0.0f, 0.0f, 2.0f)); // init camera
 
 	// CubeMap cubeMap;
@@ -168,11 +154,8 @@ int main()
 
 		glActiveTexture(GL_TEXTURE0);
 
-		cubeVAO.Bind();
-		glDrawElements(GL_TRIANGLES, vector_textured_cube_elements.size(), GL_UNSIGNED_INT, 0);
-		cubeVAO.Unbind();
 
-		// texturedCube.draw(stupidShader,camera);
+		texturedCube.draw(stupidShader,camera);
 
 		gui.draw(fpsCounter.getFps());
 
