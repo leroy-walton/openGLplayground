@@ -18,6 +18,7 @@
 
 #include "VAO.h"
 #include "EBO.h"
+#include "TexturedCube.h"
 
 const unsigned int width = 2000;
 const unsigned int height = 1000;
@@ -64,7 +65,7 @@ void initOpenGl()
 	glDepthFunc(GL_LESS);
 }
 
-GLfloat textured_cube_vertices[] = {
+std::vector<GLfloat> vector_textured_cube_vertices = {
 	// front face
 	-0.5, -0.5, 0.5, 1.0, 0.0, 0.0, 1.0, 1.0,
 	0.5, -0.5, 0.5, 0.0, 1.0, 0.0, 1.0, 0.0,
@@ -96,7 +97,7 @@ GLfloat textured_cube_vertices[] = {
 	-0.5, 0.5, 0.5, 0.0, 0.0, 1.0, 1.0, 1.0,
 	0.5, 0.5, 0.5, 1.0, 1.0, 1.0, 0.0, 1.0};
 
-GLuint textured_cube_elements[] = {
+std::vector<GLuint> vector_textured_cube_elements = {
 	// Front face
 	0, 1, 2,
 	2, 3, 0,
@@ -121,12 +122,15 @@ int main()
 	GLFWwindow *window = initGlfwWindow();
 	initOpenGl();
 
+	TexturedCube texturedCube;
+
 	VAO cubeVAO;
 	cubeVAO.Bind();
-	VBO cubeVBO(textured_cube_vertices, sizeof(textured_cube_vertices));
-	EBO cubeEBO(textured_cube_elements, sizeof(textured_cube_elements));
+	VBO cubeVBO(vector_textured_cube_vertices);
+	EBO cubeEBO(vector_textured_cube_elements);
+
 	// Links VBO attributes such as coordinates and colors to VAO
-	cubeVAO.LinkAttrib(cubeVBO, 0, 3, GL_FLOAT, 8 * sizeof(float), (void *)0);				   // position
+	cubeVAO.LinkAttrib(cubeVBO, 0, 3, GL_FLOAT, 8 * sizeof(float), (void *)0);					 // position
 	cubeVAO.LinkAttrib(cubeVBO, 1, 3, GL_FLOAT, 8 * sizeof(float), (void *)(3 * sizeof(float))); // colors
 	cubeVAO.LinkAttrib(cubeVBO, 2, 2, GL_FLOAT, 8 * sizeof(float), (void *)(6 * sizeof(float))); // texCoord
 	// Unbind all to prevent accidentally modifying them
@@ -136,21 +140,21 @@ int main()
 
 	Camera camera(width, height, glm::vec3(0.0f, 0.0f, 2.0f)); // init camera
 
-//	CubeMap cubeMap;
-//	Shader skyboxShader("skybox.vert", "skybox.frag");
-//	skyboxShader.Activate();
-//	glUniform1i(glGetUniformLocation(skyboxShader.ID, "skybox"), 0);
+	// CubeMap cubeMap;
+	// Shader skyboxShader("skybox.vert", "skybox.frag");
+	// skyboxShader.Activate();
+	// glUniform1i(glGetUniformLocation(skyboxShader.ID, "skybox"), 0);
 
-	Shader stupidShader("stupid.vert", "stupid.frag");		   // compile shader
+	Shader stupidShader("stupid.vert", "stupid.frag"); // compile shader
 	stupidShader.Activate();
-	
+
 	// cube texture mapping
 	Texture tex(".", "resources/textures/3dfx-chip.png", aiTextureType_NONE);
 	tex.load(1);
 	GLint textureUniformLocation = glGetUniformLocation(stupidShader.ID, "tex0");
 	glUniform1i(textureUniformLocation, 0); // 0 corresponds to GL_TEXTURE0 ?
 	glBindTexture(GL_TEXTURE_2D, tex.id);	// Bind the texture before drawing
-	
+
 	FpsCounter fpsCounter;
 	GUI gui(window);
 	// Main loop
@@ -158,17 +162,20 @@ int main()
 	{
 		glClearColor(0.10f, 0.05f, 0.06f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		//cubeMap.draw(skyboxShader, camera);
+		// cubeMap.draw(skyboxShader, camera);
 		camera.Inputs(window);
 		camera.Matrix(stupidShader, "camMatrix");
 
 		glActiveTexture(GL_TEXTURE0);
+
 		cubeVAO.Bind();
-		glDrawElements(GL_TRIANGLES, sizeof(textured_cube_elements) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, vector_textured_cube_elements.size(), GL_UNSIGNED_INT, 0);
 		cubeVAO.Unbind();
 
+		// texturedCube.draw(stupidShader,camera);
+
 		gui.draw(fpsCounter.getFps());
-		
+
 		glfwSwapBuffers(window);
 		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 			glfwSetWindowShouldClose(window, true);

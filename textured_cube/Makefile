@@ -19,7 +19,8 @@ IMGUI_DIR = ./imgui/
 SOURCES = Main.cpp
 SOURCES += $(IMGUI_DIR)/imgui.cpp $(IMGUI_DIR)/imgui_demo.cpp $(IMGUI_DIR)/imgui_draw.cpp $(IMGUI_DIR)/imgui_tables.cpp $(IMGUI_DIR)/imgui_widgets.cpp
 SOURCES += $(IMGUI_DIR)/imgui_impl_glfw.cpp $(IMGUI_DIR)/imgui_impl_opengl3.cpp
-SOURCES += Camera.cpp EBO.cpp Shader.cpp stb.cpp VAO.cpp VBO.cpp CubeMap.cpp FpsCounter.cpp GUI.cpp Texture.cpp ModelLoader.cpp Model.cpp Mesh.cpp Vertex.cpp
+SOURCES += Camera.cpp EBO.cpp Shader.cpp stb.cpp VAO.cpp VBO.cpp CubeMap.cpp FpsCounter.cpp GUI.cpp 
+SOURCES += Texture.cpp ModelLoader.cpp Model.cpp Mesh.cpp Vertex.cpp TexturedCube.cpp
 
 OBJS = $(addsuffix .o, $(basename $(notdir $(SOURCES))))
 UNAME_S := $(shell uname -s)
