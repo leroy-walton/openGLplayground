@@ -19,6 +19,7 @@
 #include "VAO.h"
 #include "EBO.h"
 #include "TexturedCube.h"
+#include <glm/gtx/string_cast.hpp>
 
 const unsigned int width = 2000;
 const unsigned int height = 1000;
@@ -65,58 +66,6 @@ void initOpenGl()
 	glDepthFunc(GL_LESS);
 }
 
-std::vector<GLfloat> vector_textured_cube_vertices = {
-	// front face
-	-0.5, -0.5, 0.5, 1.0, 0.0, 0.0, 1.0, 1.0,
-	0.5, -0.5, 0.5, 0.0, 1.0, 0.0, 1.0, 0.0,
-	0.5, 0.5, 0.5, 0.0, 0.0, 1.0, 0.0, 0.0,
-	-0.5, 0.5, 0.5, 1.0, 1.0, 1.0, 0.0, 1.0,
-	// back face
-	0.5, 0.5, -0.5, 0.0, 0.0, 1.0, 1.0, 1.0,
-	0.5, -0.5, -0.5, 0.0, 1.0, 0.0, 1.0, 0.0,
-	-0.5, -0.5, -0.5, 1.0, 0.0, 0.0, 0.0, 0.0,
-	-0.5, 0.5, -0.5, 1.0, 1.0, 1.0, 0.0, 1.0,
-
-	0.5, -0.5, -0.5, 1.0, 0.0, 0.0, 0.0, 0.0,
-	0.5, 0.5, -0.5, 0.0, 1.0, 0.0, 1.0, 0.0,
-	0.5, 0.5, 0.5, 0.0, 0.0, 1.0, 1.0, 1.0,
-	0.5, -0.5, 0.5, 1.0, 1.0, 1.0, 0.0, 1.0,
-
-	-0.5, 0.5, -0.5, 1.0, 0.0, 0.0, 0.0, 0.0,
-	-0.5, -0.5, -0.5, 0.0, 1.0, 0.0, 1.0, 0.0,
-	-0.5, -0.5, 0.5, 0.0, 0.0, 1.0, 1.0, 1.0,
-	-0.5, 0.5, 0.5, 1.0, 1.0, 1.0, 0.0, 1.0,
-
-	-0.5, -0.5, -0.5, 1.0, 0.0, 0.0, 0.0, 0.0,
-	0.5, -0.5, -0.5, 0.0, 1.0, 0.0, 1.0, 0.0,
-	0.5, -0.5, 0.5, 0.0, 0.0, 1.0, 1.0, 1.0,
-	-0.5, -0.5, 0.5, 1.0, 1.0, 1.0, 0.0, 1.0,
-
-	0.5, 0.5, -0.5, 1.0, 0.0, 0.0, 0.0, 0.0,
-	-0.5, 0.5, -0.5, 0.0, 1.0, 0.0, 1.0, 0.0,
-	-0.5, 0.5, 0.5, 0.0, 0.0, 1.0, 1.0, 1.0,
-	0.5, 0.5, 0.5, 1.0, 1.0, 1.0, 0.0, 1.0};
-
-std::vector<GLuint> vector_textured_cube_elements = {
-	// Front face
-	0, 1, 2,
-	2, 3, 0,
-	// Left face
-	4, 5, 6,
-	6, 7, 4,
-	// Right Face
-	8, 9, 10,
-	10, 11, 8,
-	// Back face
-	12, 13, 14,
-	14, 15, 12,
-	// Top face
-	16, 17, 18,
-	18, 19, 16,
-	// Bottom face
-	20, 21, 22,
-	22, 23, 20};
-
 int main()
 {
 	GLFWwindow *window = initGlfwWindow();
@@ -132,7 +81,6 @@ int main()
 	// glUniform1i(glGetUniformLocation(skyboxShader.ID, "skybox"), 0);
 
 	Shader stupidShader("stupid.vert", "stupid.frag"); // compile shader
-	stupidShader.Activate();
 
 	// cube texture mapping
 	Texture tex(".", "resources/textures/3dfx-chip.png", aiTextureType_NONE);
@@ -143,19 +91,39 @@ int main()
 
 	FpsCounter fpsCounter;
 	GUI gui(window);
+
+	float rotation = 0.0f;
+	double prevTime = glfwGetTime();
 	// Main loop
 	while (!glfwWindowShouldClose(window))
 	{
-		glClearColor(0.10f, 0.05f, 0.06f, 1.0f);
+		glClearColor(0.05f, 0.03f, 0.04f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		// cubeMap.draw(skyboxShader, camera);
+		stupidShader.Activate();
 		camera.Inputs(window);
-		camera.Matrix(stupidShader, "camMatrix");
-
+		camera.Matrix(stupidShader, "proj");
 		glActiveTexture(GL_TEXTURE0);
 
+		float crntTime = glfwGetTime();
+		if (crntTime - prevTime >= 1 / 60)
+		{
+			rotation += 0.5f;
+			prevTime = crntTime;
+		}
 
-		texturedCube.draw(stupidShader,camera);
+		// rotation
+		glm::mat4 model = glm::mat4(1.0f);
+		model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotation * 2.3f), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotation * 0.6f), glm::vec3(0.0f, 0.0f, 1.0f));
+		int modelLoc = glGetUniformLocation(stupidShader.ID, "model");
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+		int timeLoc = glGetUniformLocation(stupidShader.ID, "time");
+		glUniform1f(timeLoc, crntTime);
+
+		texturedCube.draw(stupidShader, camera);
 
 		gui.draw(fpsCounter.getFps());
 
