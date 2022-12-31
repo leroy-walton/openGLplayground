@@ -18,7 +18,7 @@ void Model::draw(Shader shader)
 
 /*  Functions   */
 // Loads a model with supported ASSIMP extensions from file and stores the resulting meshes in the meshes vector.
-void Model::loadModel(string path)
+void Model::loadModel(std::string path)
 {
     // Read file via ASSIMP
     Assimp::Importer importer;
@@ -27,7 +27,7 @@ void Model::loadModel(string path)
     // Check for errors
     if (!scene || scene->mFlags == AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) // if is Not Zero
     {
-        cout << "ERROR::ASSIMP:: " << importer.GetErrorString() << endl;
+        std::cout << "ERROR::ASSIMP:: " << importer.GetErrorString() << std::endl;
         return;
     }
     // Retrieve the directory path of the filepath
@@ -60,9 +60,9 @@ void Model::processNode(aiNode *node, const aiScene *scene)
 Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene)
 {
     // Data to fill
-    vector<Vertex> vertices;
-    vector<GLuint> indices;
-    vector<Texture> textures;
+    std::vector<Vertex> vertices;
+    std::vector<GLuint> indices;
+    std::vector<Texture> textures;
 
     // Walk through each of the mesh's vertices
     for (GLuint i = 0; i < mesh->mNumVertices; i++)
@@ -127,7 +127,7 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene)
         if (material->GetTexture(aiTextureType_DIFFUSE, 0, &texturePath) == AI_SUCCESS)
         {
             // load the texture using the path
-            //GLuint textureID = loadTexture(texturePath.C_Str());
+            // GLuint textureID = loadTexture(texturePath.C_Str());
             Texture texture(this->directory, texturePath.C_Str(), aiTextureType_DIFFUSE);
             texture.load(0);
 
@@ -150,4 +150,3 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene)
     // Return a mesh object created from the extracted mesh data
     return Mesh(vertices, indices, textures);
 }
-
