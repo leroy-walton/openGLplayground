@@ -1,7 +1,7 @@
 #include "Camera.h"
 
-const float slow_speed = 0.1f;
-const float high_speed = 0.5f;
+const float slow_speed = 0.5f;
+const float high_speed = 2.5f;
 
 Camera::Camera(int width, int height, glm::vec3 position)
 {
@@ -27,7 +27,7 @@ void Camera::updateMatrix(float FOVdeg, float nearPlane, float farPlane)
 
 void Camera::Matrix(Shader &shader, const char *uniform)
 {
-	updateMatrix(45.0f, 0.1f, 100.0f);
+	updateMatrix(45.0f, 0.1f, 10000.0f);
 	// Exports camera matrix
 	glUniformMatrix4fv(glGetUniformLocation(shader.ID, uniform), 1, GL_FALSE, glm::value_ptr(cameraMatrix));
 }

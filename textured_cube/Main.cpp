@@ -35,7 +35,7 @@ GLFWwindow *initGlfwWindow()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	GLFWwindow *window = glfwCreateWindow(width, height, "textured cube", NULL, NULL);
+	GLFWwindow *window = glfwCreateWindow(width, height, "Sponza with rotating cube", NULL, NULL);
 	if (window == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -71,18 +71,20 @@ int main()
 	GLFWwindow *window = initGlfwWindow();
 	initOpenGl();
 
-	TexturedCube texturedCube;
+	Shader stupidShader("stupid.vert", "stupid.frag"); // compile shader
 
-	Camera camera(width, height, glm::vec3(0.0f, 0.0f, 2.0f)); // init camera
+	TexturedCube texturedCube;
+	Model model3("resources/models/sponza/Sponza.gltf");
+	Camera camera(width, height, glm::vec3(200.0f, 200.0f, 0.0f)); // init camera
 
 	// CubeMap cubeMap;
 	// Shader skyboxShader("skybox.vert", "skybox.frag");
 	// skyboxShader.Activate();
 	// glUniform1i(glGetUniformLocation(skyboxShader.ID, "skybox"), 0);
-
-	Shader stupidShader("stupid.vert", "stupid.frag"); // compile shader
-
-	// cube texture mapping
+	
+	
+	
+	// rotating cube texture mapping
 	Texture tex(".", "resources/textures/3dfx-chip.png", aiTextureType_NONE);
 	tex.load(1);
 	GLint textureUniformLocation = glGetUniformLocation(stupidShader.ID, "tex0");
@@ -91,8 +93,6 @@ int main()
 
 	FpsCounter fpsCounter;
 	GUI gui(window);
-
-	Model ourModel("resources/models/sword/scene.gltf");
 
 
 	float rotation = 0.0f;
@@ -115,36 +115,30 @@ int main()
 			prevTime = crntTime;
 		}
 
-		// rotation
+		glm::vec4 lightColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+		glm::vec3 lightPos = glm::vec3(1.5f, 1.5f, 1.5f);
+		glm::mat4 lightModel = glm::mat4(1.0f);
+		lightModel = glm::translate(lightModel, lightPos);
+		glUniform4f(glGetUniformLocation(stupidShader.ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
+		glUniform3f(glGetUniformLocation(stupidShader.ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
+		glUniform1f(glGetUniformLocation(stupidShader.ID, "time"), crntTime);
+
+		// cube rotation
 		glm::mat4 model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(0.0, 160.0, 0.0));
+		model = glm::scale(model, glm::vec3(60.0f));
 		model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(rotation * 2.3f), glm::vec3(1.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(rotation * 0.6f), glm::vec3(0.0f, 0.0f, 1.0f));
-//		int modelLoc = glGetUniformLocation(stupidShader.ID, "model");
-//		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-
-		glm::vec4 lightColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-		glm::vec3 lightPos   = glm::vec3(1.5f, 1.5f, 1.5f);
-		glm::mat4 lightModel = glm::mat4(1.0f);
-		lightModel = glm::translate(lightModel, lightPos);
-
 		glUniformMatrix4fv(glGetUniformLocation(stupidShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		glUniform4f(glGetUniformLocation(stupidShader.ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
-		glUniform3f(glGetUniformLocation(stupidShader.ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
-
-		int timeLoc = glGetUniformLocation(stupidShader.ID, "time");
-		glUniform1f(timeLoc, crntTime);
-
 		texturedCube.draw(stupidShader, camera);
 
-		gui.draw(fpsCounter.getFps());
-		
-
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(2.0f, 0.0, 0.0));
+		model = glm::translate(model, glm::vec3(0.0f, 0.0, 0.0));
 		glUniformMatrix4fv(glGetUniformLocation(stupidShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		ourModel.draw(stupidShader);
+		model3.draw(stupidShader);
 
+		gui.draw(fpsCounter.getFps());
 		glfwSwapBuffers(window);
 		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 			glfwSetWindowShouldClose(window, true);
