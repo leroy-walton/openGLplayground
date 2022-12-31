@@ -92,6 +92,9 @@ int main()
 	FpsCounter fpsCounter;
 	GUI gui(window);
 
+	Model ourModel("resources/models/sword/scene.gltf");
+
+
 	float rotation = 0.0f;
 	double prevTime = glfwGetTime();
 	// Main loop
@@ -117,8 +120,17 @@ int main()
 		model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(rotation * 2.3f), glm::vec3(1.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(rotation * 0.6f), glm::vec3(0.0f, 0.0f, 1.0f));
-		int modelLoc = glGetUniformLocation(stupidShader.ID, "model");
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+//		int modelLoc = glGetUniformLocation(stupidShader.ID, "model");
+//		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+		glm::vec4 lightColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+		glm::vec3 lightPos   = glm::vec3(1.5f, 1.5f, 1.5f);
+		glm::mat4 lightModel = glm::mat4(1.0f);
+		lightModel = glm::translate(lightModel, lightPos);
+
+		glUniformMatrix4fv(glGetUniformLocation(stupidShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		glUniform4f(glGetUniformLocation(stupidShader.ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
+		glUniform3f(glGetUniformLocation(stupidShader.ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
 
 		int timeLoc = glGetUniformLocation(stupidShader.ID, "time");
 		glUniform1f(timeLoc, crntTime);
@@ -126,6 +138,12 @@ int main()
 		texturedCube.draw(stupidShader, camera);
 
 		gui.draw(fpsCounter.getFps());
+		
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(2.0f, 0.0, 0.0));
+		glUniformMatrix4fv(glGetUniformLocation(stupidShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		ourModel.draw(stupidShader);
 
 		glfwSwapBuffers(window);
 		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)

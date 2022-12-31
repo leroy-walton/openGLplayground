@@ -40,6 +40,7 @@ public:
     unsigned int id;
     // texture type
     aiTextureType type;
+    std::string typeName;
     // name
     std::string name;
     // directory of image
