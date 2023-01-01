@@ -1,6 +1,6 @@
 #include "CubeMap.h"
 
-CubeMap::CubeMap(void)
+CubeMap::CubeMap()
 {
     float skyboxVertices[] =
         {

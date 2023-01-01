@@ -1,46 +1,36 @@
 #include "Model.h"
 
-/*  Functions   */
-// Constructor, expects a filepath to a 3D model.
 Model::Model(GLchar *path)
 {
     this->loadModel(path);
 }
 
-// Draws the model, and thus all its meshes
 void Model::draw(Shader shader)
 {
-    for (GLuint i = 0; i < this->meshes.size(); i++)
+    if (isEnabled)
     {
-        this->meshes[i].Draw(shader);
+        for (GLuint i = 0; i < this->meshes.size(); i++)
+        {
+            this->meshes[i].Draw(shader);
+        }
     }
 }
 
-/*  Functions   */
-// Loads a model with supported ASSIMP extensions from file and stores the resulting meshes in the meshes vector.
 void Model::loadModel(std::string path)
 {
-    // Read file via ASSIMP
     Assimp::Importer importer;
     const aiScene *scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
-
-    // Check for errors
     if (!scene || scene->mFlags == AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) // if is Not Zero
     {
         std::cout << "ERROR::ASSIMP:: " << importer.GetErrorString() << std::endl;
         return;
     }
-    // Retrieve the directory path of the filepath
     this->directory = path.substr(0, path.find_last_of('/'));
-
-    // Process ASSIMP's root node recursively
     this->processNode(scene->mRootNode, scene);
 }
 
-// Processes a node in a recursive fashion. Processes each individual mesh located at the node and repeats this process on its children nodes (if any).
 void Model::processNode(aiNode *node, const aiScene *scene)
 {
-    // Process each mesh located at the current node
     for (GLuint i = 0; i < node->mNumMeshes; i++)
     {
         // The node object only contains indices to index the actual objects in the scene.
@@ -49,7 +39,6 @@ void Model::processNode(aiNode *node, const aiScene *scene)
 
         this->meshes.push_back(this->processMesh(mesh, scene));
     }
-
     // After we've processed all of the meshes (if any) we then recursively process each of the children nodes
     for (GLuint i = 0; i < node->mNumChildren; i++)
     {
@@ -59,16 +48,14 @@ void Model::processNode(aiNode *node, const aiScene *scene)
 
 Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene)
 {
-    // Data to fill
     std::vector<Vertex> vertices;
     std::vector<GLuint> indices;
     std::vector<Texture> textures;
 
-    // Walk through each of the mesh's vertices
     for (GLuint i = 0; i < mesh->mNumVertices; i++)
     {
         Vertex vertex;
-        glm::vec3 vector; // We declare a placeholder vector since assimp uses its own vector class that doesn't directly convert to glm's vec3 class so we transfer the data to this placeholder glm::vec3 first.
+        glm::vec3 vector; // placeholder since assimp uses its own vector class
 
         // Positions
         vector.x = mesh->mVertices[i].x;
@@ -129,12 +116,7 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene)
             // load the texture using the path
             // GLuint textureID = loadTexture(texturePath.C_Str());
             Texture texture(this->directory, texturePath.C_Str(), aiTextureType_DIFFUSE);
-            texture.load(0);
-
-            // texture.path = str;
             textures.push_back(texture);
-
-            // bind the texture to the shader
             glActiveTexture(GL_TEXTURE0);
             glBindTexture(GL_TEXTURE_2D, texture.id);
         }

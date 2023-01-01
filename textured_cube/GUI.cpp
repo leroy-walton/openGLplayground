@@ -11,9 +11,9 @@ GUI::GUI(GLFWwindow *window)
 	ImGui_ImplGlfw_InitForOpenGL(window, true);
 	const char *glsl_version = "#version 130";
 	ImGui_ImplOpenGL3_Init(glsl_version);
-};
+}
 
-void GUI::draw(double fps)
+void GUI::drawGUI(double fps, World *world)
 {
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplGlfw_NewFrame();
@@ -21,31 +21,14 @@ void GUI::draw(double fps)
 		ImGui::NewFrame();
 		ImGui::Begin("Texture Cube v0.0.1");
 		ImGui::Text("fps %f", fps);
-		ImGui::End();
-		ImGui::Render();
-	}
-	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-};
-/*
-void GUI::draw(double fps, std::map<std::string, SceneItem*> *pItems)
-{
-	ImGui_ImplOpenGL3_NewFrame();
-	ImGui_ImplGlfw_NewFrame();
-	{
-		ImGui::NewFrame();
-		ImGui::Begin("Bored v0.0.1-03");
-		ImGui::Text("fps %f", fps);
 		ImGui::Text("show/hide objects");
-		 // std::cout << "GUI::draw start\n";
-		for (std::map<std::string,SceneItem*>::iterator itr = pItems->begin(); itr != pItems->end(); ++itr) {
-			SceneItem* item = itr->second;
-			// std::cout << item->getName() << " " << &(item->isEnabled) << "\n";
-			ImGui::Checkbox(itr->first.c_str(), &(item->isEnabled));
+		for ( std::map<std::string, Model*>::iterator itr  = world->_items.begin(); itr != world->_items.end(); ++itr) {
+			Model* model = itr->second;
+			ImGui::Checkbox(itr->first.c_str(), &(model->isEnabled));
 		}
+
 		ImGui::End();
 		ImGui::Render();
-		// std::cout << "GUI::draw end\n";
 	}
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
-*/

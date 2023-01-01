@@ -26,7 +26,7 @@ class Model
 public:
     Model(GLchar *path);
     void draw(Shader shader);
-
+    bool isEnabled = true;
 private:
     std::vector<Mesh> meshes;
     std::string directory;

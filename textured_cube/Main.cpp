@@ -11,6 +11,7 @@
 #include <map>
 #include "GUI.h"
 #include "ModelLoader.h"
+#include "World.h"
 
 #include <assimp/Importer.hpp>	// C++ importer interface
 #include <assimp/scene.h>		// Output data structure
@@ -66,6 +67,8 @@ void initOpenGl()
 	glDepthFunc(GL_LESS);
 }
 
+
+
 int main()
 {
 	GLFWwindow *window = initGlfwWindow();
@@ -75,6 +78,9 @@ int main()
 
 	TexturedCube texturedCube;
 	Model model3("resources/models/sponza/Sponza.gltf");
+	World world;
+	world.addModel("sponza", &model3);
+
 	Camera camera(width, height, glm::vec3(200.0f, 200.0f, 0.0f)); // init camera
 
 	// CubeMap cubeMap;
@@ -82,11 +88,8 @@ int main()
 	// skyboxShader.Activate();
 	// glUniform1i(glGetUniformLocation(skyboxShader.ID, "skybox"), 0);
 	
-	
-	
 	// rotating cube texture mapping
 	Texture tex(".", "resources/textures/3dfx-chip.png", aiTextureType_NONE);
-	tex.load(1);
 	GLint textureUniformLocation = glGetUniformLocation(stupidShader.ID, "tex0");
 	glUniform1i(textureUniformLocation, 0); // 0 corresponds to GL_TEXTURE0 ?
 	glBindTexture(GL_TEXTURE_2D, tex.id);	// Bind the texture before drawing
@@ -136,9 +139,12 @@ int main()
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(0.0f, 0.0, 0.0));
 		glUniformMatrix4fv(glGetUniformLocation(stupidShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		model3.draw(stupidShader);
+		//model3.draw(stupidShader);
 
-		gui.draw(fpsCounter.getFps());
+		world.draw(stupidShader);
+
+		gui.drawGUI(fpsCounter.getFps(), &world);
+		//gui.draw(fpsCounter.getFps(), world.getItems());
 		glfwSwapBuffers(window);
 		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 			glfwSetWindowShouldClose(window, true);

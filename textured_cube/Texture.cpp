@@ -23,6 +23,7 @@ Texture::Texture(std::string dir, std::string path, aiTextureType type)
 void Texture::generate()
 {
     glGenTextures(1, &id);
+    load(0);
 }
 
 // load texture from path
