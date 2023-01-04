@@ -22,8 +22,8 @@ void GUI::drawGUI(double fps, World *world)
 		ImGui::Begin("Texture Cube v0.0.1");
 		ImGui::Text("fps %f", fps);
 		ImGui::Text("show/hide objects");
-		for ( std::map<std::string, Model*>::iterator itr  = world->_items.begin(); itr != world->_items.end(); ++itr) {
-			Model* model = itr->second;
+		for ( std::map<std::string, WorldEntity*>::iterator itr  = world->_entities.begin(); itr != world->_entities.end(); ++itr) {
+			Model* model = itr->second->getModel();
 			ImGui::Checkbox(itr->first.c_str(), &(model->isEnabled));
 		}
 

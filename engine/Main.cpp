@@ -79,7 +79,8 @@ int main()
 	TexturedCube texturedCube;
 	Model model3("resources/models/sponza/Sponza.gltf");
 	World world;
-	world.addModel("sponza", &model3);
+	WorldEntity entity("sponza", &model3);
+	world.addEntity("sponza", &entity);
 
 	Camera camera(width, height, glm::vec3(200.0f, 200.0f, 0.0f)); // init camera
 
@@ -134,7 +135,7 @@ int main()
 		model = glm::rotate(model, glm::radians(rotation * 2.3f), glm::vec3(1.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(rotation * 0.6f), glm::vec3(0.0f, 0.0f, 1.0f));
 		glUniformMatrix4fv(glGetUniformLocation(stupidShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		texturedCube.draw(stupidShader, camera);
+		texturedCube.draw(stupidShader);
 
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(0.0f, 0.0, 0.0));

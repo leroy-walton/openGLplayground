@@ -81,7 +81,7 @@ TexturedCube::TexturedCube()
     texture = tex.id;
 };
 
-void TexturedCube::draw(Shader &shader, Camera &camera)
+void TexturedCube::draw(Shader &shader)
 {
     GLint textureUniformLocation = glGetUniformLocation(shader.ID, "tex0");
     glUniform1i(textureUniformLocation, 0); // 0 corresponds to GL_TEXTURE0 ?

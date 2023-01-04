@@ -15,7 +15,7 @@ class TexturedCube
 {
 public: 
     TexturedCube();
-    void draw(Shader &shader, Camera &camera);
+    void draw(Shader &shader);
     VAO* cubeVAO;
     VBO* cubeVBO;
     EBO* cubeEBO;
