@@ -2,16 +2,14 @@
 // namespace fs = std::filesystem;
 
 #include <iostream>
+#include <GL/glew.h>
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 #include <math.h>
-#include "CubeMap.h"
 #include "FpsCounter.h"
 #include <map>
 #include "GUI.h"
-#include "ModelLoader.h"
-#include "World.h"
 
 #include <assimp/Importer.hpp>	// C++ importer interface
 #include <assimp/scene.h>		// Output data structure
@@ -19,7 +17,6 @@
 
 #include "VAO.h"
 #include "EBO.h"
-#include "TexturedCube.h"
 #include <glm/gtx/string_cast.hpp>
 
 const unsigned int width = 2000;
@@ -94,16 +91,13 @@ int main()
 		}
 		/************************* render ************************************/
 
-		// const GLfloat color[] = {(float)sin(crntTime) * 0.5f + 0.5f,
-		// 						 (float)cos(crntTime) * 0.5f + 0.5f,
-		//  						 0.0f, 1.0f};
 		const GLfloat color[] = { 0.3f, 0.8f, 1.0f, 1.0f };
 		glClearBufferfv(GL_COLOR, 0, color);
 		stupidShader.Activate();
 		//glPointSize(40.0f);
 		//glDrawArrays(GL_POINTS, 0, 3);
 		glDrawArrays(GL_TRIANGLES, 0, 3);
-		
+
 		/*********************************************************************/
 		gui.drawGUI(fpsCounter.getFps());
 		glfwSwapBuffers(window);
