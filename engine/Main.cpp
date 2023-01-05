@@ -59,10 +59,10 @@ void initOpenGl()
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	glFrontFace(GL_CCW);
-	
+
 	glCullFace(GL_FRONT);
-	//glCullFace(GL_BACK);
-	
+	// glCullFace(GL_BACK);
+
 	glDepthFunc(GL_LESS);
 }
 
@@ -91,11 +91,14 @@ int main()
 		}
 		/************************* render ************************************/
 
-		const GLfloat color[] = { 0.3f, 0.8f, 1.0f, 1.0f };
+		const GLfloat color[] = {0.3f, 0.8f, 1.0f, 1.0f};
 		glClearBufferfv(GL_COLOR, 0, color);
 		stupidShader.Activate();
-		//glPointSize(40.0f);
-		//glDrawArrays(GL_POINTS, 0, 3);
+		GLfloat attrib[] = {(float)sin(crntTime) * 0.5f,
+							(float)cos(crntTime) * 0.6f,
+							0.0f, 0.0f};
+		// Update the value of input attribute 0
+		glVertexAttrib4fv(0, attrib);
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 
 		/*********************************************************************/
