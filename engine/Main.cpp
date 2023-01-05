@@ -36,7 +36,7 @@ GLFWwindow *initGlfwWindow()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	GLFWwindow *window = glfwCreateWindow(width, height, "Sponza with rotating cube", NULL, NULL);
+	GLFWwindow *window = glfwCreateWindow(width, height, "superbible 6", NULL, NULL);
 	if (window == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -62,97 +62,61 @@ void initOpenGl()
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	glFrontFace(GL_CCW);
-	// glCullFace(GL_FRONT);
-	glCullFace(GL_BACK);
+	
+	glCullFace(GL_FRONT);
+	//glCullFace(GL_BACK);
+	
 	glDepthFunc(GL_LESS);
 }
-
-
 
 int main()
 {
 	GLFWwindow *window = initGlfwWindow();
 	initOpenGl();
-
-	Shader stupidShader("stupid.vert", "stupid.frag"); // compile shader
-
-	TexturedCube texturedCube;
-	Model model3("resources/models/sponza/Sponza.gltf");
-	World world;
-	WorldEntity entity("sponza", &model3);
-	world.addEntity("sponza", &entity);
-
-	Camera camera(width, height, glm::vec3(200.0f, 200.0f, 0.0f)); // init camera
-
-	// CubeMap cubeMap;
-	// Shader skyboxShader("skybox.vert", "skybox.frag");
-	// skyboxShader.Activate();
-	// glUniform1i(glGetUniformLocation(skyboxShader.ID, "skybox"), 0);
-	
-	// rotating cube texture mapping
-	Texture tex(".", "resources/textures/3dfx-chip.png", aiTextureType_NONE);
-	GLint textureUniformLocation = glGetUniformLocation(stupidShader.ID, "tex0");
-	glUniform1i(textureUniformLocation, 0); // 0 corresponds to GL_TEXTURE0 ?
-	glBindTexture(GL_TEXTURE_2D, tex.id);	// Bind the texture before drawing
-
+	double prevTime = glfwGetTime();
 	FpsCounter fpsCounter;
 	GUI gui(window);
+	/************************* startup ************************************/
 
+	Shader stupidShader("stupid.vert", "stupid.frag");
+	VAO *ourVAO = new VAO();
+	ourVAO->Bind();
 
-	float rotation = 0.0f;
-	double prevTime = glfwGetTime();
-	// Main loop
+	/*********************************************************************/
 	while (!glfwWindowShouldClose(window))
 	{
-		glClearColor(0.05f, 0.03f, 0.04f, 1.0f);
+		glClearColor(0.25f, 0.13f, 0.14f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		// cubeMap.draw(skyboxShader, camera);
-		stupidShader.Activate();
-		camera.Inputs(window);
-		camera.Matrix(stupidShader, "proj");
-		glActiveTexture(GL_TEXTURE0);
-
 		float crntTime = glfwGetTime();
 		if (crntTime - prevTime >= 1 / 60)
 		{
-			rotation += 0.5f;
 			prevTime = crntTime;
 		}
+		/************************* render ************************************/
 
-		glm::vec4 lightColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-		glm::vec3 lightPos = glm::vec3(1.5f, 1.5f, 1.5f);
-		glm::mat4 lightModel = glm::mat4(1.0f);
-		lightModel = glm::translate(lightModel, lightPos);
-		glUniform4f(glGetUniformLocation(stupidShader.ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
-		glUniform3f(glGetUniformLocation(stupidShader.ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
-		glUniform1f(glGetUniformLocation(stupidShader.ID, "time"), crntTime);
-
-		// cube rotation
-		glm::mat4 model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(0.0, 160.0, 0.0));
-		model = glm::scale(model, glm::vec3(60.0f));
-		model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::rotate(model, glm::radians(rotation * 2.3f), glm::vec3(1.0f, 0.0f, 0.0f));
-		model = glm::rotate(model, glm::radians(rotation * 0.6f), glm::vec3(0.0f, 0.0f, 1.0f));
-		glUniformMatrix4fv(glGetUniformLocation(stupidShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		texturedCube.draw(stupidShader);
-
-		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(0.0f, 0.0, 0.0));
-		glUniformMatrix4fv(glGetUniformLocation(stupidShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		//model3.draw(stupidShader);
-
-		world.draw(stupidShader);
-
-		gui.drawGUI(fpsCounter.getFps(), &world);
-		//gui.draw(fpsCounter.getFps(), world.getItems());
+		// const GLfloat color[] = {(float)sin(crntTime) * 0.5f + 0.5f,
+		// 						 (float)cos(crntTime) * 0.5f + 0.5f,
+		//  						 0.0f, 1.0f};
+		const GLfloat color[] = { 0.3f, 0.8f, 1.0f, 1.0f };
+		glClearBufferfv(GL_COLOR, 0, color);
+		stupidShader.Activate();
+		//glPointSize(40.0f);
+		//glDrawArrays(GL_POINTS, 0, 3);
+		glDrawArrays(GL_TRIANGLES, 0, 3);
+		
+		/*********************************************************************/
+		gui.drawGUI(fpsCounter.getFps());
 		glfwSwapBuffers(window);
 		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 			glfwSetWindowShouldClose(window, true);
 		glfwPollEvents();
 	}
+	/*************************** shutdown ***********************************/
 
-	// seek & destroy
+	ourVAO->Delete();
+	stupidShader.Delete();
+
+	/*********************************************************************/
 	glfwDestroyWindow(window);
 	glfwTerminate();
 	return 0;
