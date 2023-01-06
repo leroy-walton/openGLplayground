@@ -15,6 +15,7 @@ class GUI
 {
 public:
 	GUI(GLFWwindow *window);
+	void drawGUI(double fps);
 	void drawGUI(double fps, World *world);
 
 private:
