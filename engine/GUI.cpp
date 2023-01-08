@@ -24,7 +24,8 @@ void GUI::drawGUI(double fps, World *world)
 		ImGui::Text("show/hide objects");
 		for ( std::map<std::string, WorldEntity*>::iterator itr  = world->_entities.begin(); itr != world->_entities.end(); ++itr) {
 			Model* model = itr->second->getModel();
-			ImGui::Checkbox(itr->first.c_str(), &(model->isEnabled));
+			WorldEntity *entity = itr->second;
+			ImGui::Checkbox(itr->first.c_str(), &(entity->isEnabled));
 		}
 
 		ImGui::End();

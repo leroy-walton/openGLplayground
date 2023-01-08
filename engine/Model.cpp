@@ -7,12 +7,9 @@ Model::Model(GLchar *path)
 
 void Model::draw(Shader shader)
 {
-    if (isEnabled)
+    for (GLuint i = 0; i < this->meshes.size(); i++)
     {
-        for (GLuint i = 0; i < this->meshes.size(); i++)
-        {
-            this->meshes[i].Draw(shader);
-        }
+        this->meshes[i].Draw(shader);
     }
 }
 

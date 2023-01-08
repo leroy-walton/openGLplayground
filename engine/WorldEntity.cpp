@@ -22,9 +22,12 @@ std::string WorldEntity::getName()
 
 void WorldEntity::draw(Shader &shader)
 {
-	GLint modelLoc = glGetUniformLocation(shader.ID, "model");
-	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(getMatrix()));
-	_model->draw(shader);
+	if (isEnabled)
+	{
+		GLint modelLoc = glGetUniformLocation(shader.ID, "model");
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(getMatrix()));
+		_model->draw(shader);
+	}
 }
 
 void WorldEntity::translate(glm::vec3 t) { position += t; }
