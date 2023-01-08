@@ -26,6 +26,12 @@ void Camera::updateMatrix(float FOVdeg, float nearPlane, float farPlane)
 	cameraMatrix = projection * view;
 }
 
+void Camera::lookAt(glm::vec3 target)
+{
+	// update orientation to look at target point
+
+}
+
 void Camera::Matrix(Shader &shader, const char *uniform)
 {
 	updateMatrix(45.0f, 0.1f, 10000.0f);

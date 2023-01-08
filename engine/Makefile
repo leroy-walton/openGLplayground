@@ -21,6 +21,7 @@ SOURCES += $(IMGUI_DIR)/imgui.cpp $(IMGUI_DIR)/imgui_demo.cpp $(IMGUI_DIR)/imgui
 SOURCES += $(IMGUI_DIR)/imgui_impl_glfw.cpp $(IMGUI_DIR)/imgui_impl_opengl3.cpp
 SOURCES += Camera.cpp EBO.cpp Shader.cpp stb.cpp VAO.cpp VBO.cpp CubeMap.cpp FpsCounter.cpp GUI.cpp 
 SOURCES += Texture.cpp Model.cpp Mesh.cpp Vertex.cpp TexturedCube.cpp World.cpp WorldEntity.cpp LightCube.cpp
+SOURCES += Axes.cpp
 
 OBJS = $(addsuffix .o, $(basename $(notdir $(SOURCES))))
 UNAME_S := $(shell uname -s)

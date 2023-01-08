@@ -16,11 +16,12 @@
 #include <assimp/Importer.hpp>	// C++ importer interface
 #include <assimp/scene.h>		// Output data structure
 #include <assimp/postprocess.h> // Post processing flags
+#include <glm/gtx/string_cast.hpp>
 
 #include "VAO.h"
 #include "EBO.h"
 #include "TexturedCube.h"
-#include <glm/gtx/string_cast.hpp>
+#include "Axes.h"
 
 const unsigned int width = 2000;
 const unsigned int height = 1000;
@@ -67,8 +68,6 @@ void initOpenGl()
 	glDepthFunc(GL_LESS);
 }
 
-
-
 int main()
 {
 	GLFWwindow *window = initGlfwWindow();
@@ -77,18 +76,19 @@ int main()
 	Shader stupidShader("stupid.vert", "stupid.frag"); // compile shader
 
 	TexturedCube texturedCube;
-	Model model3("resources/models/sponza/Sponza.gltf");
+	// Model model3("resources/models/sponza/Sponza.gltf");
+	Model model3("resources/models/cubeskullrat/cube_skull_rat.gltf");
 	World world;
 	WorldEntity entity("sponza", &model3);
 	world.addEntity("sponza", &entity);
 
-	Camera camera(width, height, glm::vec3(200.0f, 200.0f, 0.0f)); // init camera
+	Camera camera(width, height, glm::vec3(0.0f, 0.0f, 4.0f)); // init camera
 
 	// CubeMap cubeMap;
 	// Shader skyboxShader("skybox.vert", "skybox.frag");
 	// skyboxShader.Activate();
 	// glUniform1i(glGetUniformLocation(skyboxShader.ID, "skybox"), 0);
-	
+
 	// rotating cube texture mapping
 	Texture tex(".", "resources/textures/3dfx-chip.png", aiTextureType_NONE);
 	GLint textureUniformLocation = glGetUniformLocation(stupidShader.ID, "tex0");
@@ -97,14 +97,14 @@ int main()
 
 	FpsCounter fpsCounter;
 	GUI gui(window);
-
-
+	Axes axes;
 	float rotation = 0.0f;
 	double prevTime = glfwGetTime();
 	// Main loop
 	while (!glfwWindowShouldClose(window))
 	{
-		glClearColor(0.05f, 0.03f, 0.04f, 1.0f);
+		//glClearColor(0.05f, 0.03f, 0.04f, 1.0f);
+		glClearColor(0.53f, 0.76f, 0.84f, 1.0f );
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		// cubeMap.draw(skyboxShader, camera);
 		stupidShader.Activate();
@@ -119,8 +119,10 @@ int main()
 			prevTime = crntTime;
 		}
 
+		axes.draw();
+
 		glm::vec4 lightColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-		glm::vec3 lightPos = glm::vec3(1.5f, 1.5f, 1.5f);
+		glm::vec3 lightPos = glm::vec3(10.5f, 10.5f, 10.5f);
 		glm::mat4 lightModel = glm::mat4(1.0f);
 		lightModel = glm::translate(lightModel, lightPos);
 		glUniform4f(glGetUniformLocation(stupidShader.ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
@@ -129,8 +131,8 @@ int main()
 
 		// cube rotation
 		glm::mat4 model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(0.0, 160.0, 0.0));
-		model = glm::scale(model, glm::vec3(60.0f));
+		model = glm::translate(model, glm::vec3(5.0, 0.0, 0.0));
+		//model = glm::scale(model, glm::vec3(60.0f));
 		model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(rotation * 2.3f), glm::vec3(1.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(rotation * 0.6f), glm::vec3(0.0f, 0.0f, 1.0f));
@@ -138,14 +140,17 @@ int main()
 		texturedCube.draw(stupidShader);
 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(0.0f, 0.0, 0.0));
+		model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
+
+//		model = glm::translate(model, glm::vec3(0.0f, 160.0, 0.0));
 		glUniformMatrix4fv(glGetUniformLocation(stupidShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		//model3.draw(stupidShader);
+		// model3.draw(stupidShader);
+		//drawAxes();
 
 		world.draw(stupidShader);
 
 		gui.drawGUI(fpsCounter.getFps(), &world);
-		//gui.draw(fpsCounter.getFps(), world.getItems());
+		// gui.draw(fpsCounter.getFps(), world.getItems());
 		glfwSwapBuffers(window);
 		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 			glfwSetWindowShouldClose(window, true);

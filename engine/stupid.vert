@@ -16,10 +16,14 @@ uniform float time;
 
 void main()
 {
-	crntPos = vec3(model * vec4(aPos, 1.0f));
 	vec4 newPos = vec4(aPos.x , aPos.y , aPos.z , 1.0);
-	gl_Position = proj * model * newPos;
+	crntPos = vec3(model * vec4(aPos, 1.0f));
+	
 	color = aColor;
 	texCoord = aTex;
-	normal = aNormal;
+
+	mat3 normalMatrix = transpose(inverse(mat3(model)));
+	normal = normalMatrix * aNormal;
+
+	gl_Position = proj * model * newPos;
 }
