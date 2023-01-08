@@ -24,7 +24,8 @@ void World::draw(Shader shader)
 		std::cout << name << " " << entity->getModel()->isEnabled << "\n";
 		if (entity->getModel()->isEnabled)
 		{
-			entity->getModel()->draw(shader);
+			//entity->getModel()->draw(shader);
+			entity->draw(shader);
 		}
 	}
 	std::cout << "World::draw end\n";

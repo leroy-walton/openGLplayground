@@ -17,11 +17,11 @@
 #include <assimp/scene.h>		// Output data structure
 #include <assimp/postprocess.h> // Post processing flags
 #include <glm/gtx/string_cast.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #include "VAO.h"
 #include "EBO.h"
 #include "TexturedCube.h"
-#include "Axes.h"
 
 const unsigned int width = 2000;
 const unsigned int height = 1000;
@@ -76,11 +76,15 @@ int main()
 	Shader stupidShader("stupid.vert", "stupid.frag"); // compile shader
 
 	TexturedCube texturedCube;
-	// Model model3("resources/models/sponza/Sponza.gltf");
-	Model model3("resources/models/cubeskullrat/cube_skull_rat.gltf");
+
 	World world;
-	WorldEntity entity("sponza", &model3);
-	world.addEntity("sponza", &entity);
+	// Model model3("resources/models/sponza/Sponza.gltf");
+	Model suzanneModel("resources/models/suzanne/Suzanne2.gltf");
+	Model skullRatCubeModel("resources/models/cubeskullrat/cube_skull_rat.gltf");
+	WorldEntity skullRatCube("skullRatCube", &skullRatCubeModel);
+	world.addEntity("skullRatCube", &skullRatCube);
+	WorldEntity suzanne("suzanne", &suzanneModel);
+	world.addEntity("suzanne", &suzanne);
 
 	Camera camera(width, height, glm::vec3(0.0f, 0.0f, 4.0f)); // init camera
 
@@ -97,14 +101,13 @@ int main()
 
 	FpsCounter fpsCounter;
 	GUI gui(window);
-	Axes axes;
 	float rotation = 0.0f;
 	double prevTime = glfwGetTime();
 	// Main loop
 	while (!glfwWindowShouldClose(window))
 	{
 		//glClearColor(0.05f, 0.03f, 0.04f, 1.0f);
-		glClearColor(0.53f, 0.76f, 0.84f, 1.0f );
+		glClearColor(0.24f, 0.35f, 0.42f, 1.0f );
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		// cubeMap.draw(skyboxShader, camera);
 		stupidShader.Activate();
@@ -119,7 +122,6 @@ int main()
 			prevTime = crntTime;
 		}
 
-		axes.draw();
 
 		glm::vec4 lightColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 		glm::vec3 lightPos = glm::vec3(10.5f, 10.5f, 10.5f);
@@ -139,13 +141,10 @@ int main()
 		glUniformMatrix4fv(glGetUniformLocation(stupidShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		texturedCube.draw(stupidShader);
 
-		model = glm::mat4(1.0f);
-		model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
-
-//		model = glm::translate(model, glm::vec3(0.0f, 160.0, 0.0));
-		glUniformMatrix4fv(glGetUniformLocation(stupidShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		// model3.draw(stupidShader);
 		//drawAxes();
+
+		skullRatCube.rotate(0.04f,  glm::vec3(0.0f, 1.0f, 0.0f));
+		suzanne.position=glm::vec3(sin(crntTime), 0.0f, cos(crntTime) )* 5.0f;
 
 		world.draw(stupidShader);
 
