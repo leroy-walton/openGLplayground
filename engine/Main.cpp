@@ -78,17 +78,19 @@ int main()
 	TexturedCube texturedCube;
 
 	World world;
-	// Model model3("resources/models/sponza/Sponza.gltf");
+	Model sponzaModel("resources/models/sponza/Sponza.gltf");
 	Model suzanneModel("resources/models/suzanne/Suzanne2.gltf");
 	Model skullRatCubeModel("resources/models/cubeskullrat/cube_skull_rat.gltf");
-	WorldEntity skullRatCube("skullRatCube", &skullRatCubeModel);
+	
+	WorldEntity sponza("sponza", &sponzaModel, &stupidShader);
+	world.addEntity("sponza", &sponza);
+	WorldEntity skullRatCube("skullRatCube", &skullRatCubeModel, &stupidShader);
 	world.addEntity("skullRatCube", &skullRatCube);
-	WorldEntity suzanne("suzanne", &suzanneModel);
+	WorldEntity suzanne("suzanne", &suzanneModel, &stupidShader);
 	world.addEntity("suzanne", &suzanne);
 
-	WorldEntity test("test", &skullRatCubeModel);
+	WorldEntity test("test", &skullRatCubeModel, &stupidShader); // multiple entities can be linked to the same model.
 	world.addEntity("test", &test);
-
 
 	Camera camera(width, height, glm::vec3(0.0f, 0.0f, 4.0f)); // init camera
 
@@ -110,14 +112,13 @@ int main()
 	// Main loop
 	while (!glfwWindowShouldClose(window))
 	{
-		//glClearColor(0.05f, 0.03f, 0.04f, 1.0f);
 		glClearColor(0.12f, 0.16f, 0.21f, 1.0f );
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		// cubeMap.draw(skyboxShader, camera);
 		stupidShader.Activate();
 		camera.Inputs(window);
 		camera.Matrix(stupidShader, "proj");
-		glActiveTexture(GL_TEXTURE0);
+		//glActiveTexture(GL_TEXTURE0);
 
 		float crntTime = glfwGetTime();
 		if (crntTime - prevTime >= 1 / 60)
@@ -150,7 +151,7 @@ int main()
 		suzanne.position=glm::vec3(sin(crntTime), 0.0f, cos(crntTime) )* 5.0f;
 		test.position=glm::vec3(-4.0f, 0.0f, 0.0f);
 
-		world.draw(stupidShader);
+		world.draw();
 
 		gui.drawGUI(fpsCounter.getFps(), &world);
 		// gui.draw(fpsCounter.getFps(), world.getItems());

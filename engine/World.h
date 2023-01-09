@@ -13,7 +13,7 @@ class World
 public:
 	World();
 	~World();
-	void draw(Shader shader);
+	void draw();
 	void addModel(std::string name, Model *model);
 	void addEntity(std::string name, WorldEntity *entity);
 	std::map<std::string, Model *> _items;

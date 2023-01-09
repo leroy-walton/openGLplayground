@@ -1,6 +1,6 @@
 #include "WorldEntity.h"
 #
-WorldEntity::WorldEntity(std::string name, Model *model)
+WorldEntity::WorldEntity(std::string name, Model *model, Shader *s)
 {
 	_name = name;
 	_model = model;
@@ -8,6 +8,7 @@ WorldEntity::WorldEntity(std::string name, Model *model)
 	position = glm::vec3(0.0f, 0.0f, 0.0f);
 	orientation = glm::mat4(1.0f);
 	scale = glm::vec3(1.0f, 1.0f, 1.0f);
+	shader = s;
 }
 
 Model *WorldEntity::getModel()
@@ -20,13 +21,13 @@ std::string WorldEntity::getName()
 	return _name;
 }
 
-void WorldEntity::draw(Shader &shader)
+void WorldEntity::draw()
 {
 	if (isEnabled)
 	{
-		GLint modelLoc = glGetUniformLocation(shader.ID, "model");
+		GLint modelLoc = glGetUniformLocation(shader->ID, "model");
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(getMatrix()));
-		_model->draw(shader);
+		_model->draw(*shader);
 	}
 }
 
