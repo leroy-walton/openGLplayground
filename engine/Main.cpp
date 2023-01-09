@@ -86,6 +86,10 @@ int main()
 	WorldEntity suzanne("suzanne", &suzanneModel);
 	world.addEntity("suzanne", &suzanne);
 
+	WorldEntity test("test", &skullRatCubeModel);
+	world.addEntity("test", &test);
+
+
 	Camera camera(width, height, glm::vec3(0.0f, 0.0f, 4.0f)); // init camera
 
 	// CubeMap cubeMap;
@@ -107,7 +111,7 @@ int main()
 	while (!glfwWindowShouldClose(window))
 	{
 		//glClearColor(0.05f, 0.03f, 0.04f, 1.0f);
-		glClearColor(0.24f, 0.35f, 0.42f, 1.0f );
+		glClearColor(0.12f, 0.16f, 0.21f, 1.0f );
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		// cubeMap.draw(skyboxShader, camera);
 		stupidShader.Activate();
@@ -121,7 +125,6 @@ int main()
 			rotation += 0.5f;
 			prevTime = crntTime;
 		}
-
 
 		glm::vec4 lightColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 		glm::vec3 lightPos = glm::vec3(10.5f, 10.5f, 10.5f);
@@ -145,6 +148,7 @@ int main()
 
 		skullRatCube.rotate(0.04f,  glm::vec3(0.0f, 1.0f, 0.0f));
 		suzanne.position=glm::vec3(sin(crntTime), 0.0f, cos(crntTime) )* 5.0f;
+		test.position=glm::vec3(-4.0f, 0.0f, 0.0f);
 
 		world.draw(stupidShader);
 

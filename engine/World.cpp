@@ -21,10 +21,9 @@ void World::draw(Shader shader)
 	{
 		std::string name = itr->first;
 		WorldEntity *entity = itr->second;
-		std::cout << name << " " << entity->getModel()->isEnabled << "\n";
-		if (entity->getModel()->isEnabled)
+		std::cout << name << " " << entity->isEnabled << "\n";
+		if (entity->isEnabled)
 		{
-			//entity->getModel()->draw(shader);
 			entity->draw(shader);
 		}
 	}
