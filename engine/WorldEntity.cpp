@@ -25,6 +25,7 @@ void WorldEntity::draw()
 {
 	if (isEnabled)
 	{
+		shader->Activate();
 		GLint modelLoc = glGetUniformLocation(shader->ID, "model");
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(getMatrix()));
 		_model->draw(*shader);

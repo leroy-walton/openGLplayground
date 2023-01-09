@@ -74,8 +74,10 @@ int main()
 	initOpenGl();
 
 	Shader stupidShader("stupid.vert", "stupid.frag"); // compile shader
+	Shader normalColorShader("normalColor.vert", "normalColor.frag");
 
-	TexturedCube texturedCube;
+	std::cout << "stupidShader.ID = " << stupidShader.ID << "\n";
+	std::cout << "normalColorShader.ID = " << normalColorShader.ID << "\n";
 
 	World world;
 	Model sponzaModel("resources/models/sponza/Sponza.gltf");
@@ -130,6 +132,10 @@ int main()
 		glm::vec4 lightColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 		glm::vec3 lightPos = glm::vec3(10.5f, 10.5f, 10.5f);
 		glm::mat4 lightModel = glm::mat4(1.0f);
+
+
+		lightPos = glm::vec3(1000.5f * sin(crntTime), 10.5f, 10.5f);
+
 		lightModel = glm::translate(lightModel, lightPos);
 		glUniform4f(glGetUniformLocation(stupidShader.ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
 		glUniform3f(glGetUniformLocation(stupidShader.ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
@@ -143,7 +149,6 @@ int main()
 		model = glm::rotate(model, glm::radians(rotation * 2.3f), glm::vec3(1.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(rotation * 0.6f), glm::vec3(0.0f, 0.0f, 1.0f));
 		glUniformMatrix4fv(glGetUniformLocation(stupidShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		texturedCube.draw(stupidShader);
 
 		//drawAxes();
 
