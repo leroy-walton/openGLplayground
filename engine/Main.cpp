@@ -73,39 +73,40 @@ int main()
 	GLFWwindow *window = initGlfwWindow();
 	initOpenGl();
 
-	Shader stupidShader("stupid.vert", "stupid.frag"); // compile shader
 	Shader normalColorShader("normalColor.vert", "normalColor.frag");
+	Shader stupidShader("stupid.vert", "stupid.frag"); // compile shader
+	
 
 	std::cout << "stupidShader.ID = " << stupidShader.ID << "\n";
 	std::cout << "normalColorShader.ID = " << normalColorShader.ID << "\n";
 
 	World world;
+	Model barrelModel("resources/models/wine_barrel/wine_barrel_01_4k.gltf");
 	Model sponzaModel("resources/models/sponza/Sponza.gltf");
 	Model suzanneModel("resources/models/suzanne/Suzanne2.gltf");
 	Model skullRatCubeModel("resources/models/cubeskullrat/cube_skull_rat.gltf");
 	
+	//WorldEntity sponza("sponza", &sponzaModel, &normalColorShader);
 	WorldEntity sponza("sponza", &sponzaModel, &stupidShader);
 	world.addEntity("sponza", &sponza);
 	WorldEntity skullRatCube("skullRatCube", &skullRatCubeModel, &stupidShader);
 	world.addEntity("skullRatCube", &skullRatCube);
 	WorldEntity suzanne("suzanne", &suzanneModel, &stupidShader);
 	world.addEntity("suzanne", &suzanne);
+	WorldEntity barrel("barrel", &barrelModel, &stupidShader);
+	world.addEntity("barrel", &barrel);
 
 	WorldEntity test("test", &skullRatCubeModel, &stupidShader); // multiple entities can be linked to the same model.
 	world.addEntity("test", &test);
 
+	barrel.position = glm::vec3(50.0, -1.0f, 0.0f);
+	barrel.scaleUp(glm::vec3(50.0f ));
 	Camera camera(width, height, glm::vec3(0.0f, 0.0f, 4.0f)); // init camera
 
 	// CubeMap cubeMap;
 	// Shader skyboxShader("skybox.vert", "skybox.frag");
 	// skyboxShader.Activate();
 	// glUniform1i(glGetUniformLocation(skyboxShader.ID, "skybox"), 0);
-
-	// rotating cube texture mapping
-	Texture tex(".", "resources/textures/3dfx-chip.png", aiTextureType_NONE);
-	GLint textureUniformLocation = glGetUniformLocation(stupidShader.ID, "tex0");
-	glUniform1i(textureUniformLocation, 0); // 0 corresponds to GL_TEXTURE0 ?
-	glBindTexture(GL_TEXTURE_2D, tex.id);	// Bind the texture before drawing
 
 	FpsCounter fpsCounter;
 	GUI gui(window);
@@ -117,10 +118,10 @@ int main()
 		glClearColor(0.12f, 0.16f, 0.21f, 1.0f );
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		// cubeMap.draw(skyboxShader, camera);
-		stupidShader.Activate();
+		//stupidShader.Activate();
 		camera.Inputs(window);
+		camera.Matrix(normalColorShader, "proj");
 		camera.Matrix(stupidShader, "proj");
-		//glActiveTexture(GL_TEXTURE0);
 
 		float crntTime = glfwGetTime();
 		if (crntTime - prevTime >= 1 / 60)
@@ -134,28 +135,21 @@ int main()
 		glm::mat4 lightModel = glm::mat4(1.0f);
 
 
-		lightPos = glm::vec3(1000.5f * sin(crntTime), 10.5f, 10.5f);
+		lightPos = glm::vec3(300.5f * sin(crntTime), 10.5f, cos(crntTime)*40.5f);
 
 		lightModel = glm::translate(lightModel, lightPos);
 		glUniform4f(glGetUniformLocation(stupidShader.ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
 		glUniform3f(glGetUniformLocation(stupidShader.ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
 		glUniform1f(glGetUniformLocation(stupidShader.ID, "time"), crntTime);
 
-		// cube rotation
-		glm::mat4 model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(5.0, 0.0, 0.0));
-		//model = glm::scale(model, glm::vec3(60.0f));
-		model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::rotate(model, glm::radians(rotation * 2.3f), glm::vec3(1.0f, 0.0f, 0.0f));
-		model = glm::rotate(model, glm::radians(rotation * 0.6f), glm::vec3(0.0f, 0.0f, 1.0f));
-		glUniformMatrix4fv(glGetUniformLocation(stupidShader.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
-
-		//drawAxes();
+		glUniform4f(glGetUniformLocation(normalColorShader.ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
+		glUniform3f(glGetUniformLocation(normalColorShader.ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
+		glUniform1f(glGetUniformLocation(normalColorShader.ID, "time"), crntTime);
 
 		skullRatCube.rotate(0.04f,  glm::vec3(0.0f, 1.0f, 0.0f));
 		suzanne.position=glm::vec3(sin(crntTime), 0.0f, cos(crntTime) )* 5.0f;
 		test.position=glm::vec3(-4.0f, 0.0f, 0.0f);
-
+		
 		world.draw();
 
 		gui.drawGUI(fpsCounter.getFps(), &world);

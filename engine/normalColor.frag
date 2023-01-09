@@ -14,7 +14,7 @@ uniform vec3 camPos;
 
 void main()
 {
-	float ambient = 0.40f;
+	float ambient = 0.00f;
 	// // diffuse lighting
 	vec3 nnormal = normalize(normal);
 	vec3 lightDirection = normalize(lightPos - crntPos);
@@ -29,8 +29,8 @@ void main()
 
 	// outputs final color
 	FragColor = texture(tex0, texCoord) * lightColor * (diffuse + ambient + specular);
-
-    //FragColor = vec4( 1.0f, 0.0f, 0.0f, 1.0f );
+	// FragColor = vec4(normal, 1.0);
 	//FragColor = texture(tex0, texCoord);
 	// FragColor = vec4(color.x, color.y, color.z, 1.0);
 }
+

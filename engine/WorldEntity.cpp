@@ -23,6 +23,8 @@ std::string WorldEntity::getName()
 
 void WorldEntity::draw()
 {
+	// std::cout << "WorldEntity::draw() - " << _name << "\n";
+	// std::cout << "  -shader.ID = " << shader->ID << "\n";
 	if (isEnabled)
 	{
 		shader->Activate();
