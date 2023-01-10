@@ -81,8 +81,7 @@ void Texture::setParams(GLenum texMinFilter, GLenum texMagFilter, GLenum wrapS, 
 // bind texture id
 void Texture::bind()
 {
-    // glBindTexture(GL_TEXTURE_2D, id);
-    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, id);
 }
 
 void Texture::cleanup()
