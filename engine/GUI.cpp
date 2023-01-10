@@ -19,7 +19,7 @@ void GUI::drawGUI(double fps, World *world)
 	ImGui_ImplGlfw_NewFrame();
 	{
 		ImGui::NewFrame();
-		ImGui::Begin("Texture Cube v0.0.1");
+		ImGui::Begin("engine_demo v0.0.1");
 		ImGui::Text("fps %f", fps);
 		ImGui::Text("show/hide objects");
 		for ( std::map<std::string, WorldEntity*>::iterator itr  = world->_entities.begin(); itr != world->_entities.end(); ++itr) {
