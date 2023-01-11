@@ -36,7 +36,7 @@ GLFWwindow *initGlfwWindow()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	GLFWwindow *window = glfwCreateWindow(width, height, "Sponza with rotating cube", NULL, NULL);
+	GLFWwindow *window = glfwCreateWindow(width, height, "engine_demo", NULL, NULL);
 	if (window == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -85,17 +85,17 @@ int main()
 
 	WorldEntity lamp("lamp", &sphereModel, &lightShader );
 	world.addEntity("lamp", &lamp);
-	// WorldEntity sponza("sponza", &sponzaModel, &normalColorShader);
+	//WorldEntity sponza("sponza", &sponzaModel, &normalColorShader);
 	WorldEntity sponza("sponza", &sponzaModel, &stupidShader);
 	world.addEntity("sponza", &sponza);
 	WorldEntity skullRatCube("skullRatCube", &skullRatCubeModel, &stupidShader);
 	world.addEntity("skullRatCube", &skullRatCube);
+	WorldEntity test("test", &skullRatCubeModel, &stupidShader); // multiple entities can be linked to the same model.
+	world.addEntity("test", &test);
 	WorldEntity suzanne("suzanne", &suzanneModel, &normalColorShader);
 	world.addEntity("suzanne", &suzanne);
 	WorldEntity barrel("barrel", &barrelModel, &stupidShader);
 	world.addEntity("barrel", &barrel);
-	WorldEntity test("test", &skullRatCubeModel, &stupidShader); // multiple entities can be linked to the same model.
-	world.addEntity("test", &test);
 
 	barrel.position = glm::vec3(50.0, -1.0f, 0.0f);
 	barrel.scaleUp(glm::vec3(50.0f));
@@ -119,7 +119,6 @@ int main()
 	// Main loop
 	while (!glfwWindowShouldClose(window))
 	{
-		// cubeMap.draw(skyboxShader, camera);
 		camera.Inputs(window);
 		float crntTime = glfwGetTime();
 		if (crntTime - prevTime >= 1 / 60)
@@ -158,13 +157,12 @@ int main()
 		glUniform4f(glGetUniformLocation(lightShader.ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
 		camera.Matrix(lightShader, "camMatrix");
 
-
-
 		glClearColor(0.12f, 0.16f, 0.21f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		world.draw();
 
+		// cubeMap.draw(skyboxShader, camera);
 		gui.drawGUI(fpsCounter.getFps(), &world);
 		// gui.draw(fpsCounter.getFps(), world.getItems());
 		glfwSwapBuffers(window);

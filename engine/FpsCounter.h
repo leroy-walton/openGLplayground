@@ -11,11 +11,10 @@ public:
     double getFps();
 
 private:
-    double prevTime;
-    double crntTime;
-    double timeDiff;
-    double prevCounter;
-    unsigned int counter;
+    double last_time;
+    double current_time;
+    unsigned int frame_counter;
+    double fps;
 };
 
 #endif

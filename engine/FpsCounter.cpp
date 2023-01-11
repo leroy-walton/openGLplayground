@@ -2,19 +2,24 @@
 
 FpsCounter::FpsCounter()
 {
-    prevTime = 0.0;
-    crntTime = 0.0;
-    counter = 0;
-    timeDiff = 999999999999;
+    glfwSetTime(0);
+    last_time = 0.0;
+    current_time = 0.0;
+    frame_counter = 0;
+    fps = 0;
 }
 
 double FpsCounter::getFps()
 {
-    crntTime = glfwGetTime();
-    timeDiff = crntTime - prevTime;
-    counter++;
-    double fps = counter / timeDiff;
-    prevTime = crntTime;
-    counter = 0;
+    current_time = glfwGetTime();
+    double elapsed_time = current_time - last_time;
+    frame_counter++;
+    if (elapsed_time > 0.5)
+    {
+        double new_fps = frame_counter / elapsed_time;
+        last_time = current_time;
+        frame_counter = 0;
+        fps = new_fps;
+    }
     return fps;
 }
