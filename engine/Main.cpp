@@ -82,6 +82,7 @@ int main()
 	Model suzanneModel("resources/models/suzanne/Suzanne2.gltf");
 	Model skullRatCubeModel("resources/models/cubeskullrat/cube_skull_rat.gltf");
 	Model sphereModel("resources/models/sphere.gltf");
+	Model terrainModel("resources/models/terrain/terrain_test_01.gltf");
 
 	WorldEntity lamp("lamp", &sphereModel, &lightShader );
 	world.addEntity("lamp", &lamp);
@@ -96,6 +97,8 @@ int main()
 	world.addEntity("suzanne", &suzanne);
 	WorldEntity barrel("barrel", &barrelModel, &stupidShader);
 	world.addEntity("barrel", &barrel);
+	WorldEntity terrain("terrain", &terrainModel, &stupidShader);
+	world.addEntity("terrain", &terrain);
 
 	barrel.position = glm::vec3(50.0, -1.0f, 0.0f);
 	barrel.scaleUp(glm::vec3(50.0f));
@@ -105,6 +108,7 @@ int main()
 	suzanne.translate(glm::vec3(-440.0f, 140.0f, -250.0f));
 	test.scaleUp(glm::vec3(20.0f));
 	lamp.scaleUp(glm::vec3(20.0f));
+	terrain.scaleUp(glm::vec3(10000.0f));
 	Camera camera(width, height, glm::vec3(0.0f, 0.0f, 4.0f)); // init camera
 
 	// CubeMap cubeMap;
@@ -136,7 +140,7 @@ int main()
 		glm::vec3 lightPos = glm::vec3(10.5f, 10.5f, 10.5f);
 		glm::mat4 lightModel = glm::mat4(1.0f);
 
-		lightPos = glm::vec3(1200.5f * sin(crntTime/3.0), 200.5f, cos(crntTime/3.0) * 40.5f);
+		lightPos = glm::vec3(1200.5f * sin(crntTime/3.0), abs(sin(crntTime*2.4)*300.5f), cos(crntTime/3.0) * 40.5f);
 		lightModel = glm::translate(lightModel, lightPos);
 		lamp.position = lightPos;
 		stupidShader.Activate();
