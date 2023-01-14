@@ -13,6 +13,9 @@
 #include <glm/gtx/string_cast.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include <bullet/btBulletDynamicsCommon.h>
+#include <bullet/btBulletCollisionCommon.h>
+
 #include "CubeMap.h"
 #include "FpsCounter.h"
 #include "GUI.h"
@@ -116,6 +119,58 @@ int main()
 	// skyboxShader.Activate();
 	// glUniform1i(glGetUniformLocation(skyboxShader.ID, "skybox"), 0);
 
+// ************************************************* phys ************************************** //
+	// create world
+	btBroadphaseInterface* broadphase = new btDbvtBroadphase();
+	btDefaultCollisionConfiguration* collisionConfiguration = new btDefaultCollisionConfiguration();
+	btCollisionDispatcher* dispatcher = new btCollisionDispatcher(collisionConfiguration);
+	btSequentialImpulseConstraintSolver* solver = new btSequentialImpulseConstraintSolver;
+	btDiscreteDynamicsWorld* dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, broadphase, solver, collisionConfiguration);
+
+	btVector3 boxHalfExtents(1.0, 1.0, 1.0);
+	// btBoxShape* boxShape = new btBoxShape(boxHalfExtents);
+	btCollisionShape* boxShape = new btBoxShape(boxHalfExtents);
+	
+	// Create a rigid body: You will need to create a btRigidBody object to represent 
+	// the box in the physics simulation. You will need to specify the mass, the initial
+	// position, and the rotation of the box, as well as the shape, and motion state of the box.
+
+	btTransform boxTransform;
+	boxTransform.setIdentity();
+	boxTransform.setOrigin(btVector3(0, 100, 0));
+
+	btScalar boxMass = 1;
+	btVector3 boxInertia(0, 0, 0);
+	boxShape->calculateLocalInertia(boxMass, boxInertia);
+
+	btDefaultMotionState* boxMotionState = new btDefaultMotionState(boxTransform);
+	btRigidBody::btRigidBodyConstructionInfo boxRigidBodyCI(boxMass, boxMotionState, boxShape, boxInertia);
+	btRigidBody* boxRigidBody = new btRigidBody(boxRigidBodyCI);
+
+	dynamicsWorld->addRigidBody(boxRigidBody);
+
+	// ground
+	btVector3 planeNormal(0,1,0);
+	btScalar planeConstant = 0;
+	btCollisionShape* groundShape = new btStaticPlaneShape(planeNormal,planeConstant);
+
+	btDefaultMotionState* groundMotionState = new btDefaultMotionState();
+	btTransform groundTransform;
+	groundTransform.setIdentity();
+	groundTransform.setOrigin(btVector3(0,16,0));
+	groundMotionState->setWorldTransform(groundTransform);
+
+	btRigidBody::btRigidBodyConstructionInfo groundRigidBodyCI(0,groundMotionState,groundShape,btVector3(0,0,0));
+	btRigidBody* groundRigidBody = new btRigidBody(groundRigidBodyCI);
+	dynamicsWorld->addCollisionObject(groundRigidBody);
+
+	groundRigidBody->setCollisionFlags(groundRigidBody->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
+	groundRigidBody->setActivationState(DISABLE_DEACTIVATION);
+
+//	dynamicsWorld->setGravity(btVector3(0, -9.8f, 0));
+
+// ************************************************************************************** //
+
 	FpsCounter fpsCounter;
 	GUI gui(window);
 	float rotation = 0.0f;
@@ -125,17 +180,39 @@ int main()
 	{
 		camera.Inputs(window);
 		float crntTime = glfwGetTime();
-		if (crntTime - prevTime >= 1 / 60)
+		float timeStep = crntTime - prevTime;
+		if (timeStep >= 1 / 60)
 		{
 			rotation += 0.5f;
 			prevTime = crntTime;
 		}
 
+		// *******************   bullet phys **************
+		dynamicsWorld->stepSimulation(0.016f, 10);
+
+		// Retrieve the body's new position and rotation: To retrieve the box's new position and rotation, 
+		// you can use the getWorldTransform function of the box's motion state.
+		btTransform boxTransform;
+		boxMotionState->getWorldTransform(boxTransform);
+		btVector3 newPosition = boxTransform.getOrigin();
+		btQuaternion newRotation = boxTransform.getRotation();
+		test.position=glm::make_vec3(newPosition.m_floats);
+
+		glm::mat4 tmp_rotation_matrix = glm::mat4_cast(glm::quat(newRotation.x(), newRotation.y(), newRotation.z(), newRotation.w()));
+		test.setOrientation(tmp_rotation_matrix);
+
+
+		// Apply forces or torques: You can apply forces or torques to the box to make it move 
+		// around or rotate, by calling applyCentralForce or applyTorque on the rigid body.
+		//btVector3 force(1.0, 0.0, 0.0);
+		//boxRigidBody->applyCentralForce(force);
+
+		// ************************************************
+
 		// 3d space positioning
 		skullRatCube.rotate(0.04f, glm::vec3(0.0f, 1.0f, 0.0f));
 		//suzanne.position = glm::vec3(sin(crntTime), 0.0f, cos(crntTime)) * 5.0f;
-		test.position = glm::vec3(0.0f, 150.0f, 0.0f);
-
+		
 		glm::vec4 lightColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 		glm::vec3 lightPos = glm::vec3(10.5f, 10.5f, 10.5f);
 		glm::mat4 lightModel = glm::mat4(1.0f);

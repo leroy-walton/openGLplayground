@@ -1,15 +1,4 @@
 #
-# Cross Platform Makefile
-# Compatible with MSYS2/MINGW, Ubuntu 14.04.1 and Mac OS X
-#
-# You will need GLFW (http://www.glfw.org):
-# Linux:
-#   apt-get install libglfw-dev
-# Mac OS X:
-#   brew install glfw
-# MSYS2:
-#   pacman -S --noconfirm --needed mingw-w64-x86_64-toolchain mingw-w64-x86_64-glfw
-#
 
 #CXX = g++
 #CXX = clang++
@@ -25,9 +14,8 @@ SOURCES += Axes.cpp
 
 OBJS = $(addsuffix .o, $(basename $(notdir $(SOURCES))))
 UNAME_S := $(shell uname -s)
-LINUX_GL_LIBS = -lGL
 
-CXXFLAGS = -std=c++11 -I$(IMGUI_DIR) -I./include 
+CXXFLAGS = -std=c++11 -I$(IMGUI_DIR) -I./include -DBT_USE_DOUBLE_PRECISION -I/usr/local/include/bullet -I/usr/local/include
 CXXFLAGS += -g -Wall -Wformat
 LIBS = 
 
@@ -44,30 +32,22 @@ LIBS =
 ##---------------------------------------------------------------------
 
 ifeq ($(UNAME_S), Linux) #LINUX
-	ECHO_MESSAGE = "Linux"
-	LIBS += $(LINUX_GL_LIBS) `pkg-config --static --libs glfw3`
+	ECHO_MESSAGE = "Linux master race."
+	LIBS += -lGL
 	LIBS += -lGLEW
+	LIBS += `pkg-config --static --libs glfw3`
 	LIBS += -lassimp
+	LIBS += -L/usr/local/lib -lBulletSoftBody -lBulletDynamics -lBulletCollision -lLinearMath
 	CXXFLAGS += `pkg-config --cflags glfw3`
 	CFLAGS = $(CXXFLAGS)
 endif
 
 ifeq ($(UNAME_S), Darwin) #APPLE
-	ECHO_MESSAGE = "Mac OS X port not implemented yet"
-	LIBS += -framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo
-	LIBS += -L/usr/local/lib -L/opt/local/lib -L/opt/homebrew/lib
-	LIBS += -lglfw
-	LIBS += -lassimp
-
-	CXXFLAGS += -I/usr/local/include -I/opt/local/include -I/opt/homebrew/include
-	CFLAGS = $(CXXFLAGS)
+	ECHO_MESSAGE = "Mac OS X port not implemented."
 endif
 
 ifeq ($(OS), Windows_NT)
-	ECHO_MESSAGE = "You shouldn't use any microsoft softwares."
-	LIBS += -lglfw3 -lgdi32 -lopengl32 -limm32
-	CXXFLAGS += `pkg-config --cflags glfw3`
-	CFLAGS = $(CXXFLAGS)
+	ECHO_MESSAGE = "You shouldn't use any microsoft software."
 endif
 
 ##---------------------------------------------------------------------
