@@ -75,44 +75,46 @@ int main()
 	GLFWwindow *window = initGlfwWindow();
 	initOpenGl();
 
-	Shader stupidShader("stupid.vert", "stupid.frag"); // compile shader
+	Shader basicShader("basic.vert", "basic.frag"); // compile shader
 	Shader normalColorShader("normalColor.vert", "normalColor.frag");
-	Shader lightShader("light.vert", "light.frag");
+	Shader uniColorShader("uniColor.vert", "uniColor.frag");
 
 	World world;
 	Model barrelModel("resources/models/wine_barrel/wine_barrel_01_4k.gltf");
-	Model sponzaModel("resources/models/sponza/Sponza.gltf");
+	//Model sponzaModel("resources/models/sponza/Sponza.gltf");
 	Model suzanneModel("resources/models/suzanne/Suzanne2.gltf");
 	Model skullRatCubeModel("resources/models/cubeskullrat/cube_skull_rat.gltf");
 	Model sphereModel("resources/models/sphere.gltf");
-	Model terrainModel("resources/models/terrain/terrain_test_01.gltf");
+	Model terrainModel("resources/models/terrain/ground_textured_100x100.gltf");
 
-	WorldEntity lamp("lamp", &sphereModel, &lightShader );
+	WorldEntity lamp("lamp", &sphereModel, &uniColorShader );
 	world.addEntity("lamp", &lamp);
 	//WorldEntity sponza("sponza", &sponzaModel, &normalColorShader);
-	WorldEntity sponza("sponza", &sponzaModel, &stupidShader);
-	world.addEntity("sponza", &sponza);
-	WorldEntity skullRatCube("skullRatCube", &skullRatCubeModel, &stupidShader);
+	//WorldEntity sponza("sponza", &sponzaModel, &basicShader);
+	//world.addEntity("sponza", &sponza);
+	WorldEntity skullRatCube("skullRatCube", &skullRatCubeModel, &basicShader);
 	world.addEntity("skullRatCube", &skullRatCube);
-	WorldEntity test("test", &skullRatCubeModel, &stupidShader); // multiple entities can be linked to the same model.
+	WorldEntity test("test", &skullRatCubeModel, &basicShader); // multiple entities can be linked to the same model.
 	world.addEntity("test", &test);
+	WorldEntity test2("test2", &skullRatCubeModel, &basicShader); // multiple entities can be linked to the same model.
+	world.addEntity("test2", &test2);
 	WorldEntity suzanne("suzanne", &suzanneModel, &normalColorShader);
 	world.addEntity("suzanne", &suzanne);
-	WorldEntity barrel("barrel", &barrelModel, &stupidShader);
+	WorldEntity barrel("barrel", &barrelModel, &basicShader);
 	world.addEntity("barrel", &barrel);
-	WorldEntity terrain("terrain", &terrainModel, &stupidShader);
+	WorldEntity terrain("terrain", &terrainModel, &basicShader);
 	world.addEntity("terrain", &terrain);
 
 	barrel.position = glm::vec3(50.0, -1.0f, 0.0f);
-	barrel.scaleUp(glm::vec3(50.0f));
+	barrel.scaleUp(glm::vec3(20.0f));
 	skullRatCube.scaleUp(glm::vec3(20.0f));
 	skullRatCube.translate(glm::vec3(400.0f, 20.0f, 150.0f));
 	suzanne.scaleUp(glm::vec3(30.0f));
 	suzanne.translate(glm::vec3(-440.0f, 140.0f, -250.0f));
-	test.scaleUp(glm::vec3(20.0f));
-	lamp.scaleUp(glm::vec3(20.0f));
+	test.scaleUp(glm::vec3(1.0f));
+	lamp.scaleUp(glm::vec3(30.0f));
 	terrain.scaleUp(glm::vec3(10000.0f));
-	Camera camera(width, height, glm::vec3(0.0f, 0.0f, 4.0f)); // init camera
+	Camera camera(width, height, glm::vec3(0.0f, 4.0f, 40.0f)); // init camera
 
 	// CubeMap cubeMap;
 	// Shader skyboxShader("skybox.vert", "skybox.frag");
@@ -137,7 +139,11 @@ int main()
 
 	btTransform boxTransform;
 	boxTransform.setIdentity();
-	boxTransform.setOrigin(btVector3(0, 100, 0));
+	boxTransform.setOrigin(btVector3(0, 50, 0));
+
+	btTransform boxTransform2;
+	boxTransform2.setIdentity();
+	boxTransform2.setOrigin(btVector3(0, 52.5, 0));
 
 	btScalar boxMass = 1;
 	btVector3 boxInertia(0, 0, 0);
@@ -149,6 +155,12 @@ int main()
 
 	dynamicsWorld->addRigidBody(boxRigidBody);
 
+	btDefaultMotionState* boxMotionState2 = new btDefaultMotionState(boxTransform2);
+	btRigidBody::btRigidBodyConstructionInfo boxRigidBodyCI2(boxMass, boxMotionState2, boxShape, boxInertia);
+	btRigidBody* boxRigidBody2 = new btRigidBody(boxRigidBodyCI2);
+
+	dynamicsWorld->addRigidBody(boxRigidBody2);
+
 	// ground
 	btVector3 planeNormal(0,1,0);
 	btScalar planeConstant = 0;
@@ -157,7 +169,7 @@ int main()
 	btDefaultMotionState* groundMotionState = new btDefaultMotionState();
 	btTransform groundTransform;
 	groundTransform.setIdentity();
-	groundTransform.setOrigin(btVector3(0,16,0));
+	groundTransform.setOrigin(btVector3(0,0,0));
 	groundMotionState->setWorldTransform(groundTransform);
 
 	btRigidBody::btRigidBodyConstructionInfo groundRigidBodyCI(0,groundMotionState,groundShape,btVector3(0,0,0));
@@ -179,6 +191,7 @@ int main()
 	while (!glfwWindowShouldClose(window))
 	{
 		camera.Inputs(window);
+		if ( camera.Position.y < 0.2f ) camera.Position.y = 0.20f;
 		float crntTime = glfwGetTime();
 		float timeStep = crntTime - prevTime;
 		if (timeStep >= 1 / 60)
@@ -188,19 +201,29 @@ int main()
 		}
 
 		// *******************   bullet phys **************
-		dynamicsWorld->stepSimulation(0.016f, 10);
+		dynamicsWorld->stepSimulation(0.01666666666f, 10);
 
 		// Retrieve the body's new position and rotation: To retrieve the box's new position and rotation, 
 		// you can use the getWorldTransform function of the box's motion state.
-		btTransform boxTransform;
-		boxMotionState->getWorldTransform(boxTransform);
-		btVector3 newPosition = boxTransform.getOrigin();
-		btQuaternion newRotation = boxTransform.getRotation();
-		test.position=glm::make_vec3(newPosition.m_floats);
-
-		glm::mat4 tmp_rotation_matrix = glm::mat4_cast(glm::quat(newRotation.x(), newRotation.y(), newRotation.z(), newRotation.w()));
-		test.setOrientation(tmp_rotation_matrix);
-
+		{
+			btTransform boxTransform;
+			boxMotionState->getWorldTransform(boxTransform);
+			btVector3 newPosition = boxTransform.getOrigin();
+			btQuaternion newRotation = boxTransform.getRotation();
+			test.position=glm::make_vec3(newPosition.m_floats);
+			glm::mat4 tmp_rotation_matrix = glm::mat4_cast(glm::quat(newRotation.x(), newRotation.y(), newRotation.z(), newRotation.w()));
+			test.setOrientation(tmp_rotation_matrix);
+		}
+		
+		{
+			btTransform boxTransform;
+			boxMotionState2->getWorldTransform(boxTransform);
+			btVector3 newPosition = boxTransform.getOrigin();
+			btQuaternion newRotation = boxTransform.getRotation();
+			test2.position=glm::make_vec3(newPosition.m_floats);
+			glm::mat4 tmp_rotation_matrix = glm::mat4_cast(glm::quat(newRotation.x(), newRotation.y(), newRotation.z(), newRotation.w()));
+			test2.setOrientation(tmp_rotation_matrix);
+		}
 
 		// Apply forces or torques: You can apply forces or torques to the box to make it move 
 		// around or rotate, by calling applyCentralForce or applyTorque on the rigid body.
@@ -217,15 +240,17 @@ int main()
 		glm::vec3 lightPos = glm::vec3(10.5f, 10.5f, 10.5f);
 		glm::mat4 lightModel = glm::mat4(1.0f);
 
-		lightPos = glm::vec3(1200.5f * sin(crntTime/3.0), abs(sin(crntTime*2.4)*300.5f), cos(crntTime/3.0) * 40.5f);
+		// lightPos = glm::vec3(1200.5f * sin(crntTime/3.0), abs(sin(crntTime*2.4)*300.5f), cos(crntTime/3.0) * 40.5f);
+		lightPos = glm::vec3(-1000.0, 1000.0, 450.0);
+
 		lightModel = glm::translate(lightModel, lightPos);
 		lamp.position = lightPos;
-		stupidShader.Activate();
-		glUniform4f(glGetUniformLocation(stupidShader.ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
-		glUniform3f(glGetUniformLocation(stupidShader.ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
-		glUniform1f(glGetUniformLocation(stupidShader.ID, "time"), crntTime);
-		glUniform3f(glGetUniformLocation(stupidShader.ID, "camPos"), camera.Position.x, camera.Position.y, camera.Position.z);
-		camera.Matrix(stupidShader, "proj");
+		basicShader.Activate();
+		glUniform4f(glGetUniformLocation(basicShader.ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
+		glUniform3f(glGetUniformLocation(basicShader.ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
+		glUniform1f(glGetUniformLocation(basicShader.ID, "time"), crntTime);
+		glUniform3f(glGetUniformLocation(basicShader.ID, "camPos"), camera.Position.x, camera.Position.y, camera.Position.z);
+		camera.Matrix(basicShader, "proj");
 
 		normalColorShader.Activate();
 		glUniform4f(glGetUniformLocation(normalColorShader.ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
@@ -234,9 +259,9 @@ int main()
 		glUniform3f(glGetUniformLocation(normalColorShader.ID, "camPos"), camera.Position.x, camera.Position.y, camera.Position.z);
 		camera.Matrix(normalColorShader, "proj");
 
-		lightShader.Activate();
-		glUniform4f(glGetUniformLocation(lightShader.ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
-		camera.Matrix(lightShader, "camMatrix");
+		uniColorShader.Activate();
+		glUniform4f(glGetUniformLocation(uniColorShader.ID, "color"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
+		camera.Matrix(uniColorShader, "camMatrix");
 
 		glClearColor(0.12f, 0.16f, 0.21f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
