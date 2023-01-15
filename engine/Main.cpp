@@ -24,6 +24,7 @@
 #include "VAO.h"
 #include "EBO.h"
 #include "TexturedCube.h"
+#include "WorldFactory.h"
 
 const unsigned int width = 2000;
 const unsigned int height = 1000;
@@ -79,25 +80,24 @@ int main()
 	Shader normalColorShader("normalColor.vert", "normalColor.frag");
 	Shader uniColorShader("uniColor.vert", "uniColor.frag");
 
+	WorldFactory wf;
+//    World testWorld = wf.generate();
+
 	World world;
 	Model barrelModel("resources/models/wine_barrel/wine_barrel_01_4k.gltf");
 	//Model sponzaModel("resources/models/sponza/Sponza.gltf");
 	Model suzanneModel("resources/models/suzanne/Suzanne2.gltf");
-	Model skullRatCubeModel("resources/models/cubeskullrat/cube_skull_rat.gltf");
 	Model sphereModel("resources/models/sphere.gltf");
 	Model terrainModel("resources/models/terrain/ground_textured_100x100.gltf");
+
+	Model skullRatCubeModel("resources/models/cubeskullrat/cube_skull_rat.gltf");
+
 
 	WorldEntity lamp("lamp", &sphereModel, &uniColorShader );
 	world.addEntity("lamp", &lamp);
 	//WorldEntity sponza("sponza", &sponzaModel, &normalColorShader);
 	//WorldEntity sponza("sponza", &sponzaModel, &basicShader);
 	//world.addEntity("sponza", &sponza);
-	WorldEntity skullRatCube("skullRatCube", &skullRatCubeModel, &basicShader);
-	world.addEntity("skullRatCube", &skullRatCube);
-	WorldEntity test("test", &skullRatCubeModel, &basicShader); // multiple entities can be linked to the same model.
-	world.addEntity("test", &test);
-	WorldEntity test2("test2", &skullRatCubeModel, &basicShader); // multiple entities can be linked to the same model.
-	world.addEntity("test2", &test2);
 	WorldEntity suzanne("suzanne", &suzanneModel, &normalColorShader);
 	world.addEntity("suzanne", &suzanne);
 	WorldEntity barrel("barrel", &barrelModel, &basicShader);
@@ -105,15 +105,24 @@ int main()
 	WorldEntity terrain("terrain", &terrainModel, &basicShader);
 	world.addEntity("terrain", &terrain);
 
+	WorldEntity skullRatCube("skullRatCube", &skullRatCubeModel, &basicShader);
+	world.addEntity("skullRatCube", &skullRatCube);
+	WorldEntity test("test", &skullRatCubeModel, &basicShader); // multiple entities can be linked to the same model.
+	world.addEntity("test", &test);
+	WorldEntity test2("test2", &skullRatCubeModel, &basicShader); // multiple entities can be linked to the same model.
+	world.addEntity("test2", &test2);
+
+
 	barrel.position = glm::vec3(50.0, -1.0f, 0.0f);
 	barrel.scaleUp(glm::vec3(20.0f));
-	skullRatCube.scaleUp(glm::vec3(20.0f));
-	skullRatCube.translate(glm::vec3(400.0f, 20.0f, 150.0f));
 	suzanne.scaleUp(glm::vec3(30.0f));
 	suzanne.translate(glm::vec3(-440.0f, 140.0f, -250.0f));
-	test.scaleUp(glm::vec3(1.0f));
 	lamp.scaleUp(glm::vec3(30.0f));
 	terrain.scaleUp(glm::vec3(10000.0f));
+
+	skullRatCube.scaleUp(glm::vec3(20.0f));
+	skullRatCube.translate(glm::vec3(400.0f, 20.0f, 150.0f));
+
 	Camera camera(width, height, glm::vec3(0.0f, 4.0f, 40.0f)); // init camera
 
 	// CubeMap cubeMap;

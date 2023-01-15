@@ -2,16 +2,14 @@
 
 World WorldFactory::generate()
 {
-
-    World world;
-    
+    World world;    
     Shader basicShader("basic.vert", "basic.frag"); // compile shader
 	Shader normalColorShader("normalColor.vert", "normalColor.frag");
 	Shader uniColorShader("uniColor.vert", "uniColor.frag");
 
-    world.basicShader = basicShader;
-    world.normalColorShader = normalColorShader;
-    world.uniColorShader = uniColorShader;
+    world.basicShader = &basicShader;
+    world.uniColorShader = &uniColorShader;
+    world.normalColorShader = &normalColorShader;
 
     // models
 	Model barrelModel("resources/models/wine_barrel/wine_barrel_01_4k.gltf");
@@ -20,21 +18,21 @@ World WorldFactory::generate()
 	Model sphereModel("resources/models/sphere.gltf");
 	Model terrainModel("resources/models/terrain/ground_textured_100x100.gltf");
 
-    // WorldEntities
-    WorldEntity lamp("lamp", &sphereModel, &uniColorShader );
+    // // WorldEntities
+    WorldEntity lamp("lamp", &sphereModel, world.uniColorShader );
 	world.addEntity("lamp", &lamp);
     world.lamp = &lamp;
-	//WorldEntity sponza("sponza", &sponzaModel, &normalColorShader);
-	//WorldEntity sponza("sponza", &sponzaModel, &basicShader);
-	//world.addEntity("sponza", &sponza);
-   	WorldEntity suzanne("suzanne", &suzanneModel, &normalColorShader);
+	 //WorldEntity sponza("sponza", &sponzaModel, &normalColorShader);
+	 //WorldEntity sponza("sponza", &sponzaModel, &basicShader);
+	 //world.addEntity("sponza", &sponza);
+   	WorldEntity suzanne("suzanne", &suzanneModel, world.normalColorShader);
 	world.addEntity("suzanne", &suzanne);
-	WorldEntity barrel("barrel", &barrelModel, &basicShader);
+	WorldEntity barrel("barrel", &barrelModel, world.basicShader);
 	world.addEntity("barrel", &barrel);
-	WorldEntity terrain("terrain", &terrainModel, &basicShader);
+	WorldEntity terrain("terrain", &terrainModel, world.basicShader);
 	world.addEntity("terrain", &terrain);
 
-    // positionning / scaling
+    // // positionning / scaling
     barrel.position = glm::vec3(50.0, -1.0f, 0.0f);
 	barrel.scaleUp(glm::vec3(20.0f));
     suzanne.scaleUp(glm::vec3(30.0f));
