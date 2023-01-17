@@ -14,7 +14,6 @@ public:
 	World();
 	~World();
 	void draw();
-	void addModel(std::string name, Model *model);
 	void addEntity(std::string name, WorldEntity *entity);
 	std::map<std::string, Model *> _items;
 	std::map<std::string,WorldEntity *> _entities;
