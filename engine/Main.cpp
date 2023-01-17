@@ -76,14 +76,12 @@ int main()
 	GLFWwindow *window = initGlfwWindow();
 	initOpenGl();
 
-	Shader basicShader("basic.vert", "basic.frag"); // compile shader
-	Shader normalColorShader("normalColor.vert", "normalColor.frag");
-	Shader uniColorShader("uniColor.vert", "uniColor.frag");
 
-	WorldFactory wf;
+	//WorldFactory wf;
 //    World testWorld = wf.generate();
 
 	World world;
+	
 	Model barrelModel("resources/models/wine_barrel/wine_barrel_01_4k.gltf");
 	//Model sponzaModel("resources/models/sponza/Sponza.gltf");
 	Model suzanneModel("resources/models/suzanne/Suzanne2.gltf");
@@ -92,7 +90,11 @@ int main()
 
 	Model skullRatCubeModel("resources/models/cubeskullrat/cube_skull_rat.gltf");
 
+	Shader basicShader = *world.basicShader;
+	Shader normalColorShader = *world.normalColorShader;
+	Shader uniColorShader = *world.uniColorShader;
 
+	
 	WorldEntity lamp("lamp", &sphereModel, &uniColorShader );
 	world.addEntity("lamp", &lamp);
 	//WorldEntity sponza("sponza", &sponzaModel, &normalColorShader);
@@ -111,6 +113,7 @@ int main()
 	world.addEntity("test", &test);
 	WorldEntity test2("test2", &skullRatCubeModel, &basicShader); // multiple entities can be linked to the same model.
 	world.addEntity("test2", &test2);
+
 
 
 	barrel.position = glm::vec3(50.0, -1.0f, 0.0f);

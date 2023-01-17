@@ -89,6 +89,7 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene)
     {
         aiFace face = mesh->mFaces[i];
         // Retrieve all indices of the face and store them in the indices vector
+        // usualy 3 per face.
         for (GLuint j = 0; j < face.mNumIndices; j++)
         {
             indices.push_back(face.mIndices[j]);
