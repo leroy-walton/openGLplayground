@@ -11,9 +11,6 @@ MainApp::~MainApp() {
 	glfwTerminate();
 }
 
-const unsigned int width = 2000;
-const unsigned int height = 1000;
-
 void framebuffer_size_callback(GLFWwindow *window, int width, int height)
 {
 	glViewport(0, 0, width, height);
@@ -260,6 +257,9 @@ void MainApp::run()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		world.draw();
+
+		
+
 
 		// cubeMap.draw(skyboxShader, camera);
 		gui.drawGUI(fpsCounter.getFps(), &world);

@@ -27,23 +27,29 @@
 #include "VAO.h"
 #include "EBO.h"
 #include "TexturedCube.h"
-
+#include "jam_Entity.h"
 
 class MainApp
 {
 public:
     static constexpr unsigned int width = 2000;
     static constexpr unsigned int height = 1000;
-    void run();
+
     MainApp();
     ~MainApp();
     MainApp(const MainApp &) = delete;
     MainApp &operator=(const MainApp &) = delete;
 
+    void run();
+
 private:
+    GLFWwindow *m_window;
+    World *m_world;
+    std::vector<jam::Entity> entities;
+
     void initGlfwWindow();
     void initOpenGl();
-    GLFWwindow* m_window;
+    void loadGameObjects();
 };
 
 #endif
