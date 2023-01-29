@@ -1,30 +1,15 @@
-#include <filesystem>
-#include <iostream>
-#include <math.h>
-#include <map>
 
-#include "imgui.h"
-#include "imgui_impl_glfw.h"
-#include "imgui_impl_opengl3.h"
+#include "MainApp.h"
 
-#include <assimp/Importer.hpp>	// C++ importer interface
-#include <assimp/scene.h>		// Output data structure
-#include <assimp/postprocess.h> // Post processing flags
-#include <glm/gtx/string_cast.hpp>
-#include <glm/gtc/type_ptr.hpp>
+MainApp::MainApp() {
+	initGlfwWindow();
+	initOpenGl();
+}
 
-#include <bullet/btBulletDynamicsCommon.h>
-#include <bullet/btBulletCollisionCommon.h>
-
-#include "CubeMap.h"
-#include "FpsCounter.h"
-#include "GUI.h"
-#include "ModelLoader.h"
-#include "World.h"
-#include "VAO.h"
-#include "EBO.h"
-#include "TexturedCube.h"
-#include "WorldFactory.h"
+MainApp::~MainApp() {
+	glfwDestroyWindow(m_window);
+	glfwTerminate();
+}
 
 const unsigned int width = 2000;
 const unsigned int height = 1000;
@@ -34,7 +19,7 @@ void framebuffer_size_callback(GLFWwindow *window, int width, int height)
 	glViewport(0, 0, width, height);
 }
 
-GLFWwindow *initGlfwWindow()
+void MainApp::initGlfwWindow()
 {
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -45,7 +30,8 @@ GLFWwindow *initGlfwWindow()
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
 		glfwTerminate();
-		return nullptr;
+		//return nullptr;
+		// TODO: raise exception
 	}
 	glfwMakeContextCurrent(window);
 	// Set this to true so GLEW knows to use a modern approach to retrieving function pointers and extensions
@@ -53,14 +39,16 @@ GLFWwindow *initGlfwWindow()
 	if (GLEW_OK != glewInit())
 	{
 		std::cout << "Failed to initialize GLEW" << std::endl;
-		return nullptr;
+		//return nullptr;
+		// TODO: raise exception
 	}
 
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-	return window;
+	//return window;
+	m_window = window;
 }
 
-void initOpenGl()
+void MainApp::initOpenGl()
 {
 	glViewport(0, 0, width, height);
 	glEnable(GL_DEPTH_TEST);
@@ -71,14 +59,8 @@ void initOpenGl()
 	glDepthFunc(GL_LESS);
 }
 
-int main()
+void MainApp::run()
 {
-	GLFWwindow *window = initGlfwWindow();
-	initOpenGl();
-
-
-	//WorldFactory wf;
-//    World testWorld = wf.generate();
 
 	World world;
 	
@@ -113,7 +95,6 @@ int main()
 	world.addEntity("test", &test);
 	WorldEntity test2("test2", &skullRatCubeModel, &basicShader); // multiple entities can be linked to the same model.
 	world.addEntity("test2", &test2);
-
 
 
 	barrel.position = glm::vec3(50.0, -1.0f, 0.0f);
@@ -196,13 +177,13 @@ int main()
 // ************************************************************************************** //
 
 	FpsCounter fpsCounter;
-	GUI gui(window);
+	GUI gui(m_window);
 	float rotation = 0.0f;
 	double prevTime = glfwGetTime();
 	// Main loop
-	while (!glfwWindowShouldClose(window))
+	while (!glfwWindowShouldClose(m_window))
 	{
-		camera.Inputs(window);
+		camera.Inputs(m_window);
 		if ( camera.Position.y < 0.2f ) camera.Position.y = 0.20f;
 		float crntTime = glfwGetTime();
 		float timeStep = crntTime - prevTime;
@@ -283,14 +264,9 @@ int main()
 		// cubeMap.draw(skyboxShader, camera);
 		gui.drawGUI(fpsCounter.getFps(), &world);
 		// gui.draw(fpsCounter.getFps(), world.getItems());
-		glfwSwapBuffers(window);
-		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-			glfwSetWindowShouldClose(window, true);
+		glfwSwapBuffers(m_window);
+		if (glfwGetKey(m_window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+			glfwSetWindowShouldClose(m_window, true);
 		glfwPollEvents();
 	}
-
-	// seek & destroy
-	glfwDestroyWindow(window);
-	glfwTerminate();
-	return 0;
 }
