@@ -28,6 +28,7 @@
 #include "EBO.h"
 #include "TexturedCube.h"
 #include "jam_Entity.h"
+#include "WorldRenderer.h"
 
 class MainApp
 {
@@ -45,16 +46,11 @@ public:
 private:
     GLFWwindow *m_window;
     World *m_world;
-    std::vector<jam::Entity> entities;
+    WorldRenderer worldRenderer;
 
     void initGlfwWindow();
     void initOpenGl();
     void loadGameObjects();
-    void renderWorld(World world);
-    void renderEntity(WorldEntity* entity);
-    void renderModel(Model* model);
-    void renderMesh(Mesh& mesh, Shader* shader);
-
 };
 
 #endif
