@@ -50,6 +50,11 @@ private:
     void initGlfwWindow();
     void initOpenGl();
     void loadGameObjects();
+    void renderWorld(World world);
+    void renderEntity(WorldEntity* entity);
+    void renderModel(Model* model);
+    void renderMesh(Mesh& mesh, Shader* shader);
+
 };
 
 #endif

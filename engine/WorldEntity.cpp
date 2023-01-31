@@ -21,19 +21,6 @@ std::string WorldEntity::getName()
 	return _name;
 }
 
-void WorldEntity::draw()
-{
-	// std::cout << "WorldEntity::draw() - " << _name << "\n";
-	// std::cout << "  -shader.ID = " << shader->ID << "\n";
-	if (isEnabled)
-	{
-		shader->Activate();
-		GLint modelLoc = glGetUniformLocation(shader->ID, "model");
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(getMatrix()));
-		_model->draw(*shader);
-	}
-}
-
 void WorldEntity::translate(glm::vec3 t) { position += t; }
 void WorldEntity::setPosition(glm::vec3 p) { position = p; }
 glm::vec3 WorldEntity::getPosition() { return position; }

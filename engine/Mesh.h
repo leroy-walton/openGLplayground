@@ -14,12 +14,12 @@ public:
    std::vector<unsigned int> indices;
    std::vector<Texture> textures;
    void initVAO();
-   void Draw(Shader shader);
    Mesh(std::vector<Vertex> vertices, std::vector<GLuint> indices, std::vector<Texture> textures);
 
+   GLuint VAO;
 private:
    void setupMesh();
-   GLuint VAO;
+  
    GLuint VBO;
    GLuint EBO;
 };

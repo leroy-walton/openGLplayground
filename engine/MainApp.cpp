@@ -1,12 +1,14 @@
 
 #include "MainApp.h"
 
-MainApp::MainApp() {
+MainApp::MainApp()
+{
 	initGlfwWindow();
 	initOpenGl();
 }
 
-MainApp::~MainApp() {
+MainApp::~MainApp()
+{
 	glfwDestroyWindow(m_window);
 	glfwTerminate();
 }
@@ -27,8 +29,8 @@ void MainApp::initGlfwWindow()
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
 		glfwTerminate();
-		//return nullptr;
-		// TODO: raise exception
+		// return nullptr;
+		//  TODO: raise exception
 	}
 	glfwMakeContextCurrent(window);
 	// Set this to true so GLEW knows to use a modern approach to retrieving function pointers and extensions
@@ -36,12 +38,12 @@ void MainApp::initGlfwWindow()
 	if (GLEW_OK != glewInit())
 	{
 		std::cout << "Failed to initialize GLEW" << std::endl;
-		//return nullptr;
-		// TODO: raise exception
+		// return nullptr;
+		//  TODO: raise exception
 	}
 
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-	//return window;
+	// return window;
 	m_window = window;
 }
 
@@ -60,9 +62,9 @@ void MainApp::run()
 {
 
 	World world;
-	
+
 	Model barrelModel("resources/models/wine_barrel/wine_barrel_01_4k.gltf");
-	//Model sponzaModel("resources/models/sponza/Sponza.gltf");
+	// Model sponzaModel("resources/models/sponza/Sponza.gltf");
 	Model suzanneModel("resources/models/suzanne/Suzanne2.gltf");
 	Model sphereModel("resources/models/sphere.gltf");
 	Model terrainModel("resources/models/terrain/ground_textured_100x100.gltf");
@@ -73,12 +75,11 @@ void MainApp::run()
 	Shader normalColorShader = *world.normalColorShader;
 	Shader uniColorShader = *world.uniColorShader;
 
-	
-	WorldEntity lamp("lamp", &sphereModel, &uniColorShader );
+	WorldEntity lamp("lamp", &sphereModel, &uniColorShader);
 	world.addEntity("lamp", &lamp);
-	//WorldEntity sponza("sponza", &sponzaModel, &normalColorShader);
-	//WorldEntity sponza("sponza", &sponzaModel, &basicShader);
-	//world.addEntity("sponza", &sponza);
+	// WorldEntity sponza("sponza", &sponzaModel, &normalColorShader);
+	// WorldEntity sponza("sponza", &sponzaModel, &basicShader);
+	// world.addEntity("sponza", &sponza);
 	WorldEntity suzanne("suzanne", &suzanneModel, &normalColorShader);
 	world.addEntity("suzanne", &suzanne);
 	WorldEntity barrel("barrel", &barrelModel, &basicShader);
@@ -92,7 +93,6 @@ void MainApp::run()
 	world.addEntity("test", &test);
 	WorldEntity test2("test2", &skullRatCubeModel, &basicShader); // multiple entities can be linked to the same model.
 	world.addEntity("test2", &test2);
-
 
 	barrel.position = glm::vec3(50.0, -1.0f, 0.0f);
 	barrel.scaleUp(glm::vec3(20.0f));
@@ -111,19 +111,19 @@ void MainApp::run()
 	// skyboxShader.Activate();
 	// glUniform1i(glGetUniformLocation(skyboxShader.ID, "skybox"), 0);
 
-// ************************************************* phys ************************************** //
+	// ************************************************* phys ************************************** //
 	// create world
-	btBroadphaseInterface* broadphase = new btDbvtBroadphase();
-	btDefaultCollisionConfiguration* collisionConfiguration = new btDefaultCollisionConfiguration();
-	btCollisionDispatcher* dispatcher = new btCollisionDispatcher(collisionConfiguration);
-	btSequentialImpulseConstraintSolver* solver = new btSequentialImpulseConstraintSolver;
-	btDiscreteDynamicsWorld* dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, broadphase, solver, collisionConfiguration);
+	btBroadphaseInterface *broadphase = new btDbvtBroadphase();
+	btDefaultCollisionConfiguration *collisionConfiguration = new btDefaultCollisionConfiguration();
+	btCollisionDispatcher *dispatcher = new btCollisionDispatcher(collisionConfiguration);
+	btSequentialImpulseConstraintSolver *solver = new btSequentialImpulseConstraintSolver;
+	btDiscreteDynamicsWorld *dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, broadphase, solver, collisionConfiguration);
 
 	btVector3 boxHalfExtents(1.0, 1.0, 1.0);
 	// btBoxShape* boxShape = new btBoxShape(boxHalfExtents);
-	btCollisionShape* boxShape = new btBoxShape(boxHalfExtents);
-	
-	// Create a rigid body: You will need to create a btRigidBody object to represent 
+	btCollisionShape *boxShape = new btBoxShape(boxHalfExtents);
+
+	// Create a rigid body: You will need to create a btRigidBody object to represent
 	// the box in the physics simulation. You will need to specify the mass, the initial
 	// position, and the rotation of the box, as well as the shape, and motion state of the box.
 
@@ -139,39 +139,39 @@ void MainApp::run()
 	btVector3 boxInertia(0, 0, 0);
 	boxShape->calculateLocalInertia(boxMass, boxInertia);
 
-	btDefaultMotionState* boxMotionState = new btDefaultMotionState(boxTransform);
+	btDefaultMotionState *boxMotionState = new btDefaultMotionState(boxTransform);
 	btRigidBody::btRigidBodyConstructionInfo boxRigidBodyCI(boxMass, boxMotionState, boxShape, boxInertia);
-	btRigidBody* boxRigidBody = new btRigidBody(boxRigidBodyCI);
+	btRigidBody *boxRigidBody = new btRigidBody(boxRigidBodyCI);
 
 	dynamicsWorld->addRigidBody(boxRigidBody);
 
-	btDefaultMotionState* boxMotionState2 = new btDefaultMotionState(boxTransform2);
+	btDefaultMotionState *boxMotionState2 = new btDefaultMotionState(boxTransform2);
 	btRigidBody::btRigidBodyConstructionInfo boxRigidBodyCI2(boxMass, boxMotionState2, boxShape, boxInertia);
-	btRigidBody* boxRigidBody2 = new btRigidBody(boxRigidBodyCI2);
+	btRigidBody *boxRigidBody2 = new btRigidBody(boxRigidBodyCI2);
 
 	dynamicsWorld->addRigidBody(boxRigidBody2);
 
 	// ground
-	btVector3 planeNormal(0,1,0);
+	btVector3 planeNormal(0, 1, 0);
 	btScalar planeConstant = 0;
-	btCollisionShape* groundShape = new btStaticPlaneShape(planeNormal,planeConstant);
+	btCollisionShape *groundShape = new btStaticPlaneShape(planeNormal, planeConstant);
 
-	btDefaultMotionState* groundMotionState = new btDefaultMotionState();
+	btDefaultMotionState *groundMotionState = new btDefaultMotionState();
 	btTransform groundTransform;
 	groundTransform.setIdentity();
-	groundTransform.setOrigin(btVector3(0,0,0));
+	groundTransform.setOrigin(btVector3(0, 0, 0));
 	groundMotionState->setWorldTransform(groundTransform);
 
-	btRigidBody::btRigidBodyConstructionInfo groundRigidBodyCI(0,groundMotionState,groundShape,btVector3(0,0,0));
-	btRigidBody* groundRigidBody = new btRigidBody(groundRigidBodyCI);
+	btRigidBody::btRigidBodyConstructionInfo groundRigidBodyCI(0, groundMotionState, groundShape, btVector3(0, 0, 0));
+	btRigidBody *groundRigidBody = new btRigidBody(groundRigidBodyCI);
 	dynamicsWorld->addCollisionObject(groundRigidBody);
 
 	groundRigidBody->setCollisionFlags(groundRigidBody->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
 	groundRigidBody->setActivationState(DISABLE_DEACTIVATION);
 
-//	dynamicsWorld->setGravity(btVector3(0, -9.8f, 0));
+	//	dynamicsWorld->setGravity(btVector3(0, -9.8f, 0));
 
-// ************************************************************************************** //
+	// ************************************************************************************** //
 
 	FpsCounter fpsCounter;
 	GUI gui(m_window);
@@ -181,7 +181,8 @@ void MainApp::run()
 	while (!glfwWindowShouldClose(m_window))
 	{
 		camera.Inputs(m_window);
-		if ( camera.Position.y < 0.2f ) camera.Position.y = 0.20f;
+		if (camera.Position.y < 0.2f)
+			camera.Position.y = 0.20f;
 		float crntTime = glfwGetTime();
 		float timeStep = crntTime - prevTime;
 		if (timeStep >= 1 / 60)
@@ -193,39 +194,39 @@ void MainApp::run()
 		// *******************   bullet phys **************
 		dynamicsWorld->stepSimulation(0.01666666666f, 10);
 
-		// Retrieve the body's new position and rotation: To retrieve the box's new position and rotation, 
+		// Retrieve the body's new position and rotation: To retrieve the box's new position and rotation,
 		// you can use the getWorldTransform function of the box's motion state.
 		{
 			btTransform boxTransform;
 			boxMotionState->getWorldTransform(boxTransform);
 			btVector3 newPosition = boxTransform.getOrigin();
 			btQuaternion newRotation = boxTransform.getRotation();
-			test.position=glm::make_vec3(newPosition.m_floats);
+			test.position = glm::make_vec3(newPosition.m_floats);
 			glm::mat4 tmp_rotation_matrix = glm::mat4_cast(glm::quat(newRotation.x(), newRotation.y(), newRotation.z(), newRotation.w()));
 			test.setOrientation(tmp_rotation_matrix);
 		}
-		
+
 		{
 			btTransform boxTransform;
 			boxMotionState2->getWorldTransform(boxTransform);
 			btVector3 newPosition = boxTransform.getOrigin();
 			btQuaternion newRotation = boxTransform.getRotation();
-			test2.position=glm::make_vec3(newPosition.m_floats);
+			test2.position = glm::make_vec3(newPosition.m_floats);
 			glm::mat4 tmp_rotation_matrix = glm::mat4_cast(glm::quat(newRotation.x(), newRotation.y(), newRotation.z(), newRotation.w()));
 			test2.setOrientation(tmp_rotation_matrix);
 		}
 
-		// Apply forces or torques: You can apply forces or torques to the box to make it move 
+		// Apply forces or torques: You can apply forces or torques to the box to make it move
 		// around or rotate, by calling applyCentralForce or applyTorque on the rigid body.
-		//btVector3 force(1.0, 0.0, 0.0);
-		//boxRigidBody->applyCentralForce(force);
+		// btVector3 force(1.0, 0.0, 0.0);
+		// boxRigidBody->applyCentralForce(force);
 
 		// ************************************************
 
 		// 3d space positioning
 		skullRatCube.rotate(0.04f, glm::vec3(0.0f, 1.0f, 0.0f));
-		//suzanne.position = glm::vec3(sin(crntTime), 0.0f, cos(crntTime)) * 5.0f;
-		
+		// suzanne.position = glm::vec3(sin(crntTime), 0.0f, cos(crntTime)) * 5.0f;
+
 		glm::vec4 lightColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 		glm::vec3 lightPos = glm::vec3(10.5f, 10.5f, 10.5f);
 		glm::mat4 lightModel = glm::mat4(1.0f);
@@ -256,10 +257,8 @@ void MainApp::run()
 		glClearColor(0.12f, 0.16f, 0.21f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		world.draw();
-
-		
-
+		//world.draw();
+		renderWorld(world);
 
 		// cubeMap.draw(skyboxShader, camera);
 		gui.drawGUI(fpsCounter.getFps(), &world);
@@ -268,5 +267,81 @@ void MainApp::run()
 		if (glfwGetKey(m_window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 			glfwSetWindowShouldClose(m_window, true);
 		glfwPollEvents();
+	}
+}
+
+void MainApp::renderWorld(World world)
+{
+	for (std::map<std::string, WorldEntity *>::iterator itr = world._entities.begin(); itr != world._entities.end(); ++itr)
+	{
+		std::string name = itr->first;
+		WorldEntity *entity = itr->second;
+		if (entity->isEnabled)
+		{
+			renderEntity(entity);
+		}
+	}
+}
+
+void MainApp::renderEntity(WorldEntity *entity)
+{
+	if (entity->isEnabled)
+	{
+		entity->shader->Activate();
+		GLint modelLoc = glGetUniformLocation(entity->shader->ID, "model");
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(entity->getMatrix()));
+	
+		Model *model = entity->getModel();
+		
+		for (GLuint i = 0; i < model->meshes.size(); i++)
+		{
+			renderMesh(model->meshes[i], entity->shader);
+		}
+	}
+}
+
+void MainApp::renderMesh(Mesh &mesh, Shader* shader)
+{
+	// Bind appropriate textures
+	GLuint diffuseNr = 1;
+	GLuint specularNr = 1;
+
+	for (GLuint i = 0; i < mesh.textures.size(); i++)
+	{
+		glActiveTexture(GL_TEXTURE0 + i); // Active proper texture unit before binding
+		// Retrieve texture number (the N in diffuse_textureN)
+		std::stringstream ss;
+		std::string number;
+		std::string name = mesh.textures[i].typeName;
+
+		if (name == "texture_diffuse")
+		{
+			ss << diffuseNr++; // Transfer GLuint to stream
+		}
+		else if (name == "texture_specular")
+		{
+			ss << specularNr++; // Transfer GLuint to stream
+		}
+
+		number = ss.str();
+		// Now set the sampler to the correct texture unit
+		glUniform1i(glGetUniformLocation(shader->ID, (name + number).c_str()), i);
+		// And finally bind the texture
+		glBindTexture(GL_TEXTURE_2D, mesh.textures[i].id);
+	}
+
+	// Also set each mesh's shininess property to a default value (if you want you could extend this to another mesh property and possibly change this value)
+	glUniform1f(glGetUniformLocation(shader->ID, "material.shininess"), 16.0f);
+
+	// Draw mesh
+	glBindVertexArray(mesh.VAO);
+	glDrawElements(GL_TRIANGLES, mesh.indices.size(), GL_UNSIGNED_INT, 0);
+	glBindVertexArray(0);
+
+	// Always good practice to set everything back to defaults once configured.
+	for (GLuint i = 0; i < mesh.textures.size(); i++)
+	{
+		glActiveTexture(GL_TEXTURE0 + i);
+		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 }

@@ -5,14 +5,6 @@ Model::Model(GLchar *path)
     this->loadModel(path);
 }
 
-void Model::draw(Shader shader)
-{
-    for (GLuint i = 0; i < this->meshes.size(); i++)
-    {
-        this->meshes[i].Draw(shader);
-    }
-}
-
 void Model::loadModel(std::string path)
 {
     Assimp::Importer importer;

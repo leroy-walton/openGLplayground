@@ -25,12 +25,11 @@ class Model
 {
 public:
     Model(GLchar *path);
-    void draw(Shader shader);
-private:
+
     std::vector<Mesh> meshes;
     std::string directory;
     std::vector<Texture> textures_loaded; // Stores all the textures loaded so far, optimization to make sure textures aren't loaded more than once.
-
+private:
     void loadModel(std::string path);     // Loads a model with supported ASSIMP extensions from file and stores the resulting meshes in the meshes vector.
     void processNode(aiNode *node, const aiScene *scene);
     Mesh processMesh(aiMesh *mesh, const aiScene *scene);

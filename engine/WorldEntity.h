@@ -11,7 +11,6 @@ public:
 	WorldEntity(std::string name, Model *model, Shader *s);
 	std::string getName();
 	Model *getModel();
-	void draw();
 
 	void translate(glm::vec3 t);
 	void setPosition(glm::vec3 p);
