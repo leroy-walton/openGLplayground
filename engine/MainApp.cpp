@@ -261,7 +261,7 @@ void MainApp::run()
 
 		//world.draw();
 		//renderWorld(world);
-		worldRenderer.render(world);
+		worldRenderer.render(&world);
 
 		// cubeMap.draw(skyboxShader, camera);
 		gui.drawGUI(fpsCounter.getFps(), &world);

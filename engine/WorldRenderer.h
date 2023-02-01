@@ -6,9 +6,9 @@
 class WorldRenderer
 {
 public:
-    void render(World world)
+    void render(World* world)
     {
-        for (std::map<std::string, WorldEntity *>::iterator itr = world._entities.begin(); itr != world._entities.end(); ++itr)
+        for (std::map<std::string, WorldEntity *>::iterator itr = world->_entities.begin(); itr != world->_entities.end(); ++itr)
         {
             std::string name = itr->first;
             WorldEntity *entity = itr->second;

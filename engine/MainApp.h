@@ -45,9 +45,7 @@ public:
 
 private:
     GLFWwindow *m_window;
-    World *m_world;
     WorldRenderer worldRenderer;
-
     void initGlfwWindow();
     void initOpenGl();
     void loadGameObjects();
