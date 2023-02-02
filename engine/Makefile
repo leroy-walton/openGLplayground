@@ -15,7 +15,7 @@ SOURCES += Axes.cpp MainApp.cpp
 OBJS = $(addsuffix .o, $(basename $(notdir $(SOURCES))))
 UNAME_S := $(shell uname -s)
 
-CXXFLAGS = -std=c++11 -I$(IMGUI_DIR) -I./include -DBT_USE_DOUBLE_PRECISION -I/usr/local/include/bullet -I/usr/local/include
+CXXFLAGS = -std=c++17 -I$(IMGUI_DIR) -I./include -DBT_USE_DOUBLE_PRECISION -I/usr/local/include/bullet -I/usr/local/include
 CXXFLAGS += -g -Wall -Wformat
 LIBS = 
 

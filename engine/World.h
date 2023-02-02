@@ -7,6 +7,7 @@
 #include "Camera.h"
 #include "Model.h"
 #include "WorldEntity.h"
+#include "entt/entt.hpp"
 
 class World
 {
@@ -14,8 +15,9 @@ public:
 	World();
 	~World();
 	void addEntity(std::string name, WorldEntity *entity);
-	std::map<std::string, Model *> _items;
 	std::map<std::string,WorldEntity *> _entities;
+
+    entt::registry registry;
 
     Shader* basicShader;
     Shader* uniColorShader;
