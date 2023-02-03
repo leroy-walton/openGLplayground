@@ -1,8 +1,5 @@
 #include "Camera.h"
 
-const float slow_speed = 0.5f;
-const float high_speed = 2.5f;
-
 Camera::Camera(int width, int height, glm::vec3 position)
 {
 	Camera::width = width;

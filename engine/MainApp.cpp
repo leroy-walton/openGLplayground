@@ -179,10 +179,12 @@ void MainApp::run()
 	float rotation = 0.0f;
 	double prevTime = glfwGetTime();
 	WorldRenderer worldRenderer;
+	InputHandler inputHandler;
+
 	// Main loop
 	while (!glfwWindowShouldClose(m_window))
 	{
-		camera.Inputs(m_window);
+		inputHandler.handleInput(camera, *m_window);
 		if (camera.Position.y < 0.2f)
 			camera.Position.y = 0.20f;
 		float crntTime = glfwGetTime();

@@ -31,6 +31,11 @@ public:
 	float speed = 0.1f;
 	float sensitivity = 100.0f;
 
+
+	float slow_speed = 0.5f;
+	float high_speed = 2.5f;
+
+
 	// Camera constructor to set up initial values
 	Camera(int width, int height, glm::vec3 position);
 

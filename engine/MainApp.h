@@ -29,6 +29,7 @@
 #include "TexturedCube.h"
 #include "jam_Entity.h"
 #include "WorldRenderer.h"
+#include "InputHandler.h"
 
 class MainApp
 {
