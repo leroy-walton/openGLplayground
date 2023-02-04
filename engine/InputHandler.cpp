@@ -1,41 +1,35 @@
 #include "InputHandler.h"
 
+InputHandler::InputHandler()
+{
+    key_w = new MoveForwardCommand();
+    key_s = new MoveBackwardCommand();
+    key_a = new StraffLeftCommand();
+    key_d = new StraffRightCommand();
+    key_leftctrl = new MoveDownCommand();
+    key_space = new MoveUpCommand();
+    key_leftshift_press = new TurboOnCommand();
+    key_leftshift_release = new TurboOffCommand();
+}
+
 void InputHandler::handleInput(Camera &camera, GLFWwindow &window)
 {
     {
+        std::vector<Command*> command_queue;
+        
         // Handles key inputs
+
+        std::cout << "key_w : " << key_w << "\n";
+
         if (glfwGetKey(&window, GLFW_KEY_W) == GLFW_PRESS)
-        {
-            camera.Position += camera.speed * camera.Orientation;
-        }
-        if (glfwGetKey(&window, GLFW_KEY_A) == GLFW_PRESS)
-        {
-            camera.Position += camera.speed * -glm::normalize(glm::cross(camera.Orientation, camera.Up));
-        }
-        if (glfwGetKey(&window, GLFW_KEY_S) == GLFW_PRESS)
-        {
-            camera.Position += camera.speed * -camera.Orientation;
-        }
-        if (glfwGetKey(&window, GLFW_KEY_D) == GLFW_PRESS)
-        {
-            camera.Position += camera.speed * glm::normalize(glm::cross(camera.Orientation, camera.Up));
-        }
-        if (glfwGetKey(&window, GLFW_KEY_SPACE) == GLFW_PRESS)
-        {
-            camera.Position += camera.speed * camera.Up;
-        }
-        if (glfwGetKey(&window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
-        {
-            camera.Position += camera.speed * -camera.Up;
-        }
-        if (glfwGetKey(&window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
-        {
-            camera.speed = camera.high_speed;
-        }
-        else if (glfwGetKey(&window, GLFW_KEY_LEFT_SHIFT) == GLFW_RELEASE)
-        {
-            camera.speed = camera.slow_speed;
-        }
+            key_w->execute(camera);
+        if (glfwGetKey(&window, GLFW_KEY_A) == GLFW_PRESS) key_a->execute(camera);
+        if (glfwGetKey(&window, GLFW_KEY_S) == GLFW_PRESS) key_s->execute(camera);
+        if (glfwGetKey(&window, GLFW_KEY_D) == GLFW_PRESS) key_d->execute(camera);
+        if (glfwGetKey(&window, GLFW_KEY_SPACE) == GLFW_PRESS) key_space->execute(camera);
+        if (glfwGetKey(&window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS) key_leftctrl->execute(camera);
+        if (glfwGetKey(&window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) key_leftshift_press->execute(camera);
+        else if (glfwGetKey(&window, GLFW_KEY_LEFT_SHIFT) == GLFW_RELEASE) key_leftshift_release->execute(camera);
 
         // Handles mouse inputs
         if (glfwGetMouseButton(&window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS)
@@ -85,4 +79,3 @@ void InputHandler::handleInput(Camera &camera, GLFWwindow &window)
         }
     }
 }
-
