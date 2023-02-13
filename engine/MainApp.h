@@ -24,7 +24,6 @@
 #include "FpsCounter.h"
 #include "GUI.h"
 #include "ModelLoader.h"
-#include "World.h"
 #include "VAO.h"
 #include "EBO.h"
 #include "TexturedCube.h"

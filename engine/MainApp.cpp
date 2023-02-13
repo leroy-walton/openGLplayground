@@ -60,18 +60,18 @@ void MainApp::initOpenGl()
 
 void MainApp::run()
 {
-	World world;
-
+	// load models
 	Model barrelModel("resources/models/wine_barrel/wine_barrel_01_4k.gltf");
 	Model sphereModel("resources/models/sphere.gltf");
 	Model terrainModel("resources/models/terrain/ground_textured_100x100.gltf");
 	Model skullRatCubeModel("resources/models/cubeskullrat/cube_skull_rat.gltf");
 	Model suzanneModel("resources/models/suzanne/Suzanne2.gltf");
-
-	Shader basicShader = *world.basicShader;
-	Shader normalColorShader = *world.normalColorShader;
-	Shader uniColorShader = *world.uniColorShader;
-
+	
+	// compile shaders
+	Shader basicShader("basic.vert", "basic.frag"); 
+	Shader normalColorShader("normalColor.vert", "normalColor.frag");
+	Shader uniColorShader("uniColor.vert", "uniColor.frag");
+	
 	entt::registry registry;
     
 	// create some animated cubes
@@ -123,7 +123,6 @@ void MainApp::run()
 		tr.position = glm::vec3(20.0, 35.0f, -100.0f);
 		tr.scale = glm::vec3(20.f);
 	}
-
 	// rotating cube
 	{
 		auto e = registry.create();
@@ -156,16 +155,10 @@ void MainApp::run()
 	// Main loop
 	while (!glfwWindowShouldClose(m_window))
 	{
+		float crntTime = glfwGetTime();
 		inputHandler.handleInput(camera, *m_window);
 		if (camera.Position.y < 0.2f)
 			camera.Position.y = 0.20f;
-		float crntTime = glfwGetTime();
-		float timeStep = crntTime - prevTime;
-		if (timeStep >= 1 / 60)
-		{
-			rotation += 0.5f;
-			prevTime = crntTime;
-		}
 
 		glm::vec4 lightColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 		glm::vec3 lightPos = glm::vec3(10.5f, 10.5f, 10.5f);
@@ -200,8 +193,7 @@ void MainApp::run()
 		rotationSystem.update(registry);
 		renderSystem.render(registry);
 		// cubeMap.draw(skyboxShader, camera);
-		gui.drawGUI(fpsCounter.getFps(), &world);
-		// gui.draw(fpsCounter.getFps(), world.getItems());
+		gui.drawGUI(fpsCounter.getFps());
 
 		glfwSwapBuffers(m_window);
 		if (glfwGetKey(m_window, GLFW_KEY_ESCAPE) == GLFW_PRESS)

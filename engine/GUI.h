@@ -9,13 +9,12 @@
 #include "imgui_impl_opengl3.h"
 #include <GLFW/glfw3.h>
 #include <iostream>
-#include "World.h"
 
 class GUI
 {
 public:
 	GUI(GLFWwindow *window);
-	void drawGUI(double fps, World *world);
+	void drawGUI(double fps);
 
 private:
 };
