@@ -75,19 +75,19 @@ void MainApp::run()
 	entt::registry registry;
     
 	// create some animated cubes
-	const int numEntities = 112;
+	const int numEntities = 12;
     for (int i = 0; i < numEntities; i++)
     {
         auto e = registry.create();
 		registry.emplace<DynamicCube>(e);
         Transform &transform = registry.emplace<Transform>(e);
-		transform.position.x = 2*i;
-		transform.position.y = 1;
-		transform.position.z = 2*i;
+		transform.position.x = glm::linearRand( 1, 100);
+		transform.position.y = glm::linearRand(1,100);
+		transform.position.z = 5;
         auto &vel = registry.emplace<Velocity>(e);
-        vel.velocity.x = 5;
-        vel.velocity.y = 5;
-		vel.velocity.z = 4;
+        vel.velocity.x = 0;
+        vel.velocity.y = 0;
+		vel.velocity.z = 0;
 		VisualShape &visuals = registry.emplace<VisualShape>(e);
 		visuals.model = &skullRatCubeModel;
 		visuals.shader = &basicShader;
@@ -121,7 +121,7 @@ void MainApp::run()
 		vs.model = &suzanneModel;
 		vs.shader = &normalColorShader;
 		tr.position = glm::vec3(20.0, 35.0f, -100.0f);
-		tr.scale = glm::vec3(20.f);
+		tr.scale = glm::vec3(10.f);
 	}
 	// rotating cube
 	{
@@ -132,7 +132,7 @@ void MainApp::run()
 		vs.model = &skullRatCubeModel;
 		vs.shader = &basicShader;
 		tr.position = glm::vec3(200.0, 35.0f, -100.0f);
-		tr.scale = glm::vec3(30.f);
+		tr.scale = glm::vec3(10.f);
 	}
 	// lamp
 	auto lampEntity = registry.create();
@@ -151,6 +151,9 @@ void MainApp::run()
 	InputHandler inputHandler;
 	RenderSystem renderSystem;
 	RotationSystem rotationSystem;
+	MoveSystem moveSystem;
+	GravitySystem gravitySystem;
+	
 
 	// Main loop
 	while (!glfwWindowShouldClose(m_window))
@@ -190,6 +193,8 @@ void MainApp::run()
 		glClearColor(0.12f, 0.16f, 0.21f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+		moveSystem.update(registry);
+		gravitySystem.update(registry);
 		rotationSystem.update(registry);
 		renderSystem.render(registry);
 		// cubeMap.draw(skyboxShader, camera);

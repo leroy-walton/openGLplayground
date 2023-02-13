@@ -5,6 +5,37 @@
 
 #include "components.h"
 
+// systems
+class MoveSystem
+{
+public:
+    void update(entt::registry &registry) {
+        registry.view<Transform, Velocity>().each([](Transform &p, Velocity &v) {
+                  p.position.x += v.velocity.x;
+                  p.position.y += v.velocity.y; });
+    }
+};
+
+class GravitySystem 
+{
+public:
+    void update(entt::registry &registry) {
+        registry.view<Transform, Velocity, DynamicCube>().each([&registry](auto e1, Transform &p, Velocity &v) { 
+                registry.view<Transform, Velocity, DynamicCube>().each([&](auto e2, Transform &p2, Velocity &v2) {
+                        if ( e1 != e2 ) {
+                            float distance = sqrt(( p.position.x - p2.position.x ) * ( p.position.x - p2.position.x) +
+                                            (p.position.y - p2.position.y) * (p.position.y - p2.position.y));
+                            // Apply gravitational force
+                            float gravity =0.01f;
+                            float force = gravity / (distance * distance);
+                            v.velocity.x += force * (p2.position.x - p.position.x) ;
+                            v.velocity.y += force * (p2.position.y - p.position.y) ; 
+                        } 
+                    });
+            });
+    }
+};
+
 class RotationSystem
 {
 public:
@@ -18,11 +49,9 @@ public:
     }
 };
 
-
 class RenderSystem
 {
 public:
-    
     void render(entt::registry &registry)
     {
         auto view = registry.view<VisualShape>();
@@ -48,7 +77,6 @@ public:
             }
         }
     }
-
 
 private:
     void renderMesh(Mesh &mesh, Shader *shader)
