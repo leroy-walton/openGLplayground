@@ -28,10 +28,9 @@
 #include "VAO.h"
 #include "EBO.h"
 #include "TexturedCube.h"
-#include "jam_Entity.h"
-#include "WorldRenderer.h"
 #include "InputHandler.h"
 #include "components.h"
+#include "systems.h"
 
 class MainApp
 {
@@ -48,7 +47,6 @@ public:
 
 private:
     GLFWwindow *m_window;
-    WorldRenderer worldRenderer;
     void initGlfwWindow();
     void initOpenGl();
     void loadGameObjects();

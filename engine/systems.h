@@ -1,28 +1,31 @@
-#ifndef WORLD_RENDERER_H
-#define WORLD_RENDERER_H
+#ifndef SYSTEMS_H
+#define SYSTEMS_H
+
+#include <entt/entt.hpp>
 
 #include "components.h"
-#include "World.h"
 
-class WorldRenderer
+class RotationSystem
 {
 public:
-    void render(World* world)
+    void update(entt::registry &registry)
     {
-        for (std::map<std::string, WorldEntity *>::iterator itr = world->_entities.begin(); itr != world->_entities.end(); ++itr)
-        {
-            std::string name = itr->first;
-            WorldEntity *entity = itr->second;
-            if (entity->isEnabled)
-            {
-                renderEntity(entity);
-            }
+        auto view = registry.view<Rotating>();
+        for(auto en : view) {
+            Transform& tr = registry.get<Transform>(en);
+            tr.orientation = glm::rotate(tr.orientation, 0.04f, glm::vec3(0.f, 1.f, 0.f ));
         }
     }
+};
 
-    void renderRegistry(entt::registry &registry)
+
+class RenderSystem
+{
+public:
+    
+    void render(entt::registry &registry)
     {
-        auto view = registry.view<DynamicCube>();
+        auto view = registry.view<VisualShape>();
         for(auto entity: view) {
             Transform tr = registry.get<Transform>(entity);
             VisualShape vs = registry.get<VisualShape>(entity);
@@ -46,24 +49,8 @@ public:
         }
     }
 
+
 private:
-    void renderEntity(WorldEntity* entity)
-    {
-        if (entity->isEnabled)
-        {
-            entity->shader->Activate();
-            GLint modelLoc = glGetUniformLocation(entity->shader->ID, "model");
-            glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(entity->getMatrix()));
-
-            Model *model = entity->getModel();
-
-            for (GLuint i = 0; i < model->meshes.size(); i++)
-            {
-                renderMesh(model->meshes[i], entity->shader);
-            }
-        }
-    }
-
     void renderMesh(Mesh &mesh, Shader *shader)
     {
         // Bind appropriate textures

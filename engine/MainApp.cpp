@@ -66,15 +66,16 @@ void MainApp::run()
 	Model sphereModel("resources/models/sphere.gltf");
 	Model terrainModel("resources/models/terrain/ground_textured_100x100.gltf");
 	Model skullRatCubeModel("resources/models/cubeskullrat/cube_skull_rat.gltf");
+	Model suzanneModel("resources/models/suzanne/Suzanne2.gltf");
 
 	Shader basicShader = *world.basicShader;
 	Shader normalColorShader = *world.normalColorShader;
 	Shader uniColorShader = *world.uniColorShader;
 
-
 	entt::registry registry;
-	auto e = registry.create();
-    const int numEntities = 2;
+    
+	// create some animated cubes
+	const int numEntities = 112;
     for (int i = 0; i < numEntities; i++)
     {
         auto e = registry.create();
@@ -92,37 +93,65 @@ void MainApp::run()
 		visuals.shader = &basicShader;
     }
 
+	// create static objects
+	// terrain
+	{
+		auto e = registry.create();
+		Transform &tr = registry.emplace<Transform>(e);
+		VisualShape &vs = registry.emplace<VisualShape>(e);
+		vs.model = &terrainModel;
+		vs.shader = &basicShader;
+		tr.scale = glm::vec3(10000.f);
+	}
+	// barrell
+	{
+		auto e = registry.create();
+		Transform &tr = registry.emplace<Transform>(e);
+		VisualShape &vs = registry.emplace<VisualShape>(e);
+		vs.model = &barrelModel;
+		vs.shader = &basicShader;
+		tr.position = glm::vec3(50.0, -1.0f, 0.0f);
+		tr.scale = glm::vec3(20.f);
+	}
+	// suzanne
+	{
+		auto e = registry.create();
+		Transform &tr = registry.emplace<Transform>(e);
+		VisualShape &vs = registry.emplace<VisualShape>(e);
+		vs.model = &suzanneModel;
+		vs.shader = &normalColorShader;
+		tr.position = glm::vec3(20.0, 35.0f, -100.0f);
+		tr.scale = glm::vec3(20.f);
+	}
 
-
-	WorldEntity lamp("lamp", &sphereModel, &uniColorShader);
-	world.addEntity("lamp", &lamp);
-	WorldEntity barrel("barrel", &barrelModel, &basicShader);
-	world.addEntity("barrel", &barrel);
-	WorldEntity terrain("terrain", &terrainModel, &basicShader);
-	world.addEntity("terrain", &terrain);
-
-	WorldEntity skullRatCube("skullRatCube", &skullRatCubeModel, &basicShader);
-	world.addEntity("skullRatCube", &skullRatCube);
-
-	barrel.position = glm::vec3(50.0, -1.0f, 0.0f);
-	barrel.scaleUp(glm::vec3(20.0f));
-	lamp.scaleUp(glm::vec3(30.0f));
-	terrain.scaleUp(glm::vec3(10000.0f));
-
-	skullRatCube.scaleUp(glm::vec3(20.0f));
-	skullRatCube.translate(glm::vec3(0.0f, 20.0f, 150.0f));
+	// rotating cube
+	{
+		auto e = registry.create();
+		registry.emplace<Rotating>(e);
+		Transform &tr = registry.emplace<Transform>(e);
+		VisualShape &vs = registry.emplace<VisualShape>(e);
+		vs.model = &skullRatCubeModel;
+		vs.shader = &basicShader;
+		tr.position = glm::vec3(200.0, 35.0f, -100.0f);
+		tr.scale = glm::vec3(30.f);
+	}
+	// lamp
+	auto lampEntity = registry.create();
+	Transform &lampTransform = registry.emplace<Transform>(lampEntity);
+	VisualShape &lampVs = registry.emplace<VisualShape>(lampEntity);
+	lampVs.model = &sphereModel;
+	lampVs.shader = &uniColorShader;
+	lampTransform.scale = glm::vec3(30.f);
 
 	Camera camera(width, height, glm::vec3(0.0f, 4.0f, -40.0f)); // init camera
-
-	// ************************************************* phys ************************************** //
-	// ************************************************************************************** //
 
 	FpsCounter fpsCounter;
 	GUI gui(m_window);
 	float rotation = 0.0f;
 	double prevTime = glfwGetTime();
-	WorldRenderer worldRenderer;
 	InputHandler inputHandler;
+	RenderSystem renderSystem;
+	RotationSystem rotationSystem;
 
 	// Main loop
 	while (!glfwWindowShouldClose(m_window))
@@ -138,22 +167,15 @@ void MainApp::run()
 			prevTime = crntTime;
 		}
 
-		// *******************   bullet phys **************
-		// ************************************************
-
-		// 3d space positioning
-		skullRatCube.rotate(0.04f, glm::vec3(0.0f, 1.0f, 0.0f));
-		// suzanne.position = glm::vec3(sin(crntTime), 0.0f, cos(crntTime)) * 5.0f;
-
 		glm::vec4 lightColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 		glm::vec3 lightPos = glm::vec3(10.5f, 10.5f, 10.5f);
 		glm::mat4 lightModel = glm::mat4(1.0f);
 
-		// lightPos = glm::vec3(1200.5f * sin(crntTime/3.0), abs(sin(crntTime*2.4)*300.5f), cos(crntTime/3.0) * 40.5f);
+		//lightPos = glm::vec3(1200.5f * sin(crntTime/3.0), abs(sin(crntTime*2.4)*300.5f), cos(crntTime/3.0) * 40.5f);
 		lightPos = glm::vec3(-1000.0, 1000.0, 450.0);
 
 		lightModel = glm::translate(lightModel, lightPos);
-		lamp.position = lightPos;
+		lampTransform.position = lightPos;
 		basicShader.Activate();
 		glUniform4f(glGetUniformLocation(basicShader.ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
 		glUniform3f(glGetUniformLocation(basicShader.ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
@@ -175,13 +197,12 @@ void MainApp::run()
 		glClearColor(0.12f, 0.16f, 0.21f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		//world.draw();
-		//renderWorld(world);
-		worldRenderer.render(&world);
-		worldRenderer.renderRegistry(registry);
+		rotationSystem.update(registry);
+		renderSystem.render(registry);
 		// cubeMap.draw(skyboxShader, camera);
 		gui.drawGUI(fpsCounter.getFps(), &world);
 		// gui.draw(fpsCounter.getFps(), world.getItems());
+
 		glfwSwapBuffers(m_window);
 		if (glfwGetKey(m_window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 			glfwSetWindowShouldClose(m_window, true);

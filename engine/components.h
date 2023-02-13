@@ -7,6 +7,7 @@
 #include "Model.h"
 
 struct DynamicCube {};
+struct Rotating {};
 
 struct Transform {
     glm::vec3 position{0.f};
