@@ -1,10 +1,7 @@
 #ifndef MODEL_CLASS_H
 #define MODEL_CLASS_H
 
-#include <glm/glm.hpp>
 #include <vector>
-#include "Mesh.h"
-
 #include <string>
 #include <fstream>
 #include <sstream>

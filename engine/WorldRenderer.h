@@ -1,6 +1,7 @@
 #ifndef WORLD_RENDERER_H
 #define WORLD_RENDERER_H
 
+#include "components.h"
 #include "World.h"
 
 class WorldRenderer
@@ -15,6 +16,32 @@ public:
             if (entity->isEnabled)
             {
                 renderEntity(entity);
+            }
+        }
+    }
+
+    void renderRegistry(entt::registry &registry)
+    {
+        auto view = registry.view<DynamicCube>();
+        for(auto entity: view) {
+            Transform tr = registry.get<Transform>(entity);
+            VisualShape vs = registry.get<VisualShape>(entity);
+
+            vs.shader->Activate();
+
+            // compute model matrix 
+            glm::mat4 translate = glm::translate(glm::mat4(1.0f), tr.position);
+	        glm::mat4 rotate = tr.orientation;
+	        glm::mat4 scale = glm::scale(glm::mat4(1.0f), tr.scale);
+	        glm::mat4 res = translate * rotate * scale;
+
+            GLint modelLoc = glGetUniformLocation(vs.shader->ID, "model");
+            glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(res));
+
+            Model *model = vs.model;
+            for (GLuint i = 0; i < model->meshes.size(); i++)
+            {
+                renderMesh(model->meshes[i], vs.shader);
             }
         }
     }

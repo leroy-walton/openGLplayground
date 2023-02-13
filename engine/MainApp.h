@@ -15,6 +15,7 @@
 #include <assimp/postprocess.h> // Post processing flags
 #include <glm/gtx/string_cast.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <entt/entt.hpp>
 
 #include <bullet/btBulletDynamicsCommon.h>
 #include <bullet/btBulletCollisionCommon.h>
@@ -30,6 +31,7 @@
 #include "jam_Entity.h"
 #include "WorldRenderer.h"
 #include "InputHandler.h"
+#include "components.h"
 
 class MainApp
 {

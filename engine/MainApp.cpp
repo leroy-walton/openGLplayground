@@ -1,6 +1,5 @@
 
 #include "MainApp.h"
-#include "WorldRenderer.h"
 
 MainApp::MainApp()
 {
@@ -61,28 +60,42 @@ void MainApp::initOpenGl()
 
 void MainApp::run()
 {
-
 	World world;
 
 	Model barrelModel("resources/models/wine_barrel/wine_barrel_01_4k.gltf");
-	// Model sponzaModel("resources/models/sponza/Sponza.gltf");
-	Model suzanneModel("resources/models/suzanne/Suzanne2.gltf");
 	Model sphereModel("resources/models/sphere.gltf");
 	Model terrainModel("resources/models/terrain/ground_textured_100x100.gltf");
-
 	Model skullRatCubeModel("resources/models/cubeskullrat/cube_skull_rat.gltf");
 
 	Shader basicShader = *world.basicShader;
 	Shader normalColorShader = *world.normalColorShader;
 	Shader uniColorShader = *world.uniColorShader;
 
+
+	entt::registry registry;
+	auto e = registry.create();
+    const int numEntities = 2;
+    for (int i = 0; i < numEntities; i++)
+    {
+        auto e = registry.create();
+		registry.emplace<DynamicCube>(e);
+        Transform &transform = registry.emplace<Transform>(e);
+		transform.position.x = 2*i;
+		transform.position.y = 1;
+		transform.position.z = 2*i;
+        auto &vel = registry.emplace<Velocity>(e);
+        vel.velocity.x = 5;
+        vel.velocity.y = 5;
+		vel.velocity.z = 4;
+		VisualShape &visuals = registry.emplace<VisualShape>(e);
+		visuals.model = &skullRatCubeModel;
+		visuals.shader = &basicShader;
+    }
+
+
+
 	WorldEntity lamp("lamp", &sphereModel, &uniColorShader);
 	world.addEntity("lamp", &lamp);
-	// WorldEntity sponza("sponza", &sponzaModel, &normalColorShader);
-	// WorldEntity sponza("sponza", &sponzaModel, &basicShader);
-	// world.addEntity("sponza", &sponza);
-	WorldEntity suzanne("suzanne", &suzanneModel, &normalColorShader);
-	world.addEntity("suzanne", &suzanne);
 	WorldEntity barrel("barrel", &barrelModel, &basicShader);
 	world.addEntity("barrel", &barrel);
 	WorldEntity terrain("terrain", &terrainModel, &basicShader);
@@ -90,88 +103,18 @@ void MainApp::run()
 
 	WorldEntity skullRatCube("skullRatCube", &skullRatCubeModel, &basicShader);
 	world.addEntity("skullRatCube", &skullRatCube);
-	WorldEntity test("test", &skullRatCubeModel, &basicShader); // multiple entities can be linked to the same model.
-	world.addEntity("test", &test);
-	WorldEntity test2("test2", &skullRatCubeModel, &basicShader); // multiple entities can be linked to the same model.
-	world.addEntity("test2", &test2);
 
 	barrel.position = glm::vec3(50.0, -1.0f, 0.0f);
 	barrel.scaleUp(glm::vec3(20.0f));
-	suzanne.scaleUp(glm::vec3(30.0f));
-	suzanne.translate(glm::vec3(-440.0f, 140.0f, -250.0f));
 	lamp.scaleUp(glm::vec3(30.0f));
 	terrain.scaleUp(glm::vec3(10000.0f));
 
 	skullRatCube.scaleUp(glm::vec3(20.0f));
-	skullRatCube.translate(glm::vec3(400.0f, 20.0f, 150.0f));
+	skullRatCube.translate(glm::vec3(0.0f, 20.0f, 150.0f));
 
-	Camera camera(width, height, glm::vec3(0.0f, 4.0f, 40.0f)); // init camera
-
-	// CubeMap cubeMap;
-	// Shader skyboxShader("skybox.vert", "skybox.frag");
-	// skyboxShader.Activate();
-	// glUniform1i(glGetUniformLocation(skyboxShader.ID, "skybox"), 0);
+	Camera camera(width, height, glm::vec3(0.0f, 4.0f, -40.0f)); // init camera
 
 	// ************************************************* phys ************************************** //
-	// create world
-	btBroadphaseInterface *broadphase = new btDbvtBroadphase();
-	btDefaultCollisionConfiguration *collisionConfiguration = new btDefaultCollisionConfiguration();
-	btCollisionDispatcher *dispatcher = new btCollisionDispatcher(collisionConfiguration);
-	btSequentialImpulseConstraintSolver *solver = new btSequentialImpulseConstraintSolver;
-	btDiscreteDynamicsWorld *dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, broadphase, solver, collisionConfiguration);
-
-	btVector3 boxHalfExtents(1.0, 1.0, 1.0);
-	// btBoxShape* boxShape = new btBoxShape(boxHalfExtents);
-	btCollisionShape *boxShape = new btBoxShape(boxHalfExtents);
-
-	// Create a rigid body: You will need to create a btRigidBody object to represent
-	// the box in the physics simulation. You will need to specify the mass, the initial
-	// position, and the rotation of the box, as well as the shape, and motion state of the box.
-
-	btTransform boxTransform;
-	boxTransform.setIdentity();
-	boxTransform.setOrigin(btVector3(0, 50, 0));
-
-	btTransform boxTransform2;
-	boxTransform2.setIdentity();
-	boxTransform2.setOrigin(btVector3(0, 52.5, 0));
-
-	btScalar boxMass = 1;
-	btVector3 boxInertia(0, 0, 0);
-	boxShape->calculateLocalInertia(boxMass, boxInertia);
-
-	btDefaultMotionState *boxMotionState = new btDefaultMotionState(boxTransform);
-	btRigidBody::btRigidBodyConstructionInfo boxRigidBodyCI(boxMass, boxMotionState, boxShape, boxInertia);
-	btRigidBody *boxRigidBody = new btRigidBody(boxRigidBodyCI);
-
-	dynamicsWorld->addRigidBody(boxRigidBody);
-
-	btDefaultMotionState *boxMotionState2 = new btDefaultMotionState(boxTransform2);
-	btRigidBody::btRigidBodyConstructionInfo boxRigidBodyCI2(boxMass, boxMotionState2, boxShape, boxInertia);
-	btRigidBody *boxRigidBody2 = new btRigidBody(boxRigidBodyCI2);
-
-	dynamicsWorld->addRigidBody(boxRigidBody2);
-
-	// ground
-	btVector3 planeNormal(0, 1, 0);
-	btScalar planeConstant = 0;
-	btCollisionShape *groundShape = new btStaticPlaneShape(planeNormal, planeConstant);
-
-	btDefaultMotionState *groundMotionState = new btDefaultMotionState();
-	btTransform groundTransform;
-	groundTransform.setIdentity();
-	groundTransform.setOrigin(btVector3(0, 0, 0));
-	groundMotionState->setWorldTransform(groundTransform);
-
-	btRigidBody::btRigidBodyConstructionInfo groundRigidBodyCI(0, groundMotionState, groundShape, btVector3(0, 0, 0));
-	btRigidBody *groundRigidBody = new btRigidBody(groundRigidBodyCI);
-	dynamicsWorld->addCollisionObject(groundRigidBody);
-
-	groundRigidBody->setCollisionFlags(groundRigidBody->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
-	groundRigidBody->setActivationState(DISABLE_DEACTIVATION);
-
-	//	dynamicsWorld->setGravity(btVector3(0, -9.8f, 0));
-
 	// ************************************************************************************** //
 
 	FpsCounter fpsCounter;
@@ -196,35 +139,6 @@ void MainApp::run()
 		}
 
 		// *******************   bullet phys **************
-		dynamicsWorld->stepSimulation(0.01666666666f, 10);
-
-		// Retrieve the body's new position and rotation: To retrieve the box's new position and rotation,
-		// you can use the getWorldTransform function of the box's motion state.
-		{
-			btTransform boxTransform;
-			boxMotionState->getWorldTransform(boxTransform);
-			btVector3 newPosition = boxTransform.getOrigin();
-			btQuaternion newRotation = boxTransform.getRotation();
-			test.position = glm::make_vec3(newPosition.m_floats);
-			glm::mat4 tmp_rotation_matrix = glm::mat4_cast(glm::quat(newRotation.x(), newRotation.y(), newRotation.z(), newRotation.w()));
-			test.setOrientation(tmp_rotation_matrix);
-		}
-
-		{
-			btTransform boxTransform;
-			boxMotionState2->getWorldTransform(boxTransform);
-			btVector3 newPosition = boxTransform.getOrigin();
-			btQuaternion newRotation = boxTransform.getRotation();
-			test2.position = glm::make_vec3(newPosition.m_floats);
-			glm::mat4 tmp_rotation_matrix = glm::mat4_cast(glm::quat(newRotation.x(), newRotation.y(), newRotation.z(), newRotation.w()));
-			test2.setOrientation(tmp_rotation_matrix);
-		}
-
-		// Apply forces or torques: You can apply forces or torques to the box to make it move
-		// around or rotate, by calling applyCentralForce or applyTorque on the rigid body.
-		// btVector3 force(1.0, 0.0, 0.0);
-		// boxRigidBody->applyCentralForce(force);
-
 		// ************************************************
 
 		// 3d space positioning
@@ -264,7 +178,7 @@ void MainApp::run()
 		//world.draw();
 		//renderWorld(world);
 		worldRenderer.render(&world);
-
+		worldRenderer.renderRegistry(registry);
 		// cubeMap.draw(skyboxShader, camera);
 		gui.drawGUI(fpsCounter.getFps(), &world);
 		// gui.draw(fpsCounter.getFps(), world.getItems());

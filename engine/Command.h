@@ -10,7 +10,6 @@ public:
     virtual void execute(Camera &camera) = 0;
 };
 
-
 class MoveForwardCommand : public Command
 {
     public:
@@ -84,4 +83,3 @@ class TurboOffCommand : public Command
 };
 
 #endif
-
