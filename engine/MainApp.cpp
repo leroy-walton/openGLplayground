@@ -60,86 +60,18 @@ void MainApp::initOpenGl()
 
 void MainApp::run()
 {
-	// load models
-	Model barrelModel("resources/models/wine_barrel/wine_barrel_01_4k.gltf");
-	Model sphereModel("resources/models/sphere.gltf");
-	Model terrainModel("resources/models/terrain/ground_textured_100x100.gltf");
-	Model skullRatCubeModel("resources/models/cubeskullrat/cube_skull_rat.gltf");
-	Model suzanneModel("resources/models/suzanne/Suzanne2.gltf");
-	
-	// compile shaders
-	Shader basicShader("basic.vert", "basic.frag"); 
-	Shader normalColorShader("normalColor.vert", "normalColor.frag");
-	Shader uniColorShader("uniColor.vert", "uniColor.frag");
-	
 	entt::registry registry;
     
-	// create some animated cubes
-	const int numEntities = 12;
-    for (int i = 0; i < numEntities; i++)
-    {
-        auto e = registry.create();
-		registry.emplace<DynamicCube>(e);
-        Transform &transform = registry.emplace<Transform>(e);
-		transform.position.x = glm::linearRand( 1, 100);
-		transform.position.y = glm::linearRand(1,100);
-		transform.position.z = 5;
-        auto &vel = registry.emplace<Velocity>(e);
-        vel.velocity.x = 0;
-        vel.velocity.y = 0;
-		vel.velocity.z = 0;
-		VisualShape &visuals = registry.emplace<VisualShape>(e);
-		visuals.model = &skullRatCubeModel;
-		visuals.shader = &basicShader;
-    }
-
-	// create static objects
-	// terrain
-	{
-		auto e = registry.create();
-		Transform &tr = registry.emplace<Transform>(e);
-		VisualShape &vs = registry.emplace<VisualShape>(e);
-		vs.model = &terrainModel;
-		vs.shader = &basicShader;
-		tr.scale = glm::vec3(10000.f);
-	}
-	// barrell
-	{
-		auto e = registry.create();
-		Transform &tr = registry.emplace<Transform>(e);
-		VisualShape &vs = registry.emplace<VisualShape>(e);
-		vs.model = &barrelModel;
-		vs.shader = &basicShader;
-		tr.position = glm::vec3(50.0, -1.0f, 0.0f);
-		tr.scale = glm::vec3(20.f);
-	}
-	// suzanne
-	{
-		auto e = registry.create();
-		Transform &tr = registry.emplace<Transform>(e);
-		VisualShape &vs = registry.emplace<VisualShape>(e);
-		vs.model = &suzanneModel;
-		vs.shader = &normalColorShader;
-		tr.position = glm::vec3(20.0, 35.0f, -100.0f);
-		tr.scale = glm::vec3(10.f);
-	}
-	// rotating cube
-	{
-		auto e = registry.create();
-		registry.emplace<Rotating>(e);
-		Transform &tr = registry.emplace<Transform>(e);
-		VisualShape &vs = registry.emplace<VisualShape>(e);
-		vs.model = &skullRatCubeModel;
-		vs.shader = &basicShader;
-		tr.position = glm::vec3(200.0, 35.0f, -100.0f);
-		tr.scale = glm::vec3(10.f);
-	}
-	// lamp
+	Factory::makePlanets(registry);
+	Factory::makeStaticObjects(registry);
+	Factory::makeRotatingCube(registry);
+	
+	// // lamp
 	auto lampEntity = registry.create();
 	Transform &lampTransform = registry.emplace<Transform>(lampEntity);
 	VisualShape &lampVs = registry.emplace<VisualShape>(lampEntity);
-	lampVs.model = &sphereModel;
-	lampVs.shader = &uniColorShader;
+	lampVs.model = ResourceManager::getSphereModel();
+	lampVs.shader = ResourceManager::getUniColorShader();
 	lampTransform.scale = glm::vec3(30.f);
 
 	Camera camera(width, height, glm::vec3(0.0f, 4.0f, -40.0f)); // init camera
@@ -172,23 +104,24 @@ void MainApp::run()
 
 		lightModel = glm::translate(lightModel, lightPos);
 		lampTransform.position = lightPos;
-		basicShader.Activate();
-		glUniform4f(glGetUniformLocation(basicShader.ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
-		glUniform3f(glGetUniformLocation(basicShader.ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
-		glUniform1f(glGetUniformLocation(basicShader.ID, "time"), crntTime);
-		glUniform3f(glGetUniformLocation(basicShader.ID, "camPos"), camera.Position.x, camera.Position.y, camera.Position.z);
-		camera.Matrix(basicShader, "proj");
+		
+		ResourceManager::getBasicShader()->Activate();
+		glUniform4f(glGetUniformLocation(ResourceManager::getBasicShader()->ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
+		glUniform3f(glGetUniformLocation(ResourceManager::getBasicShader()->ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
+		glUniform1f(glGetUniformLocation(ResourceManager::getBasicShader()->ID, "time"), crntTime);
+		glUniform3f(glGetUniformLocation(ResourceManager::getBasicShader()->ID, "camPos"), camera.Position.x, camera.Position.y, camera.Position.z);
+		camera.Matrix(*ResourceManager::getBasicShader(), "proj");
 
-		normalColorShader.Activate();
-		glUniform4f(glGetUniformLocation(normalColorShader.ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
-		glUniform3f(glGetUniformLocation(normalColorShader.ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
-		glUniform1f(glGetUniformLocation(normalColorShader.ID, "time"), crntTime);
-		glUniform3f(glGetUniformLocation(normalColorShader.ID, "camPos"), camera.Position.x, camera.Position.y, camera.Position.z);
-		camera.Matrix(normalColorShader, "proj");
+		ResourceManager::getNormalColorShader()->Activate();
+		glUniform4f(glGetUniformLocation(ResourceManager::getNormalColorShader()->ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
+		glUniform3f(glGetUniformLocation(ResourceManager::getNormalColorShader()->ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
+		glUniform1f(glGetUniformLocation(ResourceManager::getNormalColorShader()->ID, "time"), crntTime);
+		glUniform3f(glGetUniformLocation(ResourceManager::getNormalColorShader()->ID, "camPos"), camera.Position.x, camera.Position.y, camera.Position.z);
+		camera.Matrix(*ResourceManager::getNormalColorShader(), "proj");
 
-		uniColorShader.Activate();
-		glUniform4f(glGetUniformLocation(uniColorShader.ID, "color"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
-		camera.Matrix(uniColorShader, "camMatrix");
+		ResourceManager::getUniColorShader()->Activate();
+		glUniform4f(glGetUniformLocation(ResourceManager::getUniColorShader()->ID, "color"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
+		camera.Matrix(*ResourceManager::getUniColorShader(), "camMatrix");
 
 		glClearColor(0.12f, 0.16f, 0.21f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
