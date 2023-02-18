@@ -30,6 +30,8 @@
 #include "InputHandler.h"
 #include "components.h"
 #include "systems.h"
+#include "ResourceManager.h"
+#include "Factory.h"
 
 class MainApp
 {

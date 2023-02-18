@@ -23,5 +23,6 @@ Libraries used :
  * assimp
  * stbi
  * imgui
+ * EnTT
  
 textured_quad/single_file_solution/main.cpp is the minimal implementation using glew and stbi. No classes.
