@@ -14,17 +14,17 @@ public:
     }
 
     static Shader* getBasicShader() {
-        static Shader m_basicShader("basic.vert", "basic.frag");
+        static Shader m_basicShader("resources/shaders/basic.vert", "resources/shaders/basic.frag");
         return &m_basicShader;
     }
 
     static Shader* getNormalColorShader() {
-        static Shader m_normalColorShader("normalColor.vert", "normalColor.frag");
+        static Shader m_normalColorShader("resources/shaders/normalColor.vert", "resources/shaders/normalColor.frag");
         return &m_normalColorShader;
     }
 
     static Shader* getUniColorShader() {
-        static Shader m_uniColorShader("uniColor.vert", "uniColor.frag");
+        static Shader m_uniColorShader("resources/shaders/uniColor.vert", "resources/shaders/uniColor.frag");
         return &m_uniColorShader;
     }
 

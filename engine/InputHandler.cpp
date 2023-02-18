@@ -18,9 +18,6 @@ void InputHandler::handleInput(Camera &camera, GLFWwindow &window)
         std::vector<Command*> command_queue;
         
         // Handles key inputs
-
-        std::cout << "key_w : " << key_w << "\n";
-
         if (glfwGetKey(&window, GLFW_KEY_W) == GLFW_PRESS)
             key_w->execute(camera);
         if (glfwGetKey(&window, GLFW_KEY_A) == GLFW_PRESS) key_a->execute(camera);
