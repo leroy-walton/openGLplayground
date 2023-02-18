@@ -16,7 +16,7 @@
 
 While learning openGL and C++, I'll put relevant code here.
 
-Libraries used : 
+Libraries used so far : 
  * glew
  * glfw
  * glm
@@ -25,4 +25,4 @@ Libraries used :
  * imgui
  * EnTT
  
-textured_quad/single_file_solution/main.cpp is the minimal implementation using glew and stbi. No classes.
+ I dream about making a simulation bench for mutli-system agents, IA etc...
