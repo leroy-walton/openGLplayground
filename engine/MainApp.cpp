@@ -65,14 +65,8 @@ void MainApp::run()
 	Factory::makePlanets(registry);
 	Factory::makeStaticObjects(registry);
 	Factory::makeRotatingCube(registry);
-	
-	// // lamp
-	auto lampEntity = registry.create();
-	Transform &lampTransform = registry.emplace<Transform>(lampEntity);
-	VisualShape &lampVs = registry.emplace<VisualShape>(lampEntity);
-	lampVs.model = ResourceManager::getSphereModel();
-	lampVs.shader = ResourceManager::getUniColorShader();
-	lampTransform.scale = glm::vec3(30.f);
+	entt::entity lampEntity = Factory::makeLight(registry);
+	Transform& lampTransform = registry.get<Transform>(lampEntity); // needed for shaders
 
 	Camera camera(width, height, glm::vec3(40.0f, 40.0f, 250.0f)); // init camera
 
