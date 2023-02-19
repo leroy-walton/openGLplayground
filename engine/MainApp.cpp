@@ -74,7 +74,7 @@ void MainApp::run()
 	lampVs.shader = ResourceManager::getUniColorShader();
 	lampTransform.scale = glm::vec3(30.f);
 
-	Camera camera(width, height, glm::vec3(0.0f, 4.0f, -40.0f)); // init camera
+	Camera camera(width, height, glm::vec3(40.0f, 40.0f, 250.0f)); // init camera
 
 	FpsCounter fpsCounter;
 	GUI gui(m_window);
@@ -131,7 +131,7 @@ void MainApp::run()
 		rotationSystem.update(registry);
 		renderSystem.render(registry);
 		// cubeMap.draw(skyboxShader, camera);
-		gui.drawGUI(fpsCounter.getFps());
+		gui.drawGUI(fpsCounter.getFps(), camera);
 
 		glfwSwapBuffers(m_window);
 		if (glfwGetKey(m_window, GLFW_KEY_ESCAPE) == GLFW_PRESS)

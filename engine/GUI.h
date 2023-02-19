@@ -9,12 +9,14 @@
 #include "imgui_impl_opengl3.h"
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include "Camera.h"
 
 class GUI
 {
 public:
 	GUI(GLFWwindow *window);
 	void drawGUI(double fps);
+	void drawGUI(double fps, Camera camera);
 
 private:
 };

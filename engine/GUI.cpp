@@ -48,3 +48,18 @@ void GUI::drawGUI(double fps)
 	}
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
+
+void GUI::drawGUI(double fps, Camera camera)
+{
+	ImGui_ImplOpenGL3_NewFrame();
+	ImGui_ImplGlfw_NewFrame();
+	{
+		ImGui::NewFrame();
+		ImGui::Begin("engine_demo v0.0.2");
+		ImGui::Text("fps %f", fps);
+		ImGui::Text("Camera Position : %f, %f, %f", camera.Position.x, camera.Position.y, camera.Position.z);
+		ImGui::End();
+		ImGui::Render();
+	}
+	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+}
