@@ -58,33 +58,6 @@ void MainApp::initOpenGl()
 	glDepthFunc(GL_LESS);
 }
 
-void configureShaders( Camera &camera, glm::vec3 lightPos, float crntTime)
-{
-		glm::vec4 lightColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-		glm::mat4 lightModel = glm::mat4(1.0f);
-		//lightPos = glm::vec3(1200.5f * sin(crntTime/3.0), abs(sin(crntTime*2.4)*300.5f), cos(crntTime/3.0) * 40.5f);
-		lightPos = glm::vec3(-1000.0, 1000.0, 450.0);
-		lightModel = glm::translate(lightModel, lightPos);
-		
-		ResourceManager::getBasicShader()->Activate();
-		glUniform4f(glGetUniformLocation(ResourceManager::getBasicShader()->ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
-		glUniform3f(glGetUniformLocation(ResourceManager::getBasicShader()->ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
-		glUniform1f(glGetUniformLocation(ResourceManager::getBasicShader()->ID, "time"), crntTime);
-		glUniform3f(glGetUniformLocation(ResourceManager::getBasicShader()->ID, "camPos"), camera.position.x, camera.position.y, camera.position.z);
-		camera.Matrix(*ResourceManager::getBasicShader(), "proj");
-
-		ResourceManager::getNormalColorShader()->Activate();
-		glUniform4f(glGetUniformLocation(ResourceManager::getNormalColorShader()->ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
-		glUniform3f(glGetUniformLocation(ResourceManager::getNormalColorShader()->ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
-		glUniform1f(glGetUniformLocation(ResourceManager::getNormalColorShader()->ID, "time"), crntTime);
-		glUniform3f(glGetUniformLocation(ResourceManager::getNormalColorShader()->ID, "camPos"), camera.position.x, camera.position.y, camera.position.z);
-		camera.Matrix(*ResourceManager::getNormalColorShader(), "proj");
-
-		ResourceManager::getUniColorShader()->Activate();
-		glUniform4f(glGetUniformLocation(ResourceManager::getUniColorShader()->ID, "color"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
-		camera.Matrix(*ResourceManager::getUniColorShader(), "camMatrix");
-}
-
 void MainApp::run()
 {
 	entt::registry registry;
@@ -118,7 +91,7 @@ void MainApp::run()
 		moveSystem.update(registry);
 		gravitySystem.update(registry);
 		rotationSystem.update(registry);
-		configureShaders(camera, lampTransform.position, crntTime);
+		ResourceManager::updateShaders(camera, lampTransform.position, crntTime);
 		glClearColor(0.12f, 0.16f, 0.21f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
