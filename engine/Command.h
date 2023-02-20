@@ -15,7 +15,7 @@ class MoveForwardCommand : public Command
     public:
     virtual void execute(Camera& camera)
     {
-        camera.Position += camera.speed * camera.Orientation;
+        camera.position += camera.speed * camera.orientation;
     }
 };
 
@@ -24,7 +24,7 @@ class StraffLeftCommand : public Command
     public:
     virtual void execute(Camera& camera)
     {
-        camera.Position += camera.speed * -glm::normalize(glm::cross(camera.Orientation, camera.Up));
+        camera.position += camera.speed * -glm::normalize(glm::cross(camera.orientation, camera.up));
     }
 };
 
@@ -33,7 +33,7 @@ class StraffRightCommand : public Command
     public:
     virtual void execute(Camera& camera)
     {
-        camera.Position += camera.speed * glm::normalize(glm::cross(camera.Orientation, camera.Up));
+        camera.position += camera.speed * glm::normalize(glm::cross(camera.orientation, camera.up));
     }
 };
 
@@ -42,7 +42,7 @@ class MoveBackwardCommand : public Command
     public:
     virtual void execute(Camera& camera)
     {
-        camera.Position += camera.speed * -camera.Orientation;
+        camera.position += camera.speed * -camera.orientation;
     }
 };
 
@@ -51,7 +51,7 @@ class MoveUpCommand : public Command
     public:
     virtual void execute(Camera& camera)
     {
-        camera.Position += camera.speed * camera.Up;
+        camera.position += camera.speed * camera.up;
     }
 };
 
@@ -60,7 +60,7 @@ class MoveDownCommand : public Command
     public:
     virtual void execute(Camera& camera)
     {
-        camera.Position += camera.speed * -camera.Up;
+        camera.position += camera.speed * -camera.up;
     }
 };
 
