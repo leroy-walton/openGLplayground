@@ -72,8 +72,6 @@ void MainApp::run()
 
 	FpsCounter fpsCounter;
 	GUI gui(m_window);
-	float rotation = 0.0f;
-	double prevTime = glfwGetTime();
 	InputHandler inputHandler;
 	RenderSystem renderSystem;
 	RotationSystem rotationSystem;

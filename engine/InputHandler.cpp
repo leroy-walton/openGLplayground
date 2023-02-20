@@ -53,16 +53,16 @@ void InputHandler::handleInput(Camera &camera, GLFWwindow &window)
             float rotY = camera.sensitivity * (float)(mouseX - (camera.width / 2)) / camera.width;
 
             // Calculates upcoming vertical change in the Orientation
-            glm::vec3 newOrientation = glm::rotate(camera.Orientation, glm::radians(-rotX), glm::normalize(glm::cross(camera.Orientation, camera.Up)));
+            glm::vec3 newOrientation = glm::rotate(camera.orientation, glm::radians(-rotX), glm::normalize(glm::cross(camera.orientation, camera.up)));
 
             // Decides whether or not the next vertical Orientation is legal or not
-            if (abs(glm::angle(newOrientation, camera.Up) - glm::radians(90.0f)) <= glm::radians(85.0f))
+            if (abs(glm::angle(newOrientation, camera.up) - glm::radians(90.0f)) <= glm::radians(85.0f))
             {
-                camera.Orientation = newOrientation;
+                camera.orientation = newOrientation;
             }
 
             // Rotates the Orientation left and right
-            camera.Orientation = glm::rotate(camera.Orientation, glm::radians(-rotY), camera.Up);
+            camera.orientation = glm::rotate(camera.orientation, glm::radians(-rotY), camera.up);
 
             // Sets mouse cursor to the middle of the screen so that it doesn't end up roaming around
             glfwSetCursorPos(&window, (camera.width / 2), (camera.height / 2));
