@@ -25,4 +25,4 @@ Libraries used so far :
  * imgui
  * EnTT
  
- I dream about making a simulation bench for mutli-system agents, IA etc...
+ 
