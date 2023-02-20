@@ -3,8 +3,7 @@
 
 MainApp::MainApp()
 {
-	initGlfwWindow();
-	initOpenGl();
+	m_window = WindowHelper(width, height).m_window;
 }
 
 MainApp::~MainApp()
@@ -13,63 +12,8 @@ MainApp::~MainApp()
 	glfwTerminate();
 }
 
-void framebuffer_size_callback(GLFWwindow *window, int width, int height)
-{
-	glViewport(0, 0, width, height);
-}
-
-void MainApp::initGlfwWindow()
-{
-	glfwInit();
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	GLFWwindow *window = glfwCreateWindow(width, height, "engine_demo", NULL, NULL);
-	if (window == NULL)
-	{
-		std::cout << "Failed to create GLFW window" << std::endl;
-		glfwTerminate();
-		// return nullptr;
-		//  TODO: raise exception
-	}
-	glfwMakeContextCurrent(window);
-	// Set this to true so GLEW knows to use a modern approach to retrieving function pointers and extensions
-	glewExperimental = GL_TRUE;
-	if (GLEW_OK != glewInit())
-	{
-		std::cout << "Failed to initialize GLEW" << std::endl;
-		// return nullptr;
-		//  TODO: raise exception
-	}
-
-	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-	// return window;
-	m_window = window;
-}
-
-void MainApp::initOpenGl()
-{
-	glViewport(0, 0, width, height);
-	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_CULL_FACE);
-	glFrontFace(GL_CCW);
-	// glCullFace(GL_FRONT);
-	glCullFace(GL_BACK);
-	glDepthFunc(GL_LESS);
-}
-
 void MainApp::run()
 {
-	entt::registry registry;
-    
-	Factory::makePlanets(registry);
-	Factory::makeStaticObjects(registry);
-	Factory::makeRotatingCube(registry);
-	entt::entity lampEntity = Factory::makeLight(registry);
-	Transform& lampTransform = registry.get<Transform>(lampEntity); // needed for shaders
-	lampTransform.position = glm::vec3(-1000.0, 1000.0, 450.0);
-	Camera camera(width, height, glm::vec3(40.0f, 40.0f, 250.0f)); // init camera
-
 	FpsCounter fpsCounter;
 	GUI gui(m_window);
 	InputHandler inputHandler;
@@ -77,6 +21,15 @@ void MainApp::run()
 	RotationSystem rotationSystem;
 	MoveSystem moveSystem;
 	GravitySystem gravitySystem;
+
+	entt::registry registry;
+	Factory::makePlanets(registry);
+	Factory::makeStaticObjects(registry);
+	Factory::makeRotatingCube(registry);
+	entt::entity lampEntity = Factory::makeLight(registry);
+	Transform& lampTransform = registry.get<Transform>(lampEntity); 
+	lampTransform.position = glm::vec3(-1000.0, 1000.0, 450.0); // needed by shaders
+	Camera camera(width, height, glm::vec3(40.0f, 40.0f, 250.0f)); // init camera
 	
 	// Main loop
 	while (!glfwWindowShouldClose(m_window))

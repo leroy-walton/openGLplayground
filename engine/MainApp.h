@@ -30,6 +30,7 @@
 #include "systems.h"
 #include "ResourceManager.h"
 #include "Factory.h"
+#include "WindowHelper.h"
 
 class MainApp
 {
