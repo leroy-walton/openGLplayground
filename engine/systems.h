@@ -1,6 +1,7 @@
 #ifndef SYSTEMS_H
 #define SYSTEMS_H
 
+#include <random>
 #include <entt/entt.hpp>
 
 #include "components.h"
@@ -11,11 +12,36 @@ class MoveSystem
 public:
     void update(entt::registry &registry) {
         registry.view<Transform, Velocity>().each([](Transform &p, Velocity &v) {
-                  p.position.x += v.velocity.x;
-                  p.position.y += v.velocity.y;
-                  p.position.z += v.velocity.z; });
+                  p.position += v.velocity; });
     }
 };
+
+class RobotAISystem
+{
+public:
+    void update(entt::registry &registry) {
+        float speed = 1.f;
+        auto view = registry.view<Robot>();
+        for(auto en : view) {
+            Transform& tr = registry.get<Transform>(en);
+            float angle = randomFloat(-0.3f, 0.3f);
+            tr.orientation = glm::rotate(tr.orientation, angle, glm::vec3(0.f, 1.f, 0.f ));
+            glm::vec3 forward = tr.orientation[2];
+            forward = glm::normalize(forward);
+            tr.position += speed * forward;
+        }
+    }
+
+private:
+
+    float randomFloat(float a, float b) {
+        float random = ((float) rand()) / (float) RAND_MAX;
+        float diff = b - a;
+        float r = random * diff;
+        return a + r;
+    }
+};
+
 
 class GravitySystem 
 {
@@ -31,9 +57,7 @@ public:
                             // Apply gravitational force
                             float gravity =0.01f;
                             float force = gravity / (distance * distance);
-                            v.velocity.x += force * (p2.position.x - p.position.x) ;
-                            v.velocity.y += force * (p2.position.y - p.position.y) ; 
-                            v.velocity.z += force * (p2.position.z - p.position.z) ;
+                            v.velocity += force * (p2.position - p.position) ;
                         } 
                     });
             });
