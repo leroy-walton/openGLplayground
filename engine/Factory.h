@@ -2,10 +2,26 @@
 #define FACTORY_H
 
 #include <entt/entt.hpp>
+#include "components.h"
 
 class Factory
 {
 public:
+    static void makeAgents(entt::registry &registry)
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            auto e = registry.create();
+            registry.emplace<Robot>(e);
+            Transform &tr = registry.emplace<Transform>(e);
+            tr.position = {0.f, 0.f, 0.f};
+            tr.scale = {10.f, 10.f, 10.f};
+            VisualShape &visuals = registry.emplace<VisualShape>(e);
+            visuals.model = ResourceManager::getRobotModel();
+            visuals.shader = ResourceManager::getBasicShader();
+        }
+    }
+
     // planets
     static void makePlanets(entt::registry &registry)
     {
@@ -63,18 +79,18 @@ public:
         }
     }
 
-	// rotating cube
+    // rotating cube
     static void makeRotatingCube(entt::registry &registry)
-	{
-		auto e = registry.create();
-		registry.emplace<Rotating>(e);
-		Transform &tr = registry.emplace<Transform>(e);
-		VisualShape &vs = registry.emplace<VisualShape>(e);
-		vs.model = ResourceManager::getSkullRatCubeModel();
-		vs.shader = ResourceManager::getBasicShader();
-		tr.position = glm::vec3(200.0, 35.0f, -100.0f);
-		tr.scale = glm::vec3(10.f);
-	}
+    {
+        auto e = registry.create();
+        registry.emplace<Rotating>(e);
+        Transform &tr = registry.emplace<Transform>(e);
+        VisualShape &vs = registry.emplace<VisualShape>(e);
+        vs.model = ResourceManager::getSkullRatCubeModel();
+        vs.shader = ResourceManager::getBasicShader();
+        tr.position = glm::vec3(200.0, 35.0f, -100.0f);
+        tr.scale = glm::vec3(10.f);
+    }
 
     static entt::entity makeLight(entt::registry &registry)
     {

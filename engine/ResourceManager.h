@@ -85,6 +85,11 @@ public:
         return &jupiterModel;
     }
 
+    static Model* getRobotModel() {
+        static Model robotModel("resources/models/robot04.gltf");
+        return &robotModel;
+    }
+
 private:
     ResourceManager(){};
 };

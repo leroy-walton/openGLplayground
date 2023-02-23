@@ -8,6 +8,7 @@
 
 struct DynamicCube {};
 struct Rotating {};
+struct Robot {};
 
 struct Transform {
     glm::vec3 position{0.f};
